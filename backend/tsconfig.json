@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": ["DOM"],
+    "target": "ES6",
+    "module": "commonjs",
+    "resolveJsonModule": true,    
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "removeComments": false
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}
