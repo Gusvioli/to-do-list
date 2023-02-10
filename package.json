@@ -1,9 +1,0 @@
-{
-    "scripts": {
-        "up:build": "docker-compose up --build",
-        "up:build:d": "docker-compose up -d --build",
-        "down": "docker-compose down",
-        "stop": "docker-compose stop",
-        "up": "docker-compose up"
-    }
-}
