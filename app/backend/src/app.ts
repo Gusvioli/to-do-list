@@ -1,5 +1,7 @@
 import express from 'express';
+import loginRoute from './routes/LoginRoute';
 import 'express-async-errors';
+import cors from 'cors';
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware';
 // import swaggerUi from 'swagger-ui-express';/
 // import swaggerDocument from '../swagger-output.json';
@@ -11,8 +13,10 @@ class App {
     this.app = express();
     this.config();
 
+    this.app.use(cors());
+
+    this.app.use('/login', loginRoute);
     this.app.get('/', (_req, res) => res.json({ ok: true }));
-    // this.app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     this.app.use(HttpErrorMiddleware);
   }

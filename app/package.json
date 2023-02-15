@@ -1,9 +1,11 @@
 {
     "scripts": {
         "up:build": "docker-compose up --build",
-        "up:build:d": "docker-compose up -d --build",
+        "up:build:d": "docker-compose down && docker-compose up -d --build && ./scripts/init-app-docker-db.sh",
         "down": "docker-compose down",
         "stop": "docker-compose stop",
-        "up": "docker-compose up"
+        "up": "docker-compose up",
+        "prune": "docker system prune -a",
+        "start:db": "./scripts/init-app-docker-db.sh"
     }
 }

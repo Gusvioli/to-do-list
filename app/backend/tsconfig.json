@@ -1,21 +1,29 @@
 {
   "compilerOptions": {
-    "lib": ["DOM"],
-    "target": "ES6",
+    "target": "es2019",
     "module": "commonjs",
-    "resolveJsonModule": true,    
-    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "outDir": "dist",
     "rootDir": "./src",
+    "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "removeComments": false
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "paths": {
+      "*": [
+        "node_modules_/*"
+      ]
+    }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/database/migrations/.js"
   ],
   "exclude": [
     "node_modules",

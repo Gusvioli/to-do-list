@@ -1,5 +1,5 @@
 // src/database/models/user.model.js
-import { Model, INTEGER, STRING, DATE } from 'sequelize';
+import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
 
 class User extends Model {
@@ -37,7 +37,7 @@ class User extends Model {
     modelName: 'User',
     tableName: 'users',
     underscored: true,
-    timestamps: true,
+    timestamps: false,
   });
 
 export default User;
