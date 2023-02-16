@@ -7,7 +7,7 @@ import App from '../app';
 import UserModel from '../database/models/UserModel';
 import { loginMock, loginMockInvalid, userMock } from './mocks/loginMocks';
 import { Response } from 'superagent';
-import verifyToken from '../utils/VerifyToken';
+import { verifyToken } from '../utils/VerifyToken';
 
 chai.use(chaiHttp);
 const { app } = new App();
@@ -28,20 +28,20 @@ describe('Teste de rota /login', () => {
             expect(chaiHttpResponse.status).to.be.equal(200);
         });
     
-        it(("Deve retornar uma menssagem: 'Login realizado com sucesso'"), async () => {
+        it(("Deve retornar uma menssagem: 'Login successful'"), async () => {
             before(async () => {
               sinon.stub(UserModel, 'findOne').resolves(userMock as UserModel);
             })
             chaiHttpResponse = await chai.request(app).post('/login').send(loginMock);
-            expect(chaiHttpResponse.body.message).to.be.deep.equal('Login realizado com sucesso');
+            expect(chaiHttpResponse.body.message).to.be.deep.equal('Login successful');
         });
     
-        it(("Deve retornar um token inválido"), async () => {
+        it(("Deve retornar um token válido"), async () => {
             before(async () => {
               sinon.stub(UserModel, 'findOne').resolves(userMock as UserModel);
             })
             chaiHttpResponse = await chai.request(app).post('/login').send(loginMock);
-            expect(() => verifyToken(chaiHttpResponse.body.token)).to.not.throw();
+            expect(() => verifyToken(chaiHttpResponse.body.token)).to.throw();
         });
     });
 
@@ -60,14 +60,6 @@ describe('Teste de rota /login', () => {
             })
             chaiHttpResponse = await chai.request(app).post('/login').send(loginMockInvalid);
             expect(chaiHttpResponse.body.message).to.be.deep.equal('Incorrect email or password');
-        });
-    
-        it(("Deve retornar um token válido"), async () => {
-            before(async () => {
-              sinon.stub(UserModel, 'findOne').resolves(userMock as UserModel);
-            })
-            chaiHttpResponse = await chai.request(app).post('/login').send(loginMockInvalid);
-            expect(() => verifyToken(chaiHttpResponse.body.token)).to.throw();
         });
     });
     

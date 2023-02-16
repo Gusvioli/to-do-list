@@ -6,8 +6,7 @@ function Home() {
   return(
     <div>
       <Navbar />
-      <br />
-      <PanelLogin />
+      Cadastro
     </div>
   );
 }

@@ -1,12 +1,11 @@
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import HttpException from './HttpException';
 import 'dotenv/config';
 
-export default function verifyToken(token: string) {
-  const secret = process.env.JWT_SECRET as unknown as string;
+export function verifyToken({ token }: any): any {
+  const JWT_SECRET = process.env.JWT_SECRET as jwt.Secret;
   try {
-    const verifyTokens = jwt.verify(token, secret);
-    return verifyTokens;
+    return jwt.verify(token, JWT_SECRET);
   } catch (error) {
     throw new HttpException(401, 'Token must be a valid token');
   }
