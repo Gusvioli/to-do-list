@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { ChangeEvent, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
 import { setTokenAuthorization, requestLogin } from "../services/requests";
@@ -6,14 +6,14 @@ import codeMenssage from "../services/status";
 import setLocalStorage from "../utils/setLocalStorage";
 
 // Componente para fazer o login
-function PanelLogin() {
+function PanelLogin(): JSX.Element {
   const {email, setEmail} = useContext(Context);
   const {password, setPassword} = useContext(Context);
   const {codeStatusMessage, setCodeStatusMessage} = useContext(Context);
   const history = useHistory();
 
   // Função para pegar os valores dos inputs
-  const hendleForm = (e) => {
+  const hendleForm = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { id, value } = e.target;
       if (id === 'email') setEmail(value); 
@@ -33,7 +33,7 @@ function PanelLogin() {
         status: 200,
         message: date.message
       });
-    } catch (error) {
+    } catch (error: any) {
       // Salva o status e a messagem vinda do backend retornando o erro
       setCodeStatusMessage({
         status: error.response.status,
@@ -45,7 +45,7 @@ function PanelLogin() {
   // Função para exibir as mensagens de erro ou sucesso
   const exibirMsgs = () => {
     if (codeStatusMessage.status !== 0 && codeStatusMessage.message !== '') {
-      return `${codeMenssage[codeStatusMessage.status]}, ${codeStatusMessage.message}`;
+      return `${codeMenssage(codeStatusMessage.status)}, ${codeStatusMessage.message}`;
     }return '';
   };
 

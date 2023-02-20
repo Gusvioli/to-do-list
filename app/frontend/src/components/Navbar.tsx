@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { requestDataUser } from "../services/requests";
-import Context from "../context/Context";
 import getLocalStorage from "../utils/getLocalStorage";
 
 function Navbar() {
@@ -8,8 +7,10 @@ function Navbar() {
 
   const getDataUserName = async() => {
     try {
-      const returnUserName = await requestDataUser('/userName', {token: getLocalStorage('token')});
-      setUserName(returnUserName.name);
+      const returnrequest = await requestDataUser('/userName', {
+        token: getLocalStorage('token')
+      });
+      setUserName(returnrequest);
     } catch (error) {
       return error;
     }
@@ -38,13 +39,11 @@ function Navbar() {
             </label>
             <button
               data-testid='button-buscar'
-              text="button"
             >
               Buscar
             </button>
             <button
               data-testid='button-sair'
-              text="button"
             >
               Sair
             </button>

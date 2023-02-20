@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Context from './Context';
 
-function Provider({ children }) {
+function Provider({ children }: { children: any}) {
   const [texts, setTexts] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
