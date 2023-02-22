@@ -4,6 +4,8 @@ import Context from './Context';
 function Provider({ children }: { children: any}) {
   const [texts, setTexts] = useState([]);
   const [email, setEmail] = useState('');
+  const [types, setTypes] = useState([]);
+  const [contents, setContents] = useState([]);
   const [password, setPassword] = useState('');
   const [codeStatusMessage, setCodeStatusMessage] = useState({ status: 0, message: ''});
   const memorize = React.useMemo(() => ({
@@ -15,6 +17,10 @@ function Provider({ children }: { children: any}) {
     setPassword,
     codeStatusMessage, 
     setCodeStatusMessage,
+    types,
+    setTypes,
+    contents,
+    setContents,
   }), [
     texts,
     setTexts,
@@ -24,6 +30,10 @@ function Provider({ children }: { children: any}) {
     setPassword,
     codeStatusMessage, 
     setCodeStatusMessage,
+    types,
+    setTypes,
+    contents,
+    setContents,
   ]);
   return (
     <Context.Provider

@@ -1,6 +1,8 @@
 import express from 'express';
 import loginRoute from './routes/LoginRoute';
 import userRoute from './routes/UserRoute';
+import typesRoutes from './routes/TypesRoutes';
+import contentsRoutes from './routes/ContentsRoutes';
 import 'express-async-errors';
 import cors from 'cors';
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware';
@@ -17,6 +19,8 @@ class App {
     
     this.app.use('/login', loginRoute);
     this.app.use('/userName', userRoute);
+    this.app.use('/types', typesRoutes);
+    this.app.use('/contents', contentsRoutes);
     this.app.get('/', (_req, res) => res.json({ ok: true }));
     
     this.app.use(cors());

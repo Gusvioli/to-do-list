@@ -4,16 +4,14 @@ import { verifyToken } from "../utils/VerifyToken";
 
 export class userServices {
     public static async userName(token: string): Promise<UserModel> {
-    const retornVerify = verifyToken(token);
-    console.log(token);
-    
-    const userName = await UserModel.findOne({
-        attributes: ['name'],
-        where: { email: retornVerify.email },
-    });
-    if (!userName) {
-        throw new HttpException(401, 'Incorrect email or token');
-    }
-    return userName;
+        const retornVerify = verifyToken(token);
+        const userName = await UserModel.findOne({
+            attributes: ['name'],
+            where: { email: retornVerify.email },
+        });
+        if (!userName) {
+            throw new HttpException(401, 'Incorrect email or token');
+        }
+        return userName;
     }
 }

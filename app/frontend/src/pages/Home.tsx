@@ -1,13 +1,13 @@
-import React from 'react';
 import Navbar from '../components/Navbar';
-import PanelLogin from '../components/PanelLogin';
+import ToDuListGenerate from '../components/typesToDuList/ToDuListGenerate';
+import TypesToDoList from '../components/typesToDuList/TypesToDoList';
 
 function Home() {
   return(
     <div>
       <Navbar />
-      <br />
-      <PanelLogin />
+      <TypesToDoList />
+      <ToDuListGenerate />
     </div>
   );
 }

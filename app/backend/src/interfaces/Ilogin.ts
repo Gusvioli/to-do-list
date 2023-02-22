@@ -3,6 +3,7 @@ interface Itoken {
 }
 
 interface Ilogin {
+  id?: number;
   name: string;
   email: string;
   password: string;

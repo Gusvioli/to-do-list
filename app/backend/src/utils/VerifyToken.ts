@@ -3,7 +3,7 @@ import HttpException from './HttpException';
 import 'dotenv/config';
 
 export function verifyToken({ token }: any): any {
-  const JWT_SECRET = process.env.JWT_SECRET as jwt.Secret;
+  const JWT_SECRET = process.env.JWT_SECRET as jwt.Secret;  
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (error) {

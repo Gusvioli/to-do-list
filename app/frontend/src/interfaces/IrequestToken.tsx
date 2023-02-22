@@ -1,5 +1,5 @@
 interface IrequestToken {
-  token: string | number | boolean | string[] | null | undefined | object;
+  token: object;
 }
 
 export default IrequestToken;

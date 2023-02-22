@@ -1,6 +1,6 @@
 {
   "root": true,
-  "parser": "babel-eslint",
+  "parser": "airbnb-eslint",
   "env": {
     "es6": true
   }
