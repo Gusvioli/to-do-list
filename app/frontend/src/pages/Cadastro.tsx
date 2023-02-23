@@ -2,7 +2,7 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Context from '../context/Context';
-import { requestCreate } from '../services/requests';
+import { requestCreate, requestDataUser } from '../services/requests';
 import codeMenssage from '../services/status';
 import getLocalStorage from '../utils/getLocalStorage';
 import setLocalStorage from '../utils/setLocalStorage';
@@ -12,7 +12,7 @@ function Cadastro() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {codeStatusMessage, setCodeStatusMessage} = useContext(Context);
+  const {codeStatusMessage, setCodeStatusMessage, setUserName} = useContext(Context);
   const history = useHistory();
 
   // Função para exibir as mensagens de erro ou sucesso
@@ -20,6 +20,16 @@ function Cadastro() {
     if (codeStatusMessage.status !== 0 && codeStatusMessage.message !== '') {
       return `${codeMenssage(codeStatusMessage.status)}, ${codeStatusMessage.message}`;
     }return '';
+  };
+
+  const getDataUserName = async(token: object, isTrue: boolean) => {
+    const returnrequest = await requestDataUser('/userName', {
+      token: token
+    });
+    setUserName({
+      name: returnrequest.name,
+      localStore: isTrue
+    });
   };
 
   // Função para criar um novo usuário
@@ -44,6 +54,8 @@ function Cadastro() {
       
       setLocalStorage('token', returnData.token);
       setLocalStorage('idUser', returnData.id);
+
+      getDataUserName(returnData.token, true);
 
       // Redireciona para a página home depois de 1 segundos e meio
       setTimeout(() => {
