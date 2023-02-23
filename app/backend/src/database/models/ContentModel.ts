@@ -10,6 +10,7 @@ class Content extends Model {
   declare public title: string;
   declare public subTitle: string;
   declare public descript: string;
+  declare public status: string;
   declare public createdAt: Date;
   declare public updatedAt: Date;
   static associate: (models: any) => void;
@@ -46,6 +47,10 @@ Content.init({
       type: STRING,
       allowNull: false,
     },
+    status: {
+      type: STRING,
+      allowNull: false,
+    },
     createdAt: {
       type: DATE,
       allowNull: false,
@@ -58,7 +63,7 @@ Content.init({
     sequelize: db,
     modelName: 'Content',
     tableName: 'contents',
-    underscored: true,
+    underscored: false,
     timestamps: true,
   });
 

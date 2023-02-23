@@ -2,19 +2,9 @@ module.exports = {
   async up (queryInterface, _Sequelize) {
     await queryInterface.bulkInsert('types', [{
       id: 1,
-      name: 'To do List simples',
+      name: 'Listas Simples',
       url: '/simple',
     },
-    {
-      id: 2,
-      name: 'To do List estudos',
-      url: '/education',
-    },
-    {
-      id: 3,
-      name: 'To do List plus',
-      url: '/plus',
-    }
     ], {});
   },
 

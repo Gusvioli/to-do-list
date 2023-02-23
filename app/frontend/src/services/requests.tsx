@@ -1,5 +1,7 @@
 import axios, { AxiosHeaders } from 'axios';
 import IrequestBody from '../interfaces/IrequestBody';
+import IrequestCreate from '../interfaces/IrequestCreate';
+import IrequestIds from '../interfaces/IrequestIds';
 import IrequestToken from '../interfaces/IrequestToken';
 
 const api = axios.create({
@@ -19,7 +21,7 @@ export const requestData = async (endpoint: string) => {
   return data;
 };
 
-export const requestDataId = async (endpoint: string, body: number ) => {
+export const requestDataId = async (endpoint: string, body: IrequestIds ) => {
   const { data } = await api.post(endpoint, body);
   return data;
 };
@@ -30,6 +32,11 @@ export const requestDataUser = async (endpoint: string, body: IrequestToken) => 
 };
 
 export const requestLogin = async (endpoint: string, body: IrequestBody) => {
+  const { data } = await api.post(endpoint, body);
+  return data;
+};
+
+export const requestCreate = async (endpoint: string, body: IrequestCreate) => {
   const { data } = await api.post(endpoint, body);
   return data;
 };
