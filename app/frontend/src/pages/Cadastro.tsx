@@ -7,7 +7,8 @@ import codeMenssage from '../services/status';
 import getLocalStorage from '../utils/getLocalStorage';
 import setLocalStorage from '../utils/setLocalStorage';
 
-function Home() {  
+// Página de cadastro
+function Cadastro() {  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,6 +22,7 @@ function Home() {
     }return '';
   };
 
+  // Função para criar um novo usuário
   const hendleCreateUser = async () => {
     const UM_SEGUNDOS = 1000;
     try {
@@ -57,6 +59,7 @@ function Home() {
     }
   };
 
+  // Função para pegar os dados do input
   const hendleForm = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { id, value } = e.target;
@@ -65,56 +68,59 @@ function Home() {
       if (id === 'password') setPassword(value);
   };
 
+  // Verifica se o usuário está logado
   useEffect(() => {
     getLocalStorage('token').then((token) => {
       if (token) history.push('/home');
     });
   }, [history]);
-
+  
+  // Formulário de cadastro
   return(
-    <form>
-      <Navbar />
-      <br />
-      <label htmlFor="name">
-        Name: 
-        <input
-          data-testid='input-name-cadastro'
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => hendleForm(e)}
-        />
-      </label>
-      <label htmlFor="email" >
-        E-mail:
-        <input
-          data-testid='input-email-cadastro'
-          type="text"
-          id="email"
-          value={email}
-          onChange={(e) => hendleForm(e)}
-        />
-      </label>
-      <label  htmlFor="" >
-        Password:
-        <input
-          data-testid='input-password-cadastro'
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => hendleForm(e)}
-        />
-      </label>
-      <button
-        type="button"
-        onClick={hendleCreateUser}
-      >
-        Cadastrar
-      </button>
-      <p>{exibirMsgs()}</p>
-    </form>
+      <>
+        <Navbar />
+        <form>
+        <br />
+        <label htmlFor="name">
+          Name:
+          <input
+            data-testid='input-name-cadastro'
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => hendleForm(e)} />
+        </label>
+        <label htmlFor="email">
+          E-mail:
+          <input
+            data-testid='input-email-cadastro'
+            type="text"
+            id="email"
+            value={email}
+            onChange={(e) => hendleForm(e)}
+          />
+        </label>
+        <label htmlFor="password">
+          Password:
+          <input
+            data-testid='input-password-cadastro'
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => hendleForm(e)}
+          />
+        </label>
+        <button
+          type="button"
+          onClick={hendleCreateUser}
+        >
+          Cadastrar
+        </button>
+        <p>{exibirMsgs()}</p>
+      </form>
+    </>
   );
 }
 
-export default Home;
+export default Cadastro;
 
