@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Context from "../context/Context";
@@ -13,8 +13,7 @@ function Login(): JSX.Element {
     email,
     setEmail,
     password,
-    setPassword, 
-    userName,
+    setPassword,
     setUserName,
   } = useContext(Context);
   const {codeStatusMessage, setCodeStatusMessage} = useContext(Context);
@@ -27,7 +26,8 @@ function Login(): JSX.Element {
       if (id === 'email') setEmail(value); 
       if (id === 'password') setPassword(value);
   };
-
+  
+  // Função para pegar o username
   const getDataUserName = async(token: object, isTrue: boolean) => {
     const returnrequest = await requestDataUser('/userName', {
       token: token
@@ -56,6 +56,7 @@ function Login(): JSX.Element {
         message: data.message
       });
 
+      // Salva o status e pega o username
       getDataUserName(data.token, true);
 
       // Redireciona para a página home depois de 1 segundos e meio
@@ -79,6 +80,7 @@ function Login(): JSX.Element {
     }return '';
   };
 
+  // Verifica se o usuário já está logado
   useEffect(() => {
     getLocalStorage('token').then((token) => {
       if (token) history.push('/home');
@@ -107,7 +109,8 @@ function Login(): JSX.Element {
             type="password"
             id="password"
             onChange={(e) => hendleForm(e)}
-            value={password} />
+            value={password}
+          />
         </label>
         <button
           type="button"
