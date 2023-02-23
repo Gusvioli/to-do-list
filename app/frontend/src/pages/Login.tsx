@@ -1,16 +1,22 @@
-import { ChangeEvent, useContext, useEffect } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Context from "../context/Context";
-import { requestLogin } from "../services/requests";
+import { requestDataUser, requestLogin } from "../services/requests";
 import codeMenssage from "../services/status";
 import getLocalStorage from "../utils/getLocalStorage";
 import setLocalStorage from "../utils/setLocalStorage";
 
 // Componente para fazer o login
 function Login(): JSX.Element {
-  const {email, setEmail} = useContext(Context);
-  const {password, setPassword} = useContext(Context);
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword, 
+    userName,
+    setUserName,
+  } = useContext(Context);
   const {codeStatusMessage, setCodeStatusMessage} = useContext(Context);
   const history = useHistory();
 
@@ -20,6 +26,16 @@ function Login(): JSX.Element {
     const { id, value } = e.target;
       if (id === 'email') setEmail(value); 
       if (id === 'password') setPassword(value);
+  };
+
+  const getDataUserName = async(token: object, isTrue: boolean) => {
+    const returnrequest = await requestDataUser('/userName', {
+      token: token
+    });
+    setUserName({
+      name: returnrequest.name,
+      localStore: isTrue
+    });
   };
   
   // Função para fazer o login e retorna os erros ou acertos na tentativa de login
@@ -40,10 +56,12 @@ function Login(): JSX.Element {
         message: data.message
       });
 
+      getDataUserName(data.token, true);
+
       // Redireciona para a página home depois de 1 segundos e meio
       setTimeout(() => {
         history.push('/'); // Redireciona para a página home
-      }, UM_SEGUNDOS); // Espera 3 segundos
+      }, UM_SEGUNDOS); // Espera 1 segundos
 
     } catch (error: any) {
       // Salva o status e a messagem vinda do backend retornando o erro

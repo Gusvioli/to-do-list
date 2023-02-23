@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar';
-import ToDuListGenerate from '../components/typesToDuList/ToDuListGenerate';
+import ToDuListSimple from '../components/typesToDuList/ToDuListSimple';
 import TypesToDoList from '../components/typesToDuList/TypesToDoList';
 
 function Home() {
@@ -7,7 +7,7 @@ function Home() {
     <div>
       <Navbar />
       <TypesToDoList />
-      <ToDuListGenerate />
+      <ToDuListSimple />
     </div>
   );
 }

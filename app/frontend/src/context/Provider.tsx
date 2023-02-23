@@ -7,6 +7,7 @@ function Provider({ children }: { children: any}) {
   const [types, setTypes] = useState([]);
   const [contents, setContents] = useState([]);
   const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState({name: '', localStore: false});
   const [codeStatusMessage, setCodeStatusMessage] = useState({ status: 0, message: ''});
   const memorize = React.useMemo(() => ({
     texts,
@@ -21,6 +22,8 @@ function Provider({ children }: { children: any}) {
     setTypes,
     contents,
     setContents,
+    userName,
+    setUserName,
   }), [
     texts,
     setTexts,
@@ -34,6 +37,8 @@ function Provider({ children }: { children: any}) {
     setTypes,
     contents,
     setContents,
+    userName,
+    setUserName,
   ]);
   return (
     <Context.Provider

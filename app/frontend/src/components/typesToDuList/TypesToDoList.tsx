@@ -12,22 +12,21 @@ function TypeToDoList(): JSX.Element {
     history.push(`/home${url}`);
   };
 
-  const getTypeBd = async () => {
-    if(await getLocalStorage('token')){
-      const typesReturn = await requestData('/types');
-      setTypes(typesReturn);
-    }
-  };
-
   useEffect(() => {
+    const getTypeBd = async () => {
+      if(await getLocalStorage('token')){
+        const typesReturn = await requestData('/types');
+        setTypes(typesReturn);
+      }
+    };
     getTypeBd();
-  }, []);
+  }, [setTypes]);
 
   return (
       <ul>
         { types.map((type: any, index: Key) => 
         <li key={ index }>
-          <button type="button" onClick={(url) => gotPage(type.url)}>
+          <button type="button" onClick={() => gotPage(type.url)}>
           {type.name}
           </button>
         </li>

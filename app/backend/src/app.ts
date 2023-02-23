@@ -1,6 +1,7 @@
 import express from 'express';
 import loginRoute from './routes/LoginRoute';
 import userRoute from './routes/UserRoute';
+import newUserRoute from './routes/NewUserRoute';
 import typesRoutes from './routes/TypesRoutes';
 import contentsRoutes from './routes/ContentsRoutes';
 import 'express-async-errors';
@@ -15,12 +16,16 @@ class App {
   constructor() {
     this.app = express();
     this.config();
-
     
     this.app.use('/login', loginRoute);
+
     this.app.use('/userName', userRoute);
+    this.app.use('/newUser', newUserRoute);
+
     this.app.use('/types', typesRoutes);
+
     this.app.use('/contents', contentsRoutes);
+
     this.app.get('/', (_req, res) => res.json({ ok: true }));
     
     this.app.use(cors());

@@ -1,33 +1,20 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
-import { requestDataUser } from "../services/requests";
-import getLocalStorage from "../utils/getLocalStorage";
 import setLocalStorageClear from "../utils/setLocalStorageClear";
 import BtnCadastro from "./buttons/BtnCadastro";
 import BtnLogin from "./buttons/BtnLogin";
 
 function Navbar(): JSX.Element {
-  const {setCodeStatusMessage} = useContext(Context);
-  const {setEmail} = useContext(Context);
-  const {setPassword} = useContext(Context);
-  const [userName, setUserName] = useState({name: '', localStore: false});
+  const {
+    setCodeStatusMessage,
+    setContents,
+    setEmail,
+    setPassword,
+    setTypes
+  } = useContext(Context);
+  const {userName, setUserName} = useContext(Context);
   const history = useHistory();
-
-  const getDataUserName = async() => {
-    try {
-      const getTokenLocal = await getLocalStorage('token');
-      const returnrequest = await requestDataUser('/userName', {
-        token: getTokenLocal
-      });
-      setUserName({
-        name: returnrequest.name,
-        localStore: getTokenLocal
-      });
-    } catch (error) {
-      return error;
-    }
-  };
 
   const hendleExited = () => {
     setLocalStorageClear();
@@ -37,12 +24,11 @@ function Navbar(): JSX.Element {
     });
     setEmail('');
     setPassword('');
+    setContents([]);
+    setTypes([]);
+    setUserName({name: '', localStore: false});
     history.push('/');
   };
-  
-  useEffect(() => {
-     getDataUserName();
-  }, [userName]);
 
   return(
     <>
