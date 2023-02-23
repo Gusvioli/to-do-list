@@ -16,8 +16,8 @@ const NewUserController = async (
   const { name, email, password } = req.body;
   try {
     const validateShema = schema.validate({ name, email, password }, { abortEarly: false });
-    if(validateShema.error){
-      next(new Error('E-mail, password or name incorrect ou empyt'));
+    if (validateShema.error) {
+      next(new Error(validateShema.error.message));
     } else {
       next();
     }
