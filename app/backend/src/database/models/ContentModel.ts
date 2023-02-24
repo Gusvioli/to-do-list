@@ -1,5 +1,7 @@
 // src/database/models/user.model.js
-import { Model, INTEGER, STRING, DATE } from 'sequelize';
+import { NUMBER } from 'sequelize';
+import { ARRAY } from 'sequelize';
+import { Model, INTEGER, STRING, DATE} from 'sequelize';
 import db from '.';
 
 class Content extends Model {
@@ -8,7 +10,7 @@ class Content extends Model {
   declare public type: string;
   declare public image: string;
   declare public title: string;
-  declare public subTitle: string;
+  declare public date: Array<number>;
   declare public descript: string;
   declare public status: string;
   declare public createdAt: Date;
@@ -31,15 +33,11 @@ Content.init({
       type: STRING,
       allowNull: false,
     },
-    image: {
+    emoji: {
       type: STRING,
       allowNull: false,
-    }, 
-    title: {
-      type: STRING,
-      allowNull: false,
-    }, 
-    subTitle: {
+    },
+    date: {
       type: STRING,
       allowNull: false,
     },

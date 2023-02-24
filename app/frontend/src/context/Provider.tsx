@@ -8,6 +8,7 @@ function Provider({ children }: { children: any}) {
   const [contents, setContents] = useState([]);
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState({name: '', localStore: false});
+  const [isTokenTrue, setIsTokenTrue] = useState(false);
   const [codeStatusMessage, setCodeStatusMessage] = useState({ status: 0, message: ''});
   const memorize = React.useMemo(() => ({
     texts,
@@ -24,6 +25,8 @@ function Provider({ children }: { children: any}) {
     setContents,
     userName,
     setUserName,
+    isTokenTrue,
+    setIsTokenTrue,
   }), [
     texts,
     setTexts,
@@ -39,6 +42,8 @@ function Provider({ children }: { children: any}) {
     setContents,
     userName,
     setUserName,
+    isTokenTrue,
+    setIsTokenTrue,
   ]);
   return (
     <Context.Provider

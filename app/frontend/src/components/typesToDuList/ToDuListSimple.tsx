@@ -26,9 +26,8 @@ function ToDuListSimple(): JSX.Element {
     // Template Simples
     <>{contents.map((content: any, index: any) =>
     <div key={index} style={{border: '1px solid #ccc', padding: '5px', margin: '5px'}}>
-      <div>image: {content.image}</div>
-      <div>title: {content.title}</div>
-      <div>sub Title: {content.subTitle}</div>
+      <div>Emoji: {content.emoji}</div>
+      <div>date: {content.date}</div>
       <div>Descript: {content.descript}</div>
       <div>Created: {content.createdAt}</div>
       <div>Updeted: {content.updatedAt}</div>

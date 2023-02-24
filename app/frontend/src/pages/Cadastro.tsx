@@ -34,7 +34,7 @@ function Cadastro() {
 
   // Função para criar um novo usuário
   const hendleCreateUser = async () => {
-    const UM_SEGUNDOS = 1000;
+    const UM_SEGUNDOS = 1500;
     try {
       const returnData = await requestCreate('/newUser', {
         name,
@@ -51,11 +51,6 @@ function Cadastro() {
       setName('');
       setEmail('');
       setPassword('');
-      
-      setLocalStorage('token', returnData.token);
-      setLocalStorage('idUser', returnData.id);
-
-      getDataUserName(returnData.token, true);
 
       // Redireciona para a página home depois de 1 segundos e meio
       setTimeout(() => {

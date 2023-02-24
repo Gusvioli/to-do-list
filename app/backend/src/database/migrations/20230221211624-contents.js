@@ -19,15 +19,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      image: {
+      emoji: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      title: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      subTitle: {
+      date: {
         type: Sequelize.STRING,
         allowNull: false,
       },
