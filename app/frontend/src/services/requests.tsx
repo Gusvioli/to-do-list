@@ -1,6 +1,7 @@
 import axios, { AxiosHeaders } from 'axios';
 import IrequestBody from '../interfaces/IrequestBody';
 import IrequestCreate from '../interfaces/IrequestCreate';
+import IrequestCreateContents from '../interfaces/IrequestCreateContents';
 import IrequestIds from '../interfaces/IrequestIds';
 import IrequestToken from '../interfaces/IrequestToken';
 
@@ -41,7 +42,7 @@ export const requestLogin = async (endpoint: string, body: IrequestBody) => {
   return data;
 };
 
-export const requestCreate = async (endpoint: string, body: IrequestCreate) => {
+export const requestCreate = async (endpoint: string, body: IrequestCreate | IrequestCreateContents) => {
   const { data } = await api.post(endpoint, body);
   return data;
 };

@@ -1,10 +1,23 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { requestData } from "../../services/requests";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import Context from "../../context/Context";
+import { requestCreate } from "../../services/requests";
+import codeMenssage from "../../services/status";
+import getLocalStorage from "../../utils/getLocalStorage";
+import EmojisTasck from "./emojis/EmojisTasck";
+import PrevewTasck from "./PreviewTasck";
 
 function CreateTasck() {  
   const [date, setDate] = useState('');
-  const [emojis, setEmojis] = useState([]);
-  const [descript, setDescript] = useState('');
+  const {
+    descript,
+    setDescript,
+    setLogoEmoji,
+    logoEmoji,
+    setCodeStatusMessage,
+    codeStatusMessage
+  } = useContext(Context);
+  const history = useHistory();
 
   // Função para pegar os dados do input
   const hendleForm = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
@@ -14,56 +27,79 @@ function CreateTasck() {
       if (id === 'descript') setDescript(value);
   };
 
-  const hendleCreateTasck = () => {
-    setDescript('');
+  // Função para exibir as mensagens de erro ou sucesso
+  const exibirMsgs = () => {
+    if (codeStatusMessage.status !== 0 && codeStatusMessage.message !== '') {
+      return `${codeMenssage(codeStatusMessage.status)}, ${codeStatusMessage.message}`;
+    }return '';
   };
 
-  useEffect(() => {
-    const getEmojis = async () => {
-      const response = await requestData('/emojis');
-      setEmojis(response);
-    };
-    getEmojis();
-  }, [setEmojis]);
+  const hendleCreateTasck = async () => {
+    try{
+      const getIdUser = await getLocalStorage('idUser');
+      const returnData = await requestCreate('/newContents', {
+        idUser: getIdUser.idUser,
+        type: 'simple',
+        emoji: logoEmoji,
+        date,
+        descript,
+        status: 'Pendente',
+      });
+
+      setCodeStatusMessage({
+        status: 200,
+        message: returnData.message
+      });
+
+      setDescript('');
+      setDate('');
+      setLogoEmoji('');
+
+  } catch (error: any) {
+    // Salva o status e a messagem vinda do backend retornando o erro
+    setCodeStatusMessage({
+      status: error.response.status,
+      message: error.response.data.message
+    });
+  }
+  };
 
   return (
-    <form>
-      <label htmlFor="emoje">
-        {emojis.map((content: any, index: any) =>
-        <div key={index}>
-          <div>id: {content.id}</div>
-          <div>name: {content.name}</div>
-          <img src={content.url} alt={content.name} />
-        </div>)}
-      </label>
-      <label htmlFor="subtitle">
-        Date:
-        <input
-          type="date"
-          name="date"
-          id="date"
-          onChange={(e) => hendleForm(e)}
-        />
-      </label>
-      <label htmlFor="descript">
-        Descript tasck:
-        <textarea
-          name="descript"
-          id="descript"
-          cols={60}
-          rows={5}
-          value={descript}
-          maxLength={255}
-          onChange={(e) => hendleForm(e)}
-        />
-      </label>
-      <button
-        type="button"
-        onClick={hendleCreateTasck}
-      >
-        Create Tasck
-      </button>
-    </form>
+    <>
+      <form>
+        <EmojisTasck />
+        <label htmlFor="subtitle">
+          Date:
+          <input
+            type="date"
+            name="date"
+            id="date"
+            onChange={(e) => hendleForm(e)} />
+        </label>
+        <label htmlFor="descript">
+          Descript tasck:
+          <textarea
+            name="descript"
+            id="descript"
+            cols={50}
+            rows={4}
+            value={descript}
+            maxLength={200}
+            onChange={(e) => hendleForm(e)} />
+        </label>
+        <button
+          type="button"
+          onClick={hendleCreateTasck}
+        >
+          Create Tasck
+        </button>
+      </form>
+      <PrevewTasck
+        date={date}
+        descript={descript}
+      />
+      <p>{exibirMsgs()}</p>
+    </>
   );
 }
 
