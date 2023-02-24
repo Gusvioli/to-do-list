@@ -21,6 +21,11 @@ export const requestData = async (endpoint: string) => {
   return data;
 };
 
+export const requestDataToken = async (endpoint: string, body: IrequestToken) => {
+  const { data } = await api.post(endpoint, body);
+  return data;
+};
+
 export const requestDataId = async (endpoint: string, body: IrequestIds ) => {
   const { data } = await api.post(endpoint, body);
   return data;

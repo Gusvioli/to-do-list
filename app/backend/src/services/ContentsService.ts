@@ -6,11 +6,9 @@ export class ContentsService {
         const { idUser } = idUserData;
         const contents = await ContentModel.findAll({
             attributes: [
-                "title",
-                "image",
+                "emoji",
                 "descript",
-                "title",
-                "subTitle",
+                "date",
                 "type",
                 "createdAt",
                 "updatedAt",

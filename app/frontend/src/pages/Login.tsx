@@ -14,7 +14,6 @@ function Login(): JSX.Element {
     setEmail,
     password,
     setPassword,
-    setUserName,
   } = useContext(Context);
   const {codeStatusMessage, setCodeStatusMessage} = useContext(Context);
   const history = useHistory();
@@ -25,17 +24,6 @@ function Login(): JSX.Element {
     const { id, value } = e.target;
       if (id === 'email') setEmail(value); 
       if (id === 'password') setPassword(value);
-  };
-  
-  // Função para pegar o username
-  const getDataUserName = async(token: object, isTrue: boolean) => {
-    const returnrequest = await requestDataUser('/userName', {
-      token: token
-    });
-    setUserName({
-      name: returnrequest.name,
-      localStore: isTrue
-    });
   };
   
   // Função para fazer o login e retorna os erros ou acertos na tentativa de login
@@ -49,15 +37,13 @@ function Login(): JSX.Element {
       // setTokenAuthorization(date.token); // Salva o token no header Authorization
       setLocalStorage('token', data.token); // Salva o token no localStorage
       setLocalStorage('idUser', {idUser: data.idUser}); // Salva o idUser no localStorage
+      setLocalStorage('nameUser', {name: data.name}); // Salva o name no localStorage
 
       // Salva o status e a messagem vinda do backend
       setCodeStatusMessage({
         status: 200,
         message: data.message
       });
-
-      // Salva o status e pega o username
-      getDataUserName(data.token, true);
 
       // Redireciona para a página home depois de 1 segundos e meio
       setTimeout(() => {

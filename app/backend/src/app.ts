@@ -4,9 +4,11 @@ import userRoute from './routes/UserRoute';
 import newUserRoute from './routes/NewUserRoute';
 import typesRoutes from './routes/TypesRoutes';
 import contentsRoutes from './routes/ContentsRoutes';
+import emojiRoute from './routes/EmojiRoute';
 import 'express-async-errors';
 import cors from 'cors';
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware';
+import tokenValidateRoutes from './routes/TokenValidateRoutes';
 // import swaggerUi from 'swagger-ui-express';/
 // import swaggerDocument from '../swagger-output.json';
 
@@ -21,6 +23,10 @@ class App {
 
     this.app.use('/userName', userRoute);
     this.app.use('/newUser', newUserRoute);
+
+    this.app.use('/tokenValidate', tokenValidateRoutes);
+
+    this.app.use('/emojis', emojiRoute);
 
     this.app.use('/types', typesRoutes);
 

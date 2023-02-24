@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
+import { requestDataToken } from "../services/requests";
+import getLocalStorage from "../utils/getLocalStorage";
 import setLocalStorageClear from "../utils/setLocalStorageClear";
 import BtnCadastro from "./buttons/BtnCadastro";
 import BtnLogin from "./buttons/BtnLogin";
@@ -11,9 +13,13 @@ function Navbar(): JSX.Element {
     setContents,
     setEmail,
     setPassword,
-    setTypes
+    setTypes,
+    isTokenTrue,
+    setIsTokenTrue,
   } = useContext(Context);
-  const {userName, setUserName} = useContext(Context);
+
+  const [name, setName] = useState('');
+
   const history = useHistory();
 
   const hendleExited = () => {
@@ -26,9 +32,31 @@ function Navbar(): JSX.Element {
     setPassword('');
     setContents([]);
     setTypes([]);
-    setUserName({name: '', localStore: false});
+    setName('');
+    setIsTokenTrue(false);
     history.push('/');
   };
+
+  useEffect(() => {
+    const isTokenTrue = async () => {
+      const returnTokenTrue = await getLocalStorage('token');
+      if (returnTokenTrue) {
+        const data = await requestDataToken('/tokenValidate', {
+          token: returnTokenTrue
+        });
+        setIsTokenTrue(data);
+      }
+    };
+    isTokenTrue();
+  }, [setIsTokenTrue]);
+
+  useEffect(() => {
+    const getLocalStorageNavbar = async () => {
+      const value = await getLocalStorage('nameUser');
+      setName(value.name);
+    };
+    getLocalStorageNavbar();
+  }, [setName]);
 
   return(
     <>
@@ -52,7 +80,7 @@ function Navbar(): JSX.Element {
             >
               Buscar
             </button>
-            { !userName.localStore ? <><BtnLogin /><BtnCadastro /></> : '' }
+            { !isTokenTrue ? <><BtnLogin /><BtnCadastro /></> : '' }
             <button
               data-testid='button-sair'
               onClick={ hendleExited }
@@ -62,7 +90,7 @@ function Navbar(): JSX.Element {
           </form>
         </section>
         <section data-testid='user-name'>
-          { userName.localStore ? <span> Usuário(a) {userName.name}</span> : '' }
+          { name ? <span> Usuário(a) {name}</span> : '' }
         </section>
       </nav>
     </>

@@ -5,7 +5,11 @@ import signToken from "../utils/SignToken";
 import md5 from 'md5';
 
 export default class LoginServices {
-    public static async login(login: Ilogin): Promise<{token: string, idUser: number}> {
+    public static async login(login: Ilogin): Promise<{
+        token: string,
+        idUser: number,
+        name: string
+    }> {
         const md5DescLogin = md5(login.password);
         const user = await UserModel.findOne({
             attributes: ['id', 'name', 'email', 'role'],
@@ -14,6 +18,6 @@ export default class LoginServices {
         if (!user) {
             throw new HttpException(401, 'Incorrect email or password');
         }
-        return {token: signToken(user), idUser: user.id};
+        return {token: signToken(user), idUser: user.id, name: user.name};
     }
 }
