@@ -2,17 +2,16 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Context from '../context/Context';
-import { requestCreate, requestDataUser } from '../services/requests';
+import { requestCreate } from '../services/requests';
 import codeMenssage from '../services/status';
 import getLocalStorage from '../utils/getLocalStorage';
-import setLocalStorage from '../utils/setLocalStorage';
 
 // Página de cadastro
 function Cadastro() {  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const {codeStatusMessage, setCodeStatusMessage, setUserName} = useContext(Context);
+  const {codeStatusMessage, setCodeStatusMessage} = useContext(Context);
   const history = useHistory();
 
   // Função para exibir as mensagens de erro ou sucesso
@@ -22,19 +21,9 @@ function Cadastro() {
     }return '';
   };
 
-  const getDataUserName = async(token: object, isTrue: boolean) => {
-    const returnrequest = await requestDataUser('/userName', {
-      token: token
-    });
-    setUserName({
-      name: returnrequest.name,
-      localStore: isTrue
-    });
-  };
-
   // Função para criar um novo usuário
   const hendleCreateUser = async () => {
-    const UM_SEGUNDOS = 1500;
+    const UM_SEGUNDO = 1000;
     try {
       const returnData = await requestCreate('/newUser', {
         name,
@@ -55,7 +44,7 @@ function Cadastro() {
       // Redireciona para a página home depois de 1 segundos e meio
       setTimeout(() => {
         history.push('/'); // Redireciona para a página home
-      }, UM_SEGUNDOS); // Espera 1 segundos
+      }, UM_SEGUNDO); // Espera 1 segundos
 
     } catch (error: any) {
       // Salva o status e a messagem vinda do backend retornando o erro

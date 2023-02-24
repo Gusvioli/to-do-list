@@ -5,7 +5,7 @@ import { requestDataId } from "../../services/requests";
 import getLocalStorage from "../../utils/getLocalStorage";
 
 function ToDuListSimple(): JSX.Element {
-  const {contents, setContents} = useContext(Context);
+  const {contents, setContents, emojis, listarContents} = useContext(Context);
   const history = useHistory();
 
   useEffect(() => {
@@ -20,19 +20,32 @@ function ToDuListSimple(): JSX.Element {
       }
     };
     getTypeBd();
-  }, [history.location.pathname, setContents]);
+  }, [history.location.pathname, setContents, listarContents]);
 
   return (
     // Template Simples
-    <>{contents.map((content: any, index: any) =>
-    <div key={index} style={{border: '1px solid #ccc', padding: '5px', margin: '5px'}}>
-      <div>Emoji: {content.emoji}</div>
-      <div>date: {content.date}</div>
-      <div>Descript: {content.descript}</div>
-      <div>Created: {content.createdAt}</div>
-      <div>Updeted: {content.updatedAt}</div>
-      <div>Status: {content.status}</div>
-    </div>)}</>
+    <>{listarContents && contents.map((content: any, index: any) =>
+    <div style={{
+        border: '1px solid #ccc',
+        width: '40%',
+        height: '100px',
+        margin: '5px',
+        padding: '7px 5px',
+        overflow: 'auto',
+        borderRadius: '9px',
+        backgroundColor: '#f1f4f5',
+        }} key={index}>
+        <div style={{ padding: '5px 15px' }}>{content.date}</div>
+        <div style={{ display: 'flex', justifyContent:'start', alignItems: 'center' }}>
+          <div style={{ padding: '5px 15px' }}>
+            { emojis.filter((emoji: any) => emoji.name === content.emoji)
+              .map((emoji: any) => (
+            <img src={emoji.url} alt={emoji.name} width='50px' />))
+          }</div>
+          <div style={{ padding: '5px', font: '26px' }}>{content.descript}</div>
+        </div>
+        </div>)}
+    </>
   );
 }
 
