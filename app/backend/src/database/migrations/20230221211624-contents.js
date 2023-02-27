@@ -27,6 +27,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      time: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       descript: {
         type: Sequelize.STRING,
         allowNull: false,

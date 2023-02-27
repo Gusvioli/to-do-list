@@ -9,6 +9,7 @@ export class ContentsService {
                 "emoji",
                 "descript",
                 "date",
+                "time",
                 "type",
                 "createdAt",
                 "updatedAt",

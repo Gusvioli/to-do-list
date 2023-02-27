@@ -10,7 +10,8 @@ class Content extends Model {
   declare public type: string;
   declare public image: string;
   declare public title: string;
-  declare public date: Array<number>;
+  declare public date: string;
+  declare public time: string;
   declare public descript: string;
   declare public status: string;
   declare public createdAt: Date;
@@ -38,6 +39,10 @@ Content.init({
       allowNull: false,
     },
     date: {
+      type: STRING,
+      allowNull: false,
+    },
+    time: {
       type: STRING,
       allowNull: false,
     },
