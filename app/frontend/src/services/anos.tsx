@@ -1,3 +1,5 @@
+export const arryears = new Date().getFullYear();
+
 export const arrmonths2023 = [
     {name: 'Janeiro', days: 31, id: 1},
     {name: 'Fevereiro', days: 28, id: 2},

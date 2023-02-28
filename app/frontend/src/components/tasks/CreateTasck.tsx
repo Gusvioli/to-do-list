@@ -73,6 +73,7 @@ function CreateTasck() {
 
   return (
     <>
+      <p>{exibirMsgs()}</p>
       <div style={{
         display: 'flex',
         flexFlow: 'row wrap',
@@ -131,7 +132,6 @@ function CreateTasck() {
         dateTime={dateTime}
         descript={descript}
       />
-      <p>{exibirMsgs()}</p>
       </div>
       {history.location.pathname === '/home/calendar' && <ListCalendar />}
       {history.location.pathname === '/home/simple' && <ToDuListSimple />}
