@@ -1,6 +1,4 @@
 // src/database/models/user.model.js
-import { NUMBER } from 'sequelize';
-import { ARRAY } from 'sequelize';
 import { Model, INTEGER, STRING, DATE} from 'sequelize';
 import db from '.';
 

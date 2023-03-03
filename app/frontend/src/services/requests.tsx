@@ -1,9 +1,10 @@
-import axios, { AxiosHeaders } from 'axios';
+import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
 import IrequestBody from '../interfaces/IrequestBody';
 import IrequestCreate from '../interfaces/IrequestCreate';
 import IrequestCreateContents from '../interfaces/IrequestCreateContents';
 import IrequestIds from '../interfaces/IrequestIds';
 import IrequestToken from '../interfaces/IrequestToken';
+import IrequestUpdate from '../interfaces/IrequestUpdate';
 
 const api = axios.create({
   baseURL: `http://localhost:3001`,
@@ -44,6 +45,11 @@ export const requestLogin = async (endpoint: string, body: IrequestBody) => {
 
 export const requestCreate = async (endpoint: string, body: IrequestCreate | IrequestCreateContents) => {
   const { data } = await api.post(endpoint, body);
+  return data;
+};
+
+export const requestUpdate = async (endpoint: string, body: IrequestUpdate) => {
+  const { data } = await api.put(endpoint, body);
   return data;
 };
 

@@ -6,6 +6,7 @@ import typesRoutes from './routes/TypesRoutes';
 import contentsRoutes from './routes/ContentsRoutes';
 import emojiRoute from './routes/EmojiRoute';
 import newContentsRoutes from './routes/NewContentsRoutes';
+import upadteContentsRoutes from './routes/UpadteContentsRoutes';
 import 'express-async-errors';
 import cors from 'cors';
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware';
@@ -28,6 +29,7 @@ class App {
     this.app.use('/types', typesRoutes);
     this.app.use('/contents', contentsRoutes);
     this.app.use('/newContents', newContentsRoutes);
+    this.app.use('/contentsUpdate', upadteContentsRoutes);
     this.app.get('/', (_req, res) => res.json({ ok: true }));
     this.app.use(cors());
     this.app.use(HttpErrorMiddleware);

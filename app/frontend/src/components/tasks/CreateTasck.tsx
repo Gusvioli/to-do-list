@@ -5,7 +5,7 @@ import { requestCreate } from "../../services/requests";
 import codeMenssage from "../../services/status";
 import getLocalStorage from "../../utils/getLocalStorage";
 import ListCalendar from "../calendar/ListCalendar";
-import ToDuListSimple from "../typesToDuList/ToDuListSimple";
+import ToDuListSimple from "../simple/ListSimple";
 import EmojisTasck from "./emojis/EmojisTasck";
 import PrevewTasck from "./PreviewTasck";
 
