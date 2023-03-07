@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../../context/Context";
 import { requestCreate } from "../../services/requests";
@@ -7,6 +7,7 @@ import getLocalStorage from "../../utils/getLocalStorage";
 import ListCalendar from "../calendar/ListCalendar";
 import ToDuListSimple from "../simple/ListSimple";
 import EmojisTasck from "./emojis/EmojisTasck";
+import ListDetal from "./ListDetal";
 import PrevewTasck from "./PreviewTasck";
 
 function CreateTasck() {  
@@ -135,6 +136,7 @@ function CreateTasck() {
       </div>
       {history.location.pathname === '/home/calendar' && <ListCalendar />}
       {history.location.pathname === '/home/simple' && <ToDuListSimple />}
+      {history.location.pathname === '/home/listdetal' && <ListDetal />}
     </>
   );
 }

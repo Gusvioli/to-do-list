@@ -10,13 +10,12 @@ function ListCalendar(): JSX.Element {
   const history = useHistory();
   const [nameMonthds, setNameMonthds] = useState('');
   const [nameMonthdsId, setNameMonthdsId] = useState(0);
-  const [isTask, setIsTask] = useState(0);
   const [qtdsTascks, setQtdsTascks] = useState([]);
   const [allMonthds, setAllMonthdsd] = useState(false);
   const [monthds, setMonthdsd] = useState(false);
-  const {contents, setContents} = useContext(Context);
   const deferredQtdsTascks = useDeferredValue(qtdsTascks);
   const deferredAllMonthds = useDeferredValue(allMonthds);
+  const {contents, setContents, setDateListDetal} = useContext(Context);
 
   const openCalendar = (e: any) => {
      const {name, value} = e.target;
@@ -28,18 +27,27 @@ function ListCalendar(): JSX.Element {
       setMonthdsd(!monthds);
     };
   };
-  
-  const hendleTasks = (e: any) => {
+
+  const hendleTasks = async (e: any) => {
     const { value } = e.target;
-    // console.log(value);
+    const obj = {
+      day: value.split('-')[2],
+      month: value.split('-')[1],
+      year: value.split('-')[0],
+      idUser: await getLocalStorage('idUser'),
+      data: contents.filter((content: any) => content.date === value),
+      date: `${value.split('-')[0]}-${value.split('-')[1]}-${value.split('-')[2]}`,
+    };
+    setDateListDetal(obj);
+    history.push(`/home/listdetal`);
   };
-  
+
   // Função para verificar se o dia do mês tem tarefa e direciona para o dia e suas tarefas
   const daysAtved = (contents: any[], arr: any, index: number) => {
     const getQtdsTascks = deferredQtdsTascks.filter((fil: any) => fil.mes === arr)
     .filter((fil2: any) => fil2.dia === index + 1).length;
     return contents.find((fin: { date: string }) => index + 1 === Number(fin.date.split('-')[2])
-    && arr === Number(fin.date.split('-')[1])) && 
+    && arr === Number(fin.date.split('-')[1])) &&
       <div style={{
           width: '98px',
           height: '82px',
@@ -49,7 +57,7 @@ function ListCalendar(): JSX.Element {
         }}>
         <form style={{ display: 'flex', justifyContent: 'space-between' }}>
           <button
-            type="button" 
+            type="button"
             style={{ marginTop: '60%', width: '100px'}}
             onClick={(e) => hendleTasks(e)}
             value={`${arryears}-${arr < 10
@@ -61,7 +69,7 @@ function ListCalendar(): JSX.Element {
         </form>
       </div>
   };
-  
+
   useEffect(() => {
     const getTypeBd = async () => {
       if(await getLocalStorage('token') && await getLocalStorage('idUser')){
@@ -207,7 +215,7 @@ function ListCalendar(): JSX.Element {
           </div>)}
     </>
     );
-  
+
 }
 
 export default ListCalendar;

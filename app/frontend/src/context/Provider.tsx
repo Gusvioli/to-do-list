@@ -13,6 +13,7 @@ function Provider({ children }: { children: any}) {
   const [descript, setDescript] = useState('');
   const [logoEmoji, setLogoEmoji] = useState('');
   const [emojis, setEmojis] = useState([]);
+  const [dateListDetal, setDateListDetal] = useState({day: 0, month: 0, year: 0});
   const [codeStatusMessage, setCodeStatusMessage] = useState({ status: 0, message: ''});
   const memorize = React.useMemo(() => ({
     texts,
@@ -21,7 +22,7 @@ function Provider({ children }: { children: any}) {
     setEmail,
     password,
     setPassword,
-    codeStatusMessage, 
+    codeStatusMessage,
     setCodeStatusMessage,
     types,
     setTypes,
@@ -39,6 +40,8 @@ function Provider({ children }: { children: any}) {
     setLogoEmoji,
     listarContents,
     setListarContents,
+    dateListDetal,
+    setDateListDetal,
   }), [
     texts,
     setTexts,
@@ -46,7 +49,7 @@ function Provider({ children }: { children: any}) {
     setEmail,
     password,
     setPassword,
-    codeStatusMessage, 
+    codeStatusMessage,
     setCodeStatusMessage,
     types,
     setTypes,
@@ -64,6 +67,8 @@ function Provider({ children }: { children: any}) {
     setLogoEmoji,
     listarContents,
     setListarContents,
+    dateListDetal,
+    setDateListDetal,
   ]);
   return (
     <Context.Provider

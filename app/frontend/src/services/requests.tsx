@@ -2,6 +2,7 @@ import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
 import IrequestBody from '../interfaces/IrequestBody';
 import IrequestCreate from '../interfaces/IrequestCreate';
 import IrequestCreateContents from '../interfaces/IrequestCreateContents';
+import IrequestDelete from '../interfaces/IrequestDelete';
 import IrequestIds from '../interfaces/IrequestIds';
 import IrequestToken from '../interfaces/IrequestToken';
 import IrequestUpdate from '../interfaces/IrequestUpdate';
@@ -50,6 +51,11 @@ export const requestCreate = async (endpoint: string, body: IrequestCreate | Ire
 
 export const requestUpdate = async (endpoint: string, body: IrequestUpdate) => {
   const { data } = await api.put(endpoint, body);
+  return data;
+};
+
+export const requestDelete = async (endpoint: string, body: IrequestDelete) => {
+  const { data } = await api.post(endpoint, body);
   return data;
 };
 
