@@ -6,11 +6,14 @@ import typesRoutes from './routes/TypesRoutes';
 import contentsRoutes from './routes/ContentsRoutes';
 import emojiRoute from './routes/EmojiRoute';
 import newContentsRoutes from './routes/NewContentsRoutes';
+import upadteContentsRoutes from './routes/UpadteContentsRoutes';
+import upadteEditContentsRoutes from './routes/UpadteEditContentsRoutes';
+import deleteContentsRoutes from './routes/DeleteContentsRoutes';
 import 'express-async-errors';
 import cors from 'cors';
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware';
 import tokenValidateRoutes from './routes/TokenValidateRoutes';
-// import swaggerUi from 'swagger-ui-express';/
+// import swaggerUi from 'swagger-ui-express';
 // import swaggerDocument from '../swagger-output.json';
 
 class App {
@@ -19,7 +22,7 @@ class App {
   constructor() {
     this.app = express();
     this.config();
-    
+
     this.app.use('/login', loginRoute);
     this.app.use('/userName', userRoute);
     this.app.use('/newUser', newUserRoute);
@@ -28,6 +31,9 @@ class App {
     this.app.use('/types', typesRoutes);
     this.app.use('/contents', contentsRoutes);
     this.app.use('/newContents', newContentsRoutes);
+    this.app.use('/deleteContents', deleteContentsRoutes);
+    this.app.use('/contentsUpdate', upadteContentsRoutes);
+    this.app.use('/contentsEditUpdate', upadteEditContentsRoutes);
     this.app.get('/', (_req, res) => res.json({ ok: true }));
     this.app.use(cors());
     this.app.use(HttpErrorMiddleware);

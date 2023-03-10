@@ -7,6 +7,7 @@ const schema = Joi.object({
   type: Joi.string().min(3).max(18).required(),
   emoji: Joi.string().min(1).max(32).required(),
   date: Joi.string().min(10).max(10).required(),
+  time: Joi.string().min(5).max(5).required(),
   descript: Joi.string().min(2).max(255).required(),
   status: Joi.string().min(6).max(18).required(),
 }).required();
@@ -21,6 +22,7 @@ const NewUserController = async (
     type,
     emoji,
     date,
+    time,
     descript,
     status,
   } = req.body;
@@ -30,6 +32,7 @@ const NewUserController = async (
       type,
       emoji,
       date,
+      time,
       descript,
       status,
     }, { abortEarly: false });

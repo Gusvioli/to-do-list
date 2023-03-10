@@ -16,6 +16,13 @@ function Navbar(): JSX.Element {
     setTypes,
     isTokenTrue,
     setIsTokenTrue,
+    listarContents,
+    setListarContents,
+    setDescript,
+    setDate,
+    setLogoEmoji,
+    setDateTime,
+    setEdtorTrue,
   } = useContext(Context);
 
   const [name, setName] = useState('');
@@ -34,6 +41,16 @@ function Navbar(): JSX.Element {
     setTypes([]);
     setName('');
     setIsTokenTrue(false);
+    setListarContents(!listarContents);
+    setCodeStatusMessage({ status: 0, message: ''});
+    setDescript('');
+    setDate('');
+    setLogoEmoji('');
+    setDateTime('');
+    setEdtorTrue({
+      id: 0,
+      data: [],
+    });
     history.push('/');
   };
 

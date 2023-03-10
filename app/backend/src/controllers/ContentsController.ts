@@ -10,4 +10,13 @@ export class ContentsController {
       next(error);
     }
   }
+  
+  public static async deleteContents(req: Request, res: Response, next: NextFunction) {
+    try {
+      const deleteContents = await ContentsService.deleteContents(req.body);
+      res.status(200).json(deleteContents);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

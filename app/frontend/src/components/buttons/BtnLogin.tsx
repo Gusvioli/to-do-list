@@ -9,7 +9,7 @@ function BtnLogin() {
         data-testid='button-buscar'
         onClick={() => history.push('/login')}
       >
-        Login
+        Entrar
       </button>
     </>
   );

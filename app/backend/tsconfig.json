@@ -24,7 +24,7 @@
   "include": [
     "src/**/*",
     "src/database/migrations/.js"
-  ],
+, "src/controllers/UpdateContentsController.ts"  ],
   "exclude": [
     "node_modules",
   ]
