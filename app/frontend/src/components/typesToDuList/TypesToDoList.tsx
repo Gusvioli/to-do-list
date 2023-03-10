@@ -7,6 +7,11 @@ function TypeToDoList(): JSX.Element {
     setCodeStatusMessage,
     listarContents,
     setListarContents,
+    setDescript,
+    setDate,
+    setLogoEmoji,
+    setDateTime,
+    setEdtorTrue,
   } = useContext(Context);
   const history = useHistory();
 
@@ -14,6 +19,14 @@ function TypeToDoList(): JSX.Element {
       history.push(`/home${url}`);
       setListarContents(!listarContents);
       setCodeStatusMessage({ status: 0, message: ''});
+      setDescript('');
+      setDate('');
+      setLogoEmoji('');
+      setDateTime('');
+      setEdtorTrue({
+        id: 0,
+        data: [],
+      });
   };
 
   return (
@@ -36,7 +49,7 @@ function TypeToDoList(): JSX.Element {
         </li>
       </ul>
     );
-  
+
 }
 
 export default TypeToDoList;

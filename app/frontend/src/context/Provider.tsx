@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Context from './Context';
+import { UserName, EdtorTrue, CodeStatusMessage, DateListDetal } from './Types';
 
 function Provider({ children }: { children: any}) {
   const [texts, setTexts] = useState([]);
@@ -7,14 +8,18 @@ function Provider({ children }: { children: any}) {
   const [types, setTypes] = useState([]);
   const [contents, setContents] = useState([]);
   const [password, setPassword] = useState('');
-  const [userName, setUserName] = useState({name: '', localStore: false});
+  const [userName, setUserName] = useState<UserName>();
   const [isTokenTrue, setIsTokenTrue] = useState(false);
   const [listarContents, setListarContents] = useState(false);
   const [descript, setDescript] = useState('');
   const [logoEmoji, setLogoEmoji] = useState('');
   const [emojis, setEmojis] = useState([]);
-  const [dateListDetal, setDateListDetal] = useState({day: 0, month: 0, year: 0});
-  const [codeStatusMessage, setCodeStatusMessage] = useState({ status: 0, message: ''});
+  const [emojisLocal, setEmojisLocal] = useState([]);
+  const [dateListDetal, setDateListDetal] = useState<DateListDetal>();
+  const [codeStatusMessage, setCodeStatusMessage] = useState<CodeStatusMessage>();
+  const [date, setDate] = useState('');
+  const [dateTime, setDateTime] = useState('');
+  const [edtorTrue, setEdtorTrue] = useState<EdtorTrue>();
   const memorize = React.useMemo(() => ({
     texts,
     setTexts,
@@ -42,6 +47,14 @@ function Provider({ children }: { children: any}) {
     setListarContents,
     dateListDetal,
     setDateListDetal,
+    date,
+    setDate,
+    dateTime,
+    setDateTime,
+    edtorTrue,
+    setEdtorTrue,
+    emojisLocal,
+    setEmojisLocal,
   }), [
     texts,
     setTexts,
@@ -69,6 +82,14 @@ function Provider({ children }: { children: any}) {
     setListarContents,
     dateListDetal,
     setDateListDetal,
+    date,
+    setDate,
+    dateTime,
+    setDateTime,
+    edtorTrue,
+    setEdtorTrue,
+    emojisLocal,
+    setEmojisLocal,
   ]);
   return (
     <Context.Provider

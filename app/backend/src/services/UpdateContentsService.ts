@@ -24,9 +24,10 @@ export class UpdateContentsService {
             throw new HttpException(401, 'Unauthorized');
         }
         const getContents = await ContentModel.findAll({
-            attributes: ['id', 'date', 'status', 'idUser'],
-            where: { idUser, date, id }});
-        
-        return getContents;
+            where: { idUser, date },
+            order: [['id', 'DESC']],
+          });
+
+        return {data: getContents, date: date, idUser: idUser};
     }
 }

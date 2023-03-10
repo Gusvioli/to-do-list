@@ -1,13 +1,14 @@
 import { useContext, useDeferredValue, useEffect, useState } from "react";
 import Context from "../../../context/Context";
 
-function EmojisTasck() {
+function EmojisTasck(): JSX.Element {
   const [loading, setLoading] = useState<boolean>(true);
-  const [emojisLocal, setEmojisLocal] = useState([]);
   const {
     emojis,
     setLogoEmoji,
     setEmojis,
+    emojisLocal,
+    setEmojisLocal,
   } = useContext(Context);
   const deferred = useDeferredValue(emojisLocal);
 
@@ -38,6 +39,7 @@ function EmojisTasck() {
     };
     fetchEmojis();
   }, [setEmojis]);
+
 
   return (
       <div style={{
@@ -84,7 +86,7 @@ function EmojisTasck() {
         </ul>
       )}
     </div>
-  ); 
+  );
 }
 
 export default EmojisTasck;

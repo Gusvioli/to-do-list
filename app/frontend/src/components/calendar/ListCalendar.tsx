@@ -8,11 +8,11 @@ import getLocalStorage from "../../utils/getLocalStorage";
 
 function ListCalendar(): JSX.Element {
   const history = useHistory();
-  const [nameMonthds, setNameMonthds] = useState('');
-  const [nameMonthdsId, setNameMonthdsId] = useState(0);
-  const [qtdsTascks, setQtdsTascks] = useState([]);
-  const [allMonthds, setAllMonthdsd] = useState(false);
-  const [monthds, setMonthdsd] = useState(false);
+  const [nameMonthds, setNameMonthds] = useState<string>();
+  const [nameMonthdsId, setNameMonthdsId] = useState<number>();
+  const [qtdsTascks, setQtdsTascks] = useState<[object]>([{}] as [object]);
+  const [allMonthds, setAllMonthdsd] = useState<boolean>();
+  const [monthds, setMonthdsd] = useState<boolean>();
   const deferredQtdsTascks = useDeferredValue(qtdsTascks);
   const deferredAllMonthds = useDeferredValue(allMonthds);
   const {contents, setContents, setDateListDetal} = useContext(Context);
@@ -30,11 +30,9 @@ function ListCalendar(): JSX.Element {
 
   const hendleTasks = async (e: any) => {
     const { value } = e.target;
+    const idUserGet = await getLocalStorage('idUser');
     const obj = {
-      day: value.split('-')[2],
-      month: value.split('-')[1],
-      year: value.split('-')[0],
-      idUser: await getLocalStorage('idUser'),
+      idUser: idUserGet.idUser,
       data: contents.filter((content: any) => content.date === value),
       date: `${value.split('-')[0]}-${value.split('-')[1]}-${value.split('-')[2]}`,
     };
@@ -89,6 +87,10 @@ function ListCalendar(): JSX.Element {
     getTypeBd();
   }, [history.location.pathname, setContents, setQtdsTascks]);
 
+  const countListCalendar = (month: any) => {
+    return contents.filter((fil: any) => Number(fil.date.split('-')[1]) === month.id).length
+  };
+
   return (
     <>
       {contents && arrmonths2023.map((month: any, index: number) => {
@@ -98,8 +100,13 @@ function ListCalendar(): JSX.Element {
           name={month.name}
           value={month.id}
           onClick={(e) => openCalendar(e)}
+          style={{ width: '100px', margin: '1px', padding: '5px' }}
         >
-          {month.name}
+            {month.name}
+            { ' ' }
+            <span>
+              {countListCalendar(month)}
+            </span>
         </button>
       })}
       <button
@@ -107,8 +114,11 @@ function ListCalendar(): JSX.Element {
         name="all"
         value="all"
         onClick={(e) => openCalendar(e)}
+        style={{ width: '100px', margin: '1px', padding: '5px' }}
       >
         All calendar
+        { ' ' }
+        {contents.length}
       </button>
         {deferredAllMonthds && arrmonths2023
           .map((days, index) =>

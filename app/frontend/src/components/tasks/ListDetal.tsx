@@ -4,12 +4,19 @@ import Context from "../../context/Context";
 import formatarData from "../../utils/formatarData";
 import PanelDetal from "./PanelDetal";
 
-function ListDetal() {
+function ListDetal(): JSX.Element {
   const history = useHistory();
-  const {dateListDetal, emojis} = useContext(Context);
+
+  const {
+    dateListDetal,
+    setDateListDetal,
+    emojis,
+  } = useContext(Context);
 
   useEffect(() => {
-  }, []);
+    setDateListDetal({ ...dateListDetal })
+  }, [setDateListDetal]);
+
 
   return (
     <>
@@ -24,17 +31,26 @@ function ListDetal() {
         borderRadius: '9px',
         backgroundColor: '#f1f4f5',
         }} key={index}>
+         Id: #{content.id}
         <div style={{ padding: '5px 15px' }}>
-          <div style={{ display: 'flex', flexFlow: 'row', alignItems: 'end', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+            {content.status}
+          </div>
+          <div style={{ display: 'flex', flexFlow: 'row', alignItems: 'end' }}>
             <PanelDetal
-              dateListDetal={dateListDetal}
-              status={content.status}
-              date={content.date}
+              data={dateListDetal.data}
               id={content.id}
+              status={content.status}
+              date={dateListDetal.date}
+              idUser={dateListDetal.idUser}
             />
           </div>
-          <span>{formatarData(content.date)}</span> -
-          <span>{content.time}</span>
+          <span>
+            {formatarData(content.date)}
+          </span> - { ' ' }
+          <span>
+            {content.time}
+          </span>
         </div>
         <div style={{ display: 'flex', justifyContent:'start', alignItems: 'center' }}>
           <div style={{ padding: '5px 15px' }}>

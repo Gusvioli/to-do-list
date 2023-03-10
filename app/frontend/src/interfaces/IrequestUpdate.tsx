@@ -5,9 +5,10 @@ interface IrequestUpdate {
   date: string | null;
   time?: string | null;
   descript?: string | null;
-  status?: boolean | null;
+  status?: boolean | string | null;
   updatedAt?: Date | null;
   statusFront?: boolean | null;
+  type?: string | null;
 }
 
 export default IrequestUpdate;

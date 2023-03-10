@@ -38,20 +38,9 @@ export class ContentsService {
             throw new HttpException(404, 'Not found');
         }
         const contents = await ContentModel.findAll({
-            attributes: [
-                "id",
-                "emoji",
-                "descript",
-                "date",
-                "time",
-                "type",
-                "createdAt",
-                "updatedAt",
-                "status"
-            ],
-            where: { idUser },
+            where: { idUser, date },
             order: [["createdAt", "DESC"]],
         });
-        return contents;
+        return {data: contents, date: date, idUser: idUser};;
     }
 }

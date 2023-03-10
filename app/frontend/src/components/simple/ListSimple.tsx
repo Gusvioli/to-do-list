@@ -4,10 +4,21 @@ import Context from "../../context/Context";
 import { requestDataId } from "../../services/requests";
 import formatarData from "../../utils/formatarData";
 import getLocalStorage from "../../utils/getLocalStorage";
+import PanelDetalSimple from "../calendar/PanelDetalSimple";
 
 function ToDuListSimple(): JSX.Element {
-  const {emojis, setContents, contents} = useContext(Context);
+  const {
+    emojis,
+    setContents,
+    contents,
+    dateListDetal,
+    setDateListDetal
+  } = useContext(Context);
   const history = useHistory();
+
+  useEffect(() => {
+    setDateListDetal({ ...dateListDetal })
+  }, [setDateListDetal]);
 
   useEffect(() => {
     const getTypeBd = async () => {
@@ -21,8 +32,8 @@ function ToDuListSimple(): JSX.Element {
       }
     };
     getTypeBd();
-  }, [history.location.pathname, setContents, contents]);
-  
+  }, [history.location.pathname, setContents]);
+
   return (
     // Template Simples
     <>
@@ -30,7 +41,7 @@ function ToDuListSimple(): JSX.Element {
     <div style={{
         border: '1px solid #ccc',
         width: '40%',
-        height: '100px',
+        height: '150px',
         margin: '5px',
         padding: '7px 5px',
         overflow: 'auto',
@@ -38,8 +49,21 @@ function ToDuListSimple(): JSX.Element {
         backgroundColor: '#f1f4f5',
         }} key={index}>
         <div style={{ padding: '5px 15px' }}>
-          <span>{formatarData(content.date)}</span> - 
-          <span>{content.time}</span>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
+            {content.status}
+          </div>
+          <div>
+            <div style={{ display: 'flex', flexFlow: 'row', alignItems: 'end' }}>
+              <PanelDetalSimple
+                data={{data: contents}}
+                id={content.id}
+                status={content.status}
+                date={content.date}
+              />
+            </div>
+            <span>{formatarData(content.date)}</span> -
+            <span>{content.time}</span>
+          </div>
         </div>
         <div style={{ display: 'flex', justifyContent:'start', alignItems: 'center' }}>
           <div style={{ padding: '5px 15px' }}>

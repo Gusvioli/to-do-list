@@ -5,7 +5,7 @@ import formatarData from "../../utils/formatarData";
 function PrevewTasck({date, descript, dateTime}: any) {
   const {logoEmoji, emojis} = useContext(Context);
   return (
-    <> 
+    <>
       <div style={{
         border: '3px dotted #ccc',
         width: '40%',
@@ -34,8 +34,7 @@ function PrevewTasck({date, descript, dateTime}: any) {
         </div>
         </div>
     </>
-   
-  ); 
+  );
 }
 
 export default PrevewTasck;

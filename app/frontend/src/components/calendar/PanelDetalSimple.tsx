@@ -4,35 +4,14 @@ import {useContext, useDeferredValue} from "react";
 import Context from "../../context/Context";
 import { useHistory } from "react-router-dom";
 
-function PanelDetal(data: any): JSX.Element {
-  const {
-    dateListDetal,
-    setDateListDetal,
-    setEdtorTrue,
-    setLogoEmoji,
-    setDescript,
-    setDate,
-    setDateTime,
-  } = useContext(Context);
+function PanelDetalSimple(data: any): JSX.Element {
+  const {dateListDetal, setDateListDetal } = useContext(Context);
   const deferredNewData = useDeferredValue(dateListDetal);
   const history = useHistory();
 
   const hendleEdit = () => {
-    setEdtorTrue({
-      id: data.id,
-      data: data.data.filter((element: any) => element.id === data.id),
-    });
-
-    setDescript(data.data.filter((element: any) => element.id === data.id)[0].descript);
-    setDate(data.data.filter((element: any) => element.id === data.id)[0].date);
-    setDateTime(data.data.filter((element: any) => element.id === data.id)[0].time);
-
-    setLogoEmoji(data
-      .data
-      .filter((element: any) => element.id === data.id)[0]
-      .emoji);
+    console.log('newData');
   };
-
 
   const hendleDelete = async () => {
     const idUser = await getLocalStorage('idUser');
@@ -42,9 +21,11 @@ function PanelDetal(data: any): JSX.Element {
       date,
       idUser: idUser.idUser,
     });
+    console.log('returnDelete', returnDelete);
+
     setDateListDetal({...returnDelete});
     if (returnDelete.data.length === 0) {
-      history.push('/home/calendar');
+      history.push('/home/simple');
     }
   };
 
@@ -58,6 +39,8 @@ function PanelDetal(data: any): JSX.Element {
       date,
       status: value
     });
+    console.log('returnUp', returnUp);
+
     setDateListDetal({...returnUp});
   };
 
@@ -71,6 +54,8 @@ function PanelDetal(data: any): JSX.Element {
       date,
       status: value
     });
+    console.log('returnUp', returnUp);
+
     setDateListDetal({...returnUp});
   };
 
@@ -114,4 +99,4 @@ function PanelDetal(data: any): JSX.Element {
   );
 }
 
-export default PanelDetal;
+export default PanelDetalSimple;
