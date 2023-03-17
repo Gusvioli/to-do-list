@@ -1,5 +1,6 @@
 import { useContext, useDeferredValue, useEffect, useState } from "react";
 import Context from "../../../context/Context";
+import '../../../styles/components/task/emojisTasck.css'
 
 function EmojisTasck(): JSX.Element {
   const [loading, setLoading] = useState<boolean>(true);
@@ -9,12 +10,15 @@ function EmojisTasck(): JSX.Element {
     setEmojis,
     emojisLocal,
     setEmojisLocal,
+    setIsEmojisTasck,
+    isEmojisTasck,
   } = useContext(Context);
   const deferred = useDeferredValue(emojisLocal);
 
   const addEmojisDescript = (emojis: any) => {
     const { id } = emojis.target;
     setLogoEmoji(id);
+    setIsEmojisTasck(!isEmojisTasck);
   };
 
   const searchEmojis = async (e: any) => {
@@ -27,29 +31,31 @@ function EmojisTasck(): JSX.Element {
 
   useEffect(() => {
     const fetchEmojis = async () => {
-      const response = await fetch('https://api.github.com/emojis');
-      const data = await response.json();
-      const responseEmojis: any[] | any = Object.keys(data).map((key) => ({
-        name: key,
-        url: data[key],
-      }));
-      setEmojisLocal(responseEmojis);
-      setEmojis(responseEmojis);
-      setLoading(false);
-    };
+      if (emojis) {
+        const response = await fetch('https://api.github.com/emojis');
+        const data = await response.json();
+        const responseEmojis: any[] | any = Object.keys(data).map((key) => ({
+          name: key,
+          url: data[key],
+        }));
+        setEmojisLocal(responseEmojis);
+        setEmojis(responseEmojis);
+        setLoading(false);
+      };
+    }
     fetchEmojis();
   }, [setEmojis]);
 
 
   return (
-      <div style={{
-        maxWidth: '180px',
-        maxHeight: '150px',
-        display: 'flex',
-        flexFlow: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center' }}
-      >
+      <div className="div-inpute-mojis">
+        <button
+          type="button"
+          className="button-close-emojis"
+          onClick={ () => setIsEmojisTasck(!isEmojisTasck) }
+        >
+          X
+        </button>
       <input
         type="text"
         name="buscaEmojis"
@@ -60,20 +66,9 @@ function EmojisTasck(): JSX.Element {
       {loading ? (
         <p>Loading emojis...</p>
       ) : (
-        <ul style={{
-          width: '180px',
-          height: '100px',
-          border: '1px solid #ccc',
-          padding: '10px',
-          display: 'flex',
-          flexFlow: 'row wrap',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'auto',
-          listStyleType: 'none',
-          }}>
+        <ul className="div-ul-emojis">
           {deferred.map((emoji: any) => (
-            <li key={emoji.name} style={{ padding: '2px' }}>
+            <li key={emoji.name}>
               <img
                 src={emoji.url}
                 alt={emoji.name}

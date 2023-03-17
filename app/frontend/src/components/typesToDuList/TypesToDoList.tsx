@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../../context/Context";
+import '../../styles/components/simple/typesToDoList.css';
 
 function TypeToDoList(): JSX.Element {
   const {
@@ -12,6 +13,10 @@ function TypeToDoList(): JSX.Element {
     setLogoEmoji,
     setDateTime,
     setEdtorTrue,
+    setSearch,
+    setCaracters,
+    isEmojisTasck,
+    setIsEmojisTasck,
   } = useContext(Context);
   const history = useHistory();
 
@@ -23,6 +28,9 @@ function TypeToDoList(): JSX.Element {
       setDate('');
       setLogoEmoji('');
       setDateTime('');
+      setSearch('');
+      setCaracters(0);
+      setIsEmojisTasck(false);
       setEdtorTrue({
         id: 0,
         data: [],
@@ -30,13 +38,13 @@ function TypeToDoList(): JSX.Element {
   };
 
   return (
-      <ul>
+      <ul className="ul-buttons-types-to-do-list">
         <li>
           <button
             type="button"
             onClick={() => gotPage('/simple')}
           >
-            To do list simples
+            Simple
           </button>
         </li>
         <li>
@@ -44,7 +52,7 @@ function TypeToDoList(): JSX.Element {
             type="button"
             onClick={() => gotPage('/calendar')}
           >
-            To do list Calender
+            Calender
           </button>
         </li>
       </ul>

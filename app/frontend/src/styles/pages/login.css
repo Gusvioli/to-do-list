@@ -1,0 +1,106 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.div-0-form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: row wrap;
+  top: 0;
+}
+
+.form-login {
+  background: azure;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 450px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin-top: 40px;
+  border-radius: 13px;
+}
+
+.form-login input {
+  border-radius: 9px;
+  padding: 13px;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  margin: 5px;
+  border: 1px solid rgb(74, 182, 146);
+  background-color: rgb(248, 230, 207);
+}
+
+.form-login input:focus {
+  border-radius: 9px;
+  padding: 13px;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  margin: 5px;
+  outline: none;
+  border: 1px solid rgb(55, 138, 110);
+  background-color: rgb(248, 230, 207);
+}
+
+.form-div-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: column;
+}
+
+.form-login button {
+  padding: 10px;
+  border-radius: 9px;
+  font-size: 18px;
+  background-color: rgb(74, 182, 146);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 15em;
+}
+
+.form-login button:hover {
+  padding: 10px;
+  border-radius: 9px;
+  font-size: 18px;
+  background-color: rgb(49, 128, 100);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 15em;
+}
+
+.form-div-text-login {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: column;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.form-a-text-esqueceu-senha {
+  text-decoration: none;
+  color: #5e4e69;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  margin-top: 5px;
+}

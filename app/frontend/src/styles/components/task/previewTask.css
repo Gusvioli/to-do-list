@@ -1,0 +1,29 @@
+.div-prevew {
+  border: 1px solid #ccc;
+  width: 45%;
+  height: 140px;
+  margin: 5px;
+  padding: 7px 5px;
+  overflow: auto;
+  border-radius: 9px;
+  background-color: azure;
+  display: flex;
+}
+
+.div-prevew-div-1 {
+  padding: 5px 10px;
+}
+
+.div-prevew-div-2 {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.div-prevew-div-2 > div {
+  padding: 5px 10px;
+}
+
+.div-prevew-div-1-div {
+  padding: 5px;
+}

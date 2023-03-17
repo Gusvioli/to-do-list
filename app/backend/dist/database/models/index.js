@@ -23,3 +23,4 @@ const sequelize_1 = require("sequelize");
 const config = __importStar(require("../config/database"));
 const sequelize = new sequelize_1.Sequelize(config);
 exports.default = sequelize;
+//# sourceMappingURL=index.js.map

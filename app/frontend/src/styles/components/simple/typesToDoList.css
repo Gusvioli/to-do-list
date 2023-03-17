@@ -1,0 +1,39 @@
+
+.ul-buttons-types-to-do-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ul-buttons-types-to-do-list li button {
+  padding: 8px;
+  border-radius: 9px;
+  font-size: 14px;
+  background-color: rgb(74, 182, 146);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 10em;
+}
+
+.ul-buttons-types-to-do-list  li button:hover {
+  padding: 8px;
+  border-radius: 9px;
+  font-size: 14px;
+  background-color: rgb(49, 128, 100);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 10em;
+}

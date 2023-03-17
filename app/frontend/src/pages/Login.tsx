@@ -2,10 +2,11 @@ import { ChangeEvent, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Context from "../context/Context";
-import { requestDataUser, requestLogin } from "../services/requests";
+import { requestLogin } from "../services/requests";
 import codeMenssage from "../services/status";
 import getLocalStorage from "../utils/getLocalStorage";
 import setLocalStorage from "../utils/setLocalStorage";
+import '../styles/pages/login.css';
 
 // Componente para fazer o login
 function Login(): JSX.Element {
@@ -22,15 +23,15 @@ function Login(): JSX.Element {
   const hendleForm = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const { id, value } = e.target;
-      if (id === 'email') setEmail(value); 
+      if (id === 'email') setEmail(value);
       if (id === 'password') setPassword(value);
   };
-  
+
   // Função para fazer o login e retorna os erros ou acertos na tentativa de login
   const hendleSubmitLogin = async () => {
     try {
       const UM_SEGUNDOS = 1000;
-      
+
       const data = await requestLogin('/login', { email, password });
       setPassword(''); // Limpa o input de senha no state
       setEmail(''); // Limpa o input de email no state
@@ -47,6 +48,11 @@ function Login(): JSX.Element {
 
       // Redireciona para a página home depois de 1 segundos e meio
       setTimeout(() => {
+        setCodeStatusMessage({
+          status: 0,
+          message: ''
+        });
+        codeMenssage(0);
         history.push('/'); // Redireciona para a página home
       }, UM_SEGUNDOS); // Espera 1 segundos
 
@@ -61,9 +67,13 @@ function Login(): JSX.Element {
 
   // Função para exibir as mensagens de erro ou sucesso
   const exibirMsgs = () => {
-    if (codeStatusMessage.status !== 0 && codeStatusMessage.message !== '') {
-      return `${codeMenssage(codeStatusMessage.status)}, ${codeStatusMessage.message}`;
-    }return '';
+    if (codeStatusMessage !== undefined) {
+      return `${codeMenssage(codeStatusMessage.status)}
+      ${codeStatusMessage.status ? `,` : ''}
+      ${codeStatusMessage.message}`;
+    } else {
+      return '';
+    }
   };
 
   // Verifica se o usuário já está logado
@@ -72,46 +82,65 @@ function Login(): JSX.Element {
       if (token) history.push('/home');
     });
   }, [history]);
-  
+
   return(
     <>
       <Navbar />
-      <br />
-      <form
-        data-testid='form-Login'
-        action="submit"
-      >
-        <label htmlFor="email">
-          <input
-            data-testid='input-email'
-            type="text"
-            id="email"
-            onChange={(e) => hendleForm(e)}
-            value={email} />
-        </label>
-        <label htmlFor="password">
-          <input
-            data-testid='input-password'
-            type="password"
-            id="password"
-            onChange={(e) => hendleForm(e)}
-            value={password}
-          />
-        </label>
-        <button
-          type="button"
-          onClick={hendleSubmitLogin}
+      <div className="div-0-form">
+        <form
+          data-testid='form-Login'
+          action="submit"
+          className="form-login"
         >
-          Login
-        </button>
-        <button
-          type="button"
-          onClick={() => history.push('/cadastro')}
-        >
-          Cadastro
-        </button>
-        <p>{exibirMsgs()}</p>
-      </form>
+          <div className="form-div-text-login">
+            Log in to To-do-List
+          </div>
+          <label htmlFor="email">
+            <input
+              placeholder="E-mail"
+              data-testid='input-email'
+              type="text"
+              id="email"
+              onChange={(e) => hendleForm(e)}
+              value={email} />
+          </label>
+          <label htmlFor="password">
+            <input
+              placeholder="Password"
+              data-testid='input-password'
+              type="password"
+              id="password"
+              onChange={(e) => hendleForm(e)}
+              value={password}
+            />
+          </label>
+          <div className="form-div-button">
+            <button
+              type="button"
+              onClick={hendleSubmitLogin}
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              onClick={() =>{
+                setCodeStatusMessage({
+                  status: 0,
+                  message: ''
+                });
+                codeMenssage(0);
+                history.push('/cadastro')}
+              }
+            >
+              Register
+            </button>
+          </div>
+          <p className="exibir-msgs">{exibirMsgs()}</p>
+          <a className="form-a-text-esqueceu-senha" href="/login">
+            Forgot password?
+          </a>
+        </form>
+      </div>
     </>
   );
 }

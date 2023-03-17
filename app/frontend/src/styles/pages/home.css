@@ -1,0 +1,15 @@
+.exibir-msgs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  font-size: 16px;
+  padding: 5px;
+  margin: 5px;
+  font-weight: 800;
+  border-radius: 9px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
