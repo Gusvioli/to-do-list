@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import Context from "../../context/Context";
+import codeMenssage from "../../services/status";
 
 function BtnCadastro() {
+  const {setCodeStatusMessage} = useContext(Context);
   const history = useHistory();
   return(
     <>
       <button
         data-testid='button-buscar'
-        onClick={() => history.push('/cadastro')}
+        onClick={() => {
+          setCodeStatusMessage({
+            status: 0,
+            message: ''
+          });
+          codeMenssage(0);
+          history.push('/cadastro')
+        }}
       >
-        Cadastro
+        Register
       </button>
     </>
   );

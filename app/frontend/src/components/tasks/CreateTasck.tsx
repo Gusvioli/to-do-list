@@ -1,14 +1,18 @@
-import { ChangeEvent, useContext } from "react";
+import { ChangeEvent, MouseEvent, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../../context/Context";
-import { requestCreate, requestUpdate } from "../../services/requests";
+import { requestCreate, requestDataId, requestUpdate } from "../../services/requests";
 import codeMenssage from "../../services/status";
 import getLocalStorage from "../../utils/getLocalStorage";
 import ListCalendar from "../calendar/ListCalendar";
+import Search from "../search/Search";
 import ToDuListSimple from "../simple/ListSimple";
 import EmojisTasck from "./emojis/EmojisTasck";
 import ListDetal from "./ListDetal";
-import PrevewTasck from "./PreviewTasck";
+// import PrevewTasck from "./PreviewTasck";
+import CreateTasckEnum from "./utils/enums/CreateTasckEnum";
+import '../../styles/components/task/createTask.css';
+import '../../styles/lists/lists.css';
 
 function CreateTasck() {
   const {
@@ -25,6 +29,14 @@ function CreateTasck() {
     dateTime,
     setDateTime,
     setDateListDetal,
+    search,
+    setContents,
+    emojis,
+    isEmojisTasck,
+    setIsEmojisTasck,
+    setEmojis,
+    caracters,
+    setCaracters,
   } = useContext(Context);
   const history = useHistory();
 
@@ -35,14 +47,15 @@ function CreateTasck() {
       if (id === 'date') setDate(value);
       if (id === 'horaMinutes') setDateTime(value);
       if (id === 'descript') setDescript(value);
-
   };
 
   // Função para exibir as mensagens de erro ou sucesso
   const exibirMsgs = () => {
-    if (codeStatusMessage?.status !== 0 && codeStatusMessage?.message !== '') {
-      return `${codeMenssage(codeStatusMessage?.status)}, ${codeStatusMessage?.message}`;
-    }return '';
+    if (codeStatusMessage) {
+      return `${codeMenssage(codeStatusMessage.status)} ${codeStatusMessage.message}`;
+    } else {
+      return '';
+    }
   };
 
   const hendleCreateTasck = async () => {
@@ -76,10 +89,10 @@ function CreateTasck() {
 
   } catch (error: any) {
     // Salva o status e a messagem vinda do backend retornando o erro
-    setCodeStatusMessage({
-      status: error.response.status,
-      message: error.response.data.message
-    });
+      setCodeStatusMessage({
+        status: error.response.status,
+        message: error.response.data.message
+      })
   }
   };
 
@@ -109,6 +122,7 @@ function CreateTasck() {
       setDate('');
       setLogoEmoji('');
       setDateTime('');
+      setCaracters(0);
       setEdtorTrue({
         id: 0,
         data: [],
@@ -123,108 +137,189 @@ function CreateTasck() {
   }
   };
 
-  const handleCloseEdtor = () => {
-    setDescript('');
-    setDate('');
-    setLogoEmoji('');
-    setDateTime('');
+  useEffect(() => {
+    const getTypeBd = async () => {
+      if(await getLocalStorage('token') && await getLocalStorage('idUser')){
+        const data = await getLocalStorage('idUser');
+        let dataContents = await requestDataId('/contents', {idUser: data.idUser});
+        if (history.location.pathname === '/home') {
+          dataContents = dataContents.filter((content: any) => content.type === 'simple');
+          setContents(dataContents);
+        }
+      }
+    };
+    getTypeBd();
+  }, [history.location.pathname, setContents]);
+
+  useEffect(() => {
+    if(emojis.length === 0){
+      const fetchEmojis = async () => {
+        const response = await fetch('https://api.github.com/emojis');
+        const data = await response.json();
+        const responseEmojis: any[] | any = Object.keys(data).map((key) => ({
+          name: key,
+          url: data[key],
+        }));
+        setEmojis(responseEmojis);
+      };
+      fetchEmojis();
+    }
+  }, []);
+
+  const hendleEmojisTasck = () => {
+    setIsEmojisTasck(!isEmojisTasck);
+  };
+
+  const hendleCloseEditor = () => {
     setEdtorTrue({
       id: 0,
       data: [],
     });
+    setDescript('');
+    setDate('');
+    setLogoEmoji('');
+    setDateTime('');
+    setCaracters(0);
+  };
+
+  const hendleClearDescription = () => {
+    setDescript('');
+    setCaracters(0);
   };
 
   return (
     <>
-      <p>{exibirMsgs()}</p>
-      <div style={{
-        display: 'flex',
-        flexFlow: 'row wrap',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        padding: '10px',
-        border: '1px solid #ccc',
-        width: 'auto' }}
-      >
-      <EmojisTasck />
-      <form>
-          {edtorTrue?.id === 0
-          ? <div>Modo Criação</div>
-          : <div>Modo edição da task id #{edtorTrue?.id}
-              <button type="button" onClick={handleCloseEdtor}>X</button>
-            </div>
-          }
-          <div style={{ display: 'flex', flexFlow: 'column', justifyContent: 'flex-start',  }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center',  }}>
-              <label htmlFor="subtitle">
-                <input
-                  style={{
-                    width: '110px',
-                    padding: '2px',
-                    margin: '2px',
-                    opacity: edtorTrue?.id > 0 ? 0.4 : 1,
-                  }}
-                  type="date"
-                  name="date"
-                  id="date"
-                  disabled={edtorTrue?.id > 0}
-                  onChange={(e) => hendleForm(e)} />
-              </label>
-              <label htmlFor="horaMinutes">
-                <input
-                  style={{ width: '110px', padding: '2px', margin: '2px' }}
-                  type="time"
-                  name="horaMinutes"
-                  id="horaMinutes"
-                  placeholder="00:00"
-                  onChange={(e) => hendleForm(e)} />
-              </label>
-            </div>
-            <label htmlFor="descript">
-            <textarea
-              style={{ width: 'auto', height: 'auto', padding: '2px', margin: '2px' }}
-              name="descript"
-              id="descript"
-              cols={30}
-              rows={6}
-              wrap="true"
-              value={descript}
-              maxLength={200}
-              placeholder={'Descript tasck'}
-              onChange={(e) => hendleForm(e)} />
-          </label>
-
-          {edtorTrue?.id === 0
-          ? <button
-              style={{ width: 'auto', height: '40px', padding: '2px'}}
-              type="button"
-              onClick={hendleCreateTasck}
+      <div className="div-0-createTask">
+        <div className="div-createTask">
+        { !isEmojisTasck ? '' : <EmojisTasck /> }
+        <form>
+          <div className="form-div-date-time-description">
+              <div className="form-div-date-time-description-div">
+                <button
+                  type="button"
+                  onClick={hendleEmojisTasck}
+                  className="button-prevew-tasck"
+                >
+                 {
+                    logoEmoji !== ''
+                    ? <div>
+                        <img
+                            src={emojis?.filter((emoji: any) => emoji.name === logoEmoji)
+                              ?.map((emoji: any) => emoji)[0].url}
+                            alt={logoEmoji}
+                            width="30px"
+                            height="30px"
+                          />
+                          <img
+                            src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png?v8"
+                            alt="Checked"
+                            width="15px"
+                            height="15px"
+                            className="img-checked"
+                          />
+                    </div>
+                    : <img
+                        src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f642.png"
+                        alt="slightly_smiling_face"
+                        width="30px"
+                        height="30px"
+                      />
+                 }
+                </button>
+                <label htmlFor="subtitle">
+                  <input
+                    className="label-input-date"
+                    type="date"
+                    name="date"
+                    id="date"
+                    disabled={edtorTrue?.id > 0}
+                    onChange={(e) => hendleForm(e)} />
+                </label>
+                <label htmlFor="horaMinutes">
+                  <input
+                    className="label-input-time"
+                    type="time"
+                    name="horaMinutes"
+                    id="horaMinutes"
+                    placeholder="00:00"
+                    onChange={(e) => hendleForm(e)} />
+                </label>
+                <button
+                  className="div-1-criacao-edicao-button"
+                  type="button"
+                  onClick={
+                    edtorTrue !== undefined
+                    ? edtorTrue?.id === 0
+                      ? hendleCreateTasck
+                        : hendleUpdateTasck
+                          : hendleCreateTasck
+                  }
+                >
+                    {
+                      edtorTrue !== undefined
+                        ? edtorTrue?.id === 0
+                          ? 'Create Tasck'
+                            : 'Edit Tasck'
+                              : 'Create Tasck'
+                    }
+              </button>
+              {
+              edtorTrue !== undefined
+                ? edtorTrue?.id === 0
+                ? ''
+                : <button
+                    type="button"
+                    className="div-1-criacao-edicao-button"
+                    onClick={hendleCloseEditor}
+                  >
+                    Close edit
+                  </button>
+                  : ''
+              }
+              </div>
+              <div
+                className="div-1-criacao-edicao-button-div-clear"
               >
-              Create Tasck
-            </button>
-          : <button
-              style={{ width: 'auto', height: '40px', padding: '2px'}}
-              type="button"
-              onClick={hendleUpdateTasck}
-              >
-              Edit Tasck
-            </button>
-        }
-
-
-          </div>
-      </form>
-      <PrevewTasck
-        date={date}
-        dateTime={dateTime}
-        descript={descript}
-      />
+                {caracters}/200
+                <button
+                    type="button"
+                    className="div-1-criacao-edicao-button-clear"
+                    onClick={hendleClearDescription}
+                >
+                  Clear
+                </button>
+              </div>
+              <label htmlFor="descript">
+                <textarea
+                  name="descript"
+                  id="descript"
+                  cols={55}
+                  rows={5}
+                  wrap="true"
+                  value={descript}
+                  minLength={CreateTasckEnum.MIN}
+                  maxLength={CreateTasckEnum.MAX}
+                  placeholder={'Descript tasck'}
+                  onChange={(e) => hendleForm(e)}
+                />
+              </label>
+            </div>
+        </form>
+        </div>
+        <p className={"exibir-msgs"}>{exibirMsgs()}</p>
       </div>
-      {history.location.pathname === '/home/calendar' && <ListCalendar />}
-      {history.location.pathname === '/home/simple' && <ToDuListSimple />}
-      {history.location.pathname === '/home/listdetal' && <ListDetal />}
+      <div className="list-0">
+        {history.location.pathname === '/home' && search.length > 0 && <Search />}
+        {history.location.pathname === '/home/calendar'
+        ? search.length === 0 ? <ListCalendar /> : <Search /> : ''}
+        {history.location.pathname === '/home/simple'
+        ? search.length === 0 ? <ToDuListSimple /> : <Search /> : ''}
+        {history.location.pathname === '/home/listdetal'
+        ? search.length === 0 ? <ListDetal /> : <Search /> : ''}
+      </div>
     </>
   );
 }
 
 export default CreateTasck;
+

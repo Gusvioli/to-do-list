@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../../context/Context";
 import formatarData from "../../utils/formatarData";
@@ -9,58 +9,48 @@ function ListDetal(): JSX.Element {
 
   const {
     dateListDetal,
-    setDateListDetal,
     emojis,
   } = useContext(Context);
 
-  useEffect(() => {
-    setDateListDetal({ ...dateListDetal })
-  }, [setDateListDetal]);
-
-
   return (
     <>
-      {dateListDetal.data ? dateListDetal.data.map((content: any, index: any) =>
-      <div style={{
-        border: '1px solid #ccc',
-        width: '40%',
-        height: '150px',
-        margin: '5px',
-        padding: '7px 5px',
-        overflow: 'auto',
-        borderRadius: '9px',
-        backgroundColor: '#f1f4f5',
-        }} key={index}>
-         Id: #{content.id}
-        <div style={{ padding: '5px 15px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
-            {content.status}
+      <div className="lists-div-0">
+      <h2 className="data-task">
+        Dia: {formatarData(dateListDetal?.date)}
+      </h2>
+      {dateListDetal !== undefined
+        ? dateListDetal?.data
+        .map((content: any, index: any) =>
+        <div className="lists-div-1" key={index} id={content.id}>
+            <div className="lists-div-1-div">
+              <div className="lists-div-1-div-div">
+                <div className="lists-div-1-div-div-div-id">
+                  Id: #{content.id}
+                </div>
+                <div className="lists-div-1-div-div-div-date">
+                  {formatarData(content.date)} - {content.time}
+                </div>
+                <div className="lists-div-1-div-div-div-panel">
+                <PanelDetal
+                  data={dateListDetal?.data}
+                  id={content.id}
+                  status={content.status}
+                  date={dateListDetal?.date}
+                  idUser={dateListDetal?.idUser}
+                />
+                </div>
+              </div>
+            </div>
+          <div className="lists-div-2">
+            <div className="lists-div-2-div">
+              { emojis.filter((emoji: any) => emoji.name === content.emoji)
+                .map((emoji: any) => (
+              <img src={emoji.url} alt={emoji.name} key={emoji.name} width='50px' />))
+            }</div>
+            <div className="lists-div-2-div-2">{content.descript}</div>
           </div>
-          <div style={{ display: 'flex', flexFlow: 'row', alignItems: 'end' }}>
-            <PanelDetal
-              data={dateListDetal.data}
-              id={content.id}
-              status={content.status}
-              date={dateListDetal.date}
-              idUser={dateListDetal.idUser}
-            />
-          </div>
-          <span>
-            {formatarData(content.date)}
-          </span> - { ' ' }
-          <span>
-            {content.time}
-          </span>
-        </div>
-        <div style={{ display: 'flex', justifyContent:'start', alignItems: 'center' }}>
-          <div style={{ padding: '5px 15px' }}>
-            { emojis.filter((emoji: any) => emoji.name === content.emoji)
-              .map((emoji: any) => (
-            <img src={emoji.url} alt={emoji.name} key={emoji.name} width='50px' />))
-          }</div>
-          <div style={{ padding: '5px', font: '26px' }}>{content.descript}</div>
-        </div>
-      </div>) : history.push(`/home/calendar`)}
+        </div>) : history.push(`/home/calendar`)}
+      </div>
     </>
   );
 }

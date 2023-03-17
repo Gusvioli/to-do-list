@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
 import { requestDataToken } from "../services/requests";
@@ -6,6 +6,7 @@ import getLocalStorage from "../utils/getLocalStorage";
 import setLocalStorageClear from "../utils/setLocalStorageClear";
 import BtnCadastro from "./buttons/BtnCadastro";
 import BtnLogin from "./buttons/BtnLogin";
+import '../styles/pages/navbar.css';
 
 function Navbar(): JSX.Element {
   const {
@@ -23,11 +24,18 @@ function Navbar(): JSX.Element {
     setLogoEmoji,
     setDateTime,
     setEdtorTrue,
+    setSearch,
   } = useContext(Context);
 
   const [name, setName] = useState('');
 
   const history = useHistory();
+
+  const hendleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const { value } = e.target;
+    setSearch(value);
+  };
 
   const hendleExited = () => {
     setLocalStorageClear();
@@ -77,33 +85,32 @@ function Navbar(): JSX.Element {
 
   return(
     <>
-      <nav data-testid='navbar' style={{ display: 'flex', justifyContent: 'center' }}>
-        <section>To do list</section>
-        <section>
-          <form
-            data-testid='form-Login'
-            action="submit"
-            onSubmit={ (e) => e.preventDefault() }
-          >
+      <nav data-testid='navbar'>
+        <section className="nav-section-1">
+          <h1>
+            To do list
+          </h1>
+        </section>
+        <section className="nav-section-2">
+          <form className="nav-section-2-form">
             <label htmlFor="buscador">
               <input
                 data-testid='input-buscador'
                 type="text"
                 id="buscador"
+                placeholder="Search by: id, description, date, emoji"
+                size={35}
+                onChange={ (e) => hendleSearch(e) }
               />
             </label>
-            <button
-              data-testid='button-buscar'
-            >
-              Buscar
-            </button>
             { !isTokenTrue ? <><BtnLogin /><BtnCadastro /></> : '' }
-            <button
+            { isTokenTrue ? <button
               data-testid='button-sair'
               onClick={ hendleExited }
             >
-              Sair
-            </button>
+              Exit
+            </button> : ''}
+
           </form>
         </section>
         <section data-testid='user-name'>

@@ -4,7 +4,7 @@ import {useContext, useDeferredValue} from "react";
 import Context from "../../context/Context";
 import { useHistory } from "react-router-dom";
 
-function PanelDetal(data: any): JSX.Element {
+function PanelDetalSimple(data: any): JSX.Element {
   const {
     dateListDetal,
     setDateListDetal,
@@ -25,11 +25,12 @@ function PanelDetal(data: any): JSX.Element {
       data: data.data.filter((element: any) => element.id === data.id),
     });
 
-    console.log(data.data.filter((element: any) => element.id === data.id)[0].descript.length);
-    setCaracters(data.data.filter((element: any) => element.id === data.id)[0].descript.length);
-    setDescript(data.data.filter((element: any) => element.id === data.id)[0].descript);
-    setDate(data.data.filter((element: any) => element.id === data.id)[0].date);
-    setDateTime(data.data.filter((element: any) => element.id === data.id)[0].time);
+    const dataZero = data.data.filter((element: any) => element.id === data.id)[0];
+
+    setCaracters(dataZero.descript.length);
+    setDescript(dataZero.descript);
+    setDate(dataZero.date);
+    setDateTime(dataZero.time);
     setLogoEmoji(data
       .data
       .filter((element: any) => element.id === data.id)[0]
@@ -60,12 +61,13 @@ function PanelDetal(data: any): JSX.Element {
       data: [],
     });
     if (returnDelete.data.length === 0) {
-      history.push('/home/calendar');
+      history.push('/home/simple');
     }
   };
 
   const hendleConcluido = async (e: any) => {
     const { date, id } = data;
+
     const idUser = await getLocalStorage('idUser');
     const returnUp = await requestUpdate('/contentsUpdate', {
       id,
@@ -91,7 +93,7 @@ function PanelDetal(data: any): JSX.Element {
   return(
   <>
     <div>
-    <form>
+      <form>
         <button
           type="button"
           onClick={hendleEdit}
@@ -149,4 +151,4 @@ function PanelDetal(data: any): JSX.Element {
   );
 }
 
-export default PanelDetal;
+export default PanelDetalSimple;

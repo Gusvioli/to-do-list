@@ -15,7 +15,11 @@ function ListCalendar(): JSX.Element {
   const [monthds, setMonthdsd] = useState<boolean>();
   const deferredQtdsTascks = useDeferredValue(qtdsTascks);
   const deferredAllMonthds = useDeferredValue(allMonthds);
-  const {contents, setContents, setDateListDetal} = useContext(Context);
+  const {
+    contents,
+    setContents,
+    setDateListDetal,
+  } = useContext(Context);
 
   const openCalendar = (e: any) => {
      const {name, value} = e.target;
@@ -93,7 +97,8 @@ function ListCalendar(): JSX.Element {
 
   return (
     <>
-      {contents && arrmonths2023.map((month: any, index: number) => {
+      {contents
+      && !arrmonths2023 ? 'Carregando' : arrmonths2023.map((month: any, index: number) => {
         return <button
           key={index}
           id={month.days}

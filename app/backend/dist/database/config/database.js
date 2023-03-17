@@ -14,3 +14,4 @@ const config = {
     logging: false,
 };
 module.exports = config;
+//# sourceMappingURL=database.js.map

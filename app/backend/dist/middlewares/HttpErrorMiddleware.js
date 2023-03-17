@@ -5,3 +5,4 @@ const httpErrorMiddleware = (erro, _req, res, _next) => {
     res.status(status || 500).json({ message });
 };
 exports.default = httpErrorMiddleware;
+//# sourceMappingURL=HttpErrorMiddleware.js.map

@@ -7,3 +7,4 @@ const app_1 = __importDefault(require("./app"));
 require("dotenv/config");
 const PORT = process.env.APP_PORT || 3001;
 new app_1.default().start(PORT);
+//# sourceMappingURL=server.js.map

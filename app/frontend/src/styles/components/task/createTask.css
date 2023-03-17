@@ -1,0 +1,154 @@
+.div-0-createTask {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.div-createTask {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  width: 90%;
+}
+
+.div-modo-criacao, .div-modo-edicao {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  padding-left: 10px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.div-modo-edicao-button {
+  border-radius: 9px;
+  padding: 3px 5px;
+  font-size: 14px;
+  background-color: rgb(74, 182, 146);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.div-modo-edicao-button:hover {
+  background-color: rgb(49, 128, 100);
+}
+
+.div-1-criacao-edicao {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  width: 40%;
+  border-radius: 33px;
+}
+
+.div-1-criacao-edicao-button {
+  padding: 6px;
+  border-radius: 9px;
+  font-size: 16px;
+  background-color: rgb(74, 182, 146);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 2px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+.div-1-criacao-edicao-button:hover {
+  background-color: rgb(49, 128, 100);
+}
+
+.form-div-date-time-description {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  padding: 5px;
+  width: auto;
+  font-size: 18px;
+}
+
+.label-input-time, .label-input-date {
+  padding: 5px;
+  width: auto;
+  height: 30px;
+  border-radius: 9px;
+  outline: none;
+  border: 1px solid rgb(74, 182, 146);
+  background-color: azure;
+  font-size: 14px;
+  margin: 1px;
+}
+
+textarea {
+  padding: 5px;
+  width: auto;
+  border-radius: 9px;
+  outline: none;
+  font-size: 16px;
+  border: 1px solid rgb(55, 138, 110);
+}
+
+.form-div-date-time-description-div {
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
+  align-items: center;
+  width: auto;
+  font-size: 18px;
+}
+
+.button-prevew-tasck {
+  padding: 6px;
+  border-radius: 9px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+.img-cheked {
+  position: fixed;
+}
+
+.div-1-criacao-edicao-button-clear {
+  padding: 2px;
+  border-radius: 9px;
+  font-size: 10px;
+  background-color: rgb(74, 182, 146);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+.div-1-criacao-edicao-button-div-clear {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 9px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}

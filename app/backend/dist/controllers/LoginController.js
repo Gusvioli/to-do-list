@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const LoginServices_1 = __importDefault(require("../services/LoginServices"));
+const LoginService_1 = __importDefault(require("../services/LoginService"));
 class LoginController {
     static login(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { email, password } = req.body;
-                const token = yield LoginServices_1.default.login(email, password);
-                return res.status(200).json({ token });
+                const data = yield LoginService_1.default.login(req.body);
+                const { token, idUser, name } = data;
+                res.status(200).json({ message: 'Login successful', token, idUser, name });
             }
             catch (error) {
                 next(error);
@@ -28,3 +28,4 @@ class LoginController {
     }
 }
 exports.default = LoginController;
+//# sourceMappingURL=LoginController.js.map
