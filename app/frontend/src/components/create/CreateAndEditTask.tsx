@@ -116,6 +116,7 @@ function CreateAndEditTask() {
     });
     setStatusTask({status: '', id: 0});
     setEditrTrue(false);
+    setNameEmojiUrl({ name: '', url: '' });
   };
 
   const hendleemojis = (e: MouseEvent<HTMLButtonElement>) => {

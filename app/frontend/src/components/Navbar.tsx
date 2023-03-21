@@ -12,6 +12,7 @@ function Navbar(): JSX.Element {
     setFormCreateAndEditTask,
     setEmail,
     setPassword,
+    setCodeStatusMessage,
   } = useContext(Context);
 
   const history = useHistory();
@@ -36,6 +37,7 @@ function Navbar(): JSX.Element {
       idUser: {},
       nameUser: {},
     });
+    setCodeStatusMessage({ status: 0, message: '' });
   };
 
   return(

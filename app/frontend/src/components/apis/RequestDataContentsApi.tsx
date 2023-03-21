@@ -25,11 +25,6 @@ export function RequestDataContentsApi() {
       return dataContents;
     }
   },{
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    retry: false,
-    staleTime: 1000 * 60 * 60 * 24,
-    cacheTime: 1000 * 60 * 60 * 24,
+    refetchOnWindowFocus: true,
   });
 }
