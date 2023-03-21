@@ -12,7 +12,7 @@ function Provider({ children }: { children: any}) {
   const [isTokenTrue, setIsTokenTrue] = useState(false);
   const [listarContents, setListarContents] = useState(false);
   const [descript, setDescript] = useState('');
-  const [logoEmoji, setLogoEmoji] = useState('');
+  const [nameEmojiUrl, setNameEmojiUrl] = useState({ name: '', url: '' });
   const [emojis, setEmojis] = useState([]);
   const [emojisLocal, setEmojisLocal] = useState([]);
   const [dateListDetal, setDateListDetal] = useState<DateListDetal | undefined>();
@@ -21,9 +21,20 @@ function Provider({ children }: { children: any}) {
   const [idUserProvider, setIdUserProvider] = useState(0);
   const [dateTime, setDateTime] = useState('');
   const [search, setSearch] = useState('');
+  const [statusTask, setStatusTask] = useState({ status: '', id: 0 });
+  const [formCreateAndEditTask, setFormCreateAndEditTask] = useState({
+   date: '',
+   horaMinutes: '',
+   description: '',
+   caracters: 0,
+ });
   let [caracters, setCaracters] = useState(0);
   let [isEmojisTasck, setIsEmojisTasck] = useState(false);
-  const [edtorTrue, setEdtorTrue] = useState<EdtorTrue | undefined>();
+  const [
+    isActiveEmojisPanel,
+    setIsActiveEmojisPanel,
+   ] = useState<boolean>(false);
+  const [editTrue, setEditrTrue] = useState<EdtorTrue | undefined>();
   const memorize = React.useMemo(() => ({
     texts,
     setTexts,
@@ -45,8 +56,8 @@ function Provider({ children }: { children: any}) {
     setDescript,
     emojis,
     setEmojis,
-    logoEmoji,
-    setLogoEmoji,
+    nameEmojiUrl,
+    setNameEmojiUrl,
     listarContents,
     setListarContents,
     dateListDetal,
@@ -55,8 +66,8 @@ function Provider({ children }: { children: any}) {
     setDate,
     dateTime,
     setDateTime,
-    edtorTrue,
-    setEdtorTrue,
+    editTrue,
+    setEditrTrue,
     emojisLocal,
     setEmojisLocal,
     idUserProvider,
@@ -67,6 +78,12 @@ function Provider({ children }: { children: any}) {
     setIsEmojisTasck,
     caracters,
     setCaracters,
+    isActiveEmojisPanel,
+    setIsActiveEmojisPanel,
+    formCreateAndEditTask,
+    setFormCreateAndEditTask,
+    statusTask,
+    setStatusTask,
   }), [
     texts,
     setTexts,
@@ -88,8 +105,8 @@ function Provider({ children }: { children: any}) {
     setDescript,
     emojis,
     setEmojis,
-    logoEmoji,
-    setLogoEmoji,
+    nameEmojiUrl,
+    setNameEmojiUrl,
     listarContents,
     setListarContents,
     dateListDetal,
@@ -98,8 +115,8 @@ function Provider({ children }: { children: any}) {
     setDate,
     dateTime,
     setDateTime,
-    edtorTrue,
-    setEdtorTrue,
+    editTrue,
+    setEditrTrue,
     emojisLocal,
     setEmojisLocal,
     idUserProvider,
@@ -110,6 +127,12 @@ function Provider({ children }: { children: any}) {
     setIsEmojisTasck,
     caracters,
     setCaracters,
+    isActiveEmojisPanel,
+    setIsActiveEmojisPanel,
+    formCreateAndEditTask,
+    setFormCreateAndEditTask,
+    statusTask,
+    setStatusTask,
   ]);
   return (
     <Context.Provider

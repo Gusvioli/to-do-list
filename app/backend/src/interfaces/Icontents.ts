@@ -5,7 +5,7 @@ interface Icontents {
     emoji: string;
     date: string;
     time: string;
-    descript: string;
+    description: string;
     status: string;
     createdAt: Date;
     updatedAt: Date;

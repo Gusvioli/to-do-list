@@ -1,84 +1,50 @@
-import { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import {useContext} from "react";
+import { useQueryClient } from "react-query";
 import Context from "../../context/Context";
-import { requestDataId } from "../../services/requests";
 import formatarData from "../../utils/formatarData";
-import getLocalStorage from "../../utils/getLocalStorage";
-import PanelDetalSimple from "../tasks/PanelDetalSimple";
-import '../../styles/lists/lists.css';
+import PanelSimple from "./PanelSimple";
+import "../../styles/lists/lists.css";
 
-function ToDuListSimple(): JSX.Element {
-  const {
-    emojis,
-    setContents,
-    contents,
-    dateListDetal,
-    setDateListDetal,
-    idUserProvider,
-    setIdUserProvider,
-  } = useContext(Context);
-  const history = useHistory();
-  const [date] = useState(new Date()
-    .toLocaleDateString().split('/')
-    .reverse()
-    .join('-')
-  );
+function ListSimple(): JSX.Element {
+  const {emojis} = useContext(Context);
 
-  useEffect(() => {
-    const getIdUser = async () => {
-      if(await getLocalStorage('token') && await getLocalStorage('idUser')){
-        const data = await getLocalStorage('idUser');
-        setIdUserProvider(data.idUser);
-      }
-    };
-    getIdUser();
-  }, [setIdUserProvider]);
+  const dateDb = new Date().toISOString().split("T")[0];
 
-  useEffect(() => {
-    setDateListDetal({ ...dateListDetal });
-  }, [setDateListDetal]);
+  const dateNow = new Date()
+  .toISOString().split("T")[0]
+  .split("-").reverse().join("/");
 
-  useEffect(() => {
-    const getTypeBd = async () => {
-      if(await getLocalStorage('token') && await getLocalStorage('idUser')){
-        const data = await getLocalStorage('idUser');
-        let dataContents = await requestDataId('/contents', {idUser: data.idUser});
-        if (history.location.pathname === '/home/simple') {
-          dataContents = dataContents.filter((content: any) => content.type === 'simple');
-          setContents(dataContents);
-        }
-      }
-    };
-    getTypeBd();
-  }, [history.location.pathname, setContents, dateListDetal]);
-
+  const statusConsts = useQueryClient();
+  const dataContents = statusConsts.getQueryData<any>("contents");
 
   return (
-    // Template Simples
     <>
     <div className="lists-div-0">
         <h2 className="data-task">
-          Dia: {formatarData(date)}
+          Dia: {dateNow}
         </h2>
-      {contents.find((fil: any) => fil.date === date)
-      ? contents.filter((fil: any) => fil.date === date)
-      .map((content: any, index: any) =>
-      <div className="lists-div-1" key={index} id={content.id}>
+      {dataContents?.find((fil: any) => fil.date === dateDb)
+      ? dataContents?.filter((fil: any) => fil.date === dateDb)
+      .map((content: any) =>
+      <div
+        className="lists-div-1"
+        key={content.id}
+        id={content.id}
+      >
           <div className="lists-div-1-div">
             <div className="lists-div-1-div-div">
-              <div className="lists-div-1-div-div-div-id">
-                Id: #{content.id}
-              </div>
               <div className="lists-div-1-div-div-div-date">
                 {formatarData(content.date)} - {content.time}
               </div>
               <div className="lists-div-1-div-div-div-panel">
-                <PanelDetalSimple
-                  data={contents}
+                <PanelSimple
                   id={content.id}
                   status={content.status}
                   date={content.date}
-                  idUser={idUserProvider}
+                  idUser={content.idUser}
+                  horaMinutes={content.time}
+                  description={content.description}
+                  emojiName={{name: content.emoji}}
                 />
               </div>
             </div>
@@ -94,10 +60,9 @@ function ToDuListSimple(): JSX.Element {
                 width='45px'
               />
               ))
-            }</div>
-            <div className="lists-div-2-div-2">
-              {content.descript}
+            }
             </div>
+            <div className="lists-div-2-div-2">{content.description}</div>
           </div>
           </div>)
           :
@@ -105,9 +70,8 @@ function ToDuListSimple(): JSX.Element {
             Não há tarefas para hoje
           </div>}
       </div>
-
     </>
   );
 }
 
-export default ToDuListSimple;
+export default ListSimple;

@@ -79,7 +79,6 @@ function Cadastro() {
   // Formulário de cadastro
   return(
       <>
-        <Navbar />
         <div className="div-0-form">
           <form className='form-cadastro'>
           <div className="form-div-text-cadastro">
@@ -122,6 +121,13 @@ function Cadastro() {
             >
               Register now
             </button>
+            <a
+              className='link-login'
+              href="/login"
+              onClick={() => history.push('/login')}
+            >
+              Go Login
+            </a>
           </div>
           <p className="exibir-msgs">{exibirMsgs()}</p>
         </form>

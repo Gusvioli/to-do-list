@@ -31,7 +31,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      descript: {
+      description: {
         type: Sequelize.STRING,
         allowNull: false,
       },

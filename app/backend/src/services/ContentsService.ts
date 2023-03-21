@@ -7,11 +7,12 @@ export class ContentsService {
         const contents = await ContentModel.findAll({
             attributes: [
                 "id",
+                "idUser",
                 "emoji",
-                "descript",
                 "date",
                 "time",
                 "type",
+                "description",
                 "createdAt",
                 "updatedAt",
                 "status"
@@ -37,10 +38,6 @@ export class ContentsService {
         if (!deleteContents) {
             throw new HttpException(404, 'Not found');
         }
-        const contents = await ContentModel.findAll({
-            where: { idUser, date },
-            order: [["createdAt", "DESC"]],
-        });
-        return {data: contents, date: date, idUser: idUser};;
+        return { message: "Deleted" };
     }
 }

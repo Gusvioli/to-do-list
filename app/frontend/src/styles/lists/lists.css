@@ -1,29 +1,51 @@
 .list-0 {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .lists-div-0 {
-  width: 80%;
+  background-color: #acc0e480;
+  border-radius: 9px;
+  box-shadow: 0 0 4px #9c9898;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   padding: 5px 15px;
   margin: 5px;
-  overflow: auto;
+  width: 60%;
+}
+
+@keyframes lists-div-1-a {
+  0% {
+    width: 0%;
+    height: 0%;
+  }
+  100% {
+    width: 60%;
+    height: auto;
+  }
 }
 
 .lists-div-1 {
-  width: 60%;
+  width: 80%;
   height: auto;
   padding: 5px 15px;
   margin: 5px;
   overflow: auto;
   border-radius: 9px;
-  background-color: #a4cee9;
+  background-color: #d5f8ec;
   box-shadow: 0 0 3px #3a3636;
+  animation-name: lists-div-1-a;
+  animation-duration: 0.2s;
+}
+
+.lists-div-1:hover {
+  background-color: #b0ddcd;
+  box-shadow: 0 0 3px #413838;
 }
 
 .lists-div-1-div, .lists-div-2-div {
@@ -39,35 +61,24 @@
   padding: 2px 5px;
 }
 
-.lists-div-1-div-div-div-id {
-  height: 27px;
-  background-color: #d2e1eb;
-  width: 33%;
+
+.lists-div-1-div-div-div-date {
+  height: 21px;
+  background-color: #ffffff;
+  width: auto;
   border-radius: 7px;
-  padding: 3px;
+  padding: 3px 13px;
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
-
-.lists-div-1-div-div-div-date {
-  height: 27px;
-  background-color: #d2e1eb;
-  width: 33%;
-  border-radius: 7px;
-  padding: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .lists-div-1-div-div-div-panel {
-  height: 27px;
-  background-color: #d2e1eb;
-  width: 33%;
+  height: 21px;
+  background-color: #ffffff;
+  width: auto;
   border-radius: 7px;
-  padding: 3px;
+  padding: 3px 13px;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -93,6 +104,12 @@
 }
 
 .data-task {
+  padding: 5px 10px;
+  border-radius: 33px;
+  background-color: #f1efef;
+  outline: 1px solid rgb(70, 78, 77);
+  outline-offset: -5px;
+  box-shadow: 0 0 3px #3a3636;
   font: 26px;
   font-weight: 600;
   color: #3a3636;

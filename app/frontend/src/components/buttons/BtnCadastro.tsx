@@ -7,8 +7,9 @@ function BtnCadastro() {
   const {setCodeStatusMessage} = useContext(Context);
   const history = useHistory();
   return(
-    <>
+    <form>
       <button
+        type="button"
         data-testid='button-buscar'
         onClick={() => {
           setCodeStatusMessage({
@@ -21,7 +22,7 @@ function BtnCadastro() {
       >
         Register
       </button>
-    </>
+    </form>
   );
 }
 

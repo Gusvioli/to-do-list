@@ -1,13 +1,12 @@
-import { useContext, useDeferredValue, useEffect, useState } from "react";
+import { useContext, useDeferredValue } from "react";
+import { useQuery } from "react-query";
 import Context from "../../../context/Context";
 import '../../../styles/components/task/emojisTasck.css'
 
 function EmojisTasck(): JSX.Element {
-  const [loading, setLoading] = useState<boolean>(true);
   const {
     emojis,
     setLogoEmoji,
-    setEmojis,
     emojisLocal,
     setEmojisLocal,
     setIsEmojisTasck,
@@ -21,31 +20,26 @@ function EmojisTasck(): JSX.Element {
     setIsEmojisTasck(!isEmojisTasck);
   };
 
+  const fetchEmojis = async () => {
+      const response = await fetch('https://api.github.com/emojis');
+      const data = await response.json();
+      const responseEmojis: any[] | any = Object.keys(data).map((key) => ({
+        name: key,
+        url: data[key],
+      }));
+      setEmojisLocal(responseEmojis);
+      return responseEmojis;
+  };
+
+  const { data, isLoading} = useQuery<[]>('emojis', fetchEmojis);
+
   const searchEmojis = async (e: any) => {
     const { value } = e.target;
-    setEmojisLocal(emojis.filter((emoji: any) => emojis
+    setEmojisLocal(data?.filter((emoji: any) => emojis
       .map((emoji: any) => emoji.name)
       .filter((emoji: any) => emoji
       .includes(value)).includes(emoji.name)));
   };
-
-  useEffect(() => {
-    const fetchEmojis = async () => {
-      if (emojis) {
-        const response = await fetch('https://api.github.com/emojis');
-        const data = await response.json();
-        const responseEmojis: any[] | any = Object.keys(data).map((key) => ({
-          name: key,
-          url: data[key],
-        }));
-        setEmojisLocal(responseEmojis);
-        setEmojis(responseEmojis);
-        setLoading(false);
-      };
-    }
-    fetchEmojis();
-  }, [setEmojis]);
-
 
   return (
       <div className="div-inpute-mojis">
@@ -63,23 +57,29 @@ function EmojisTasck(): JSX.Element {
         placeholder="Emoji pesquisa"
         onChange={ (e) => searchEmojis(e) }
       />
-      {loading ? (
+      {isLoading ?
         <p>Loading emojis...</p>
-      ) : (
+      :
+        (
         <ul className="div-ul-emojis">
-          {deferred.map((emoji: any) => (
-            <li key={emoji.name}>
-              <img
-                src={emoji.url}
-                alt={emoji.name}
-                width={35}
-                id={emoji.name}
-                onClick={ (e) => addEmojisDescript(e) }
-               />
-            </li>
-          ))}
-        </ul>
-      )}
+          {
+            deferred?.map((emoji: any) =>
+              (
+                <li key={emoji.name}>
+                  <img
+                    src={emoji.url}
+                    alt={emoji.name}
+                    width={35}
+                    id={emoji.name}
+                    onClick={ (e) => addEmojisDescript(e) }
+                  />
+                </li>
+              )
+            )
+          }
+          </ul>
+        )
+      }
     </div>
   );
 }

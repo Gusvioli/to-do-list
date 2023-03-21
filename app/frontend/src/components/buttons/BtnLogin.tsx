@@ -8,21 +8,22 @@ function BtnLogin() {
   const history = useHistory();
 
   return(
-    <>
+    <form>
       <button
-        data-testid='button-buscar'
-        onClick={() => {
-          setCodeStatusMessage({
-            status: 0,
-            message: ''
-          });
-          codeMenssage(0);
-          history.push('/login')
-        }}
-      >
-        Enter
-      </button>
-    </>
+          type="button"
+          data-testid='button-buscar'
+          onClick={(e) => {
+            setCodeStatusMessage({
+              status: 0,
+              message: ''
+            });
+            codeMenssage(0);
+            history.push('/login')
+          }}
+        >
+          Enter
+        </button>
+    </form>
   );
 }
 
