@@ -4,7 +4,7 @@ interface IrequestUpdate {
   emoji?: string | null;
   date: string | null;
   time?: string | null;
-  descript?: string | null;
+  description?: string | null;
   status?: boolean | string | null;
   updatedAt?: Date | null;
   statusFront?: boolean | null;

@@ -4,7 +4,7 @@ import {useContext, useDeferredValue} from "react";
 import Context from "../../context/Context";
 import { useHistory } from "react-router-dom";
 
-function PanelDetalSimple(data: any): JSX.Element {
+function PanelDetal(data: any): JSX.Element {
   const {
     dateListDetal,
     setDateListDetal,
@@ -20,17 +20,16 @@ function PanelDetalSimple(data: any): JSX.Element {
   const history = useHistory();
 
   const hendleEdit = () => {
+    window.scrollTo(100,0);
     setEdtorTrue({
       id: data.id,
       data: data.data.filter((element: any) => element.id === data.id),
     });
 
-    const dataZero = data.data.filter((element: any) => element.id === data.id)[0];
-
-    setCaracters(dataZero.descript.length);
-    setDescript(dataZero.descript);
-    setDate(dataZero.date);
-    setDateTime(dataZero.time);
+    setCaracters(data.data.filter((element: any) => element.id === data.id)[0].descript.length);
+    setDescript(data.data.filter((element: any) => element.id === data.id)[0].descript);
+    setDate(data.data.filter((element: any) => element.id === data.id)[0].date);
+    setDateTime(data.data.filter((element: any) => element.id === data.id)[0].time);
     setLogoEmoji(data
       .data
       .filter((element: any) => element.id === data.id)[0]
@@ -61,13 +60,12 @@ function PanelDetalSimple(data: any): JSX.Element {
       data: [],
     });
     if (returnDelete.data.length === 0) {
-      history.push('/home/simple');
+      history.push('/home/calendar');
     }
   };
 
   const hendleConcluido = async (e: any) => {
     const { date, id } = data;
-
     const idUser = await getLocalStorage('idUser');
     const returnUp = await requestUpdate('/contentsUpdate', {
       id,
@@ -93,7 +91,7 @@ function PanelDetalSimple(data: any): JSX.Element {
   return(
   <>
     <div>
-      <form>
+    <form>
         <button
           type="button"
           onClick={hendleEdit}
@@ -103,6 +101,7 @@ function PanelDetalSimple(data: any): JSX.Element {
             style={{ width: '18px', height: '18px' }}
             src="https://github.githubassets.com/images/icons/emoji/unicode/2699.png?v8"
             alt='edit'
+            title="Edit"
           />
           </button>
         <button
@@ -114,6 +113,7 @@ function PanelDetalSimple(data: any): JSX.Element {
             style={{ width: '18px', height: '18px' }}
             src="https://github.githubassets.com/images/icons/emoji/unicode/1faa6.png?v8"
             alt='delete'
+            title="Delete"
           />
           </button>
         <button
@@ -128,6 +128,7 @@ function PanelDetalSimple(data: any): JSX.Element {
             src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8"
             id={"Concluido"}
             alt='delete'
+            title="Concluded"
           />
         </button>
         <button
@@ -143,6 +144,7 @@ function PanelDetalSimple(data: any): JSX.Element {
             src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png?v8"
             id={"Pendente"}
             alt='delete'
+            title="Deconclude"
           />
           </button>
       </form>
@@ -151,4 +153,4 @@ function PanelDetalSimple(data: any): JSX.Element {
   );
 }
 
-export default PanelDetalSimple;
+export default PanelDetal;

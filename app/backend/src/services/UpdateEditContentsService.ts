@@ -9,14 +9,14 @@ export class UpdateEditContentsService {
       id: number,
       emoji: string,
       time: string,
-      descript: string,
+      description: string,
   }): Promise<ContentModel[] | object> {
       const {
         id,
         date,
         emoji,
         time,
-        descript,
+        description,
         status,
       } = data;
       const { idUser } = data.idUser;
@@ -24,7 +24,7 @@ export class UpdateEditContentsService {
           date,
           emoji,
           time,
-          descript,
+          description,
           status,
           updatedAt: new Date(),
       },{
@@ -39,7 +39,7 @@ export class UpdateEditContentsService {
       }
       const returnUpdateEditContents = await ContentModel.findAll({
           where: { idUser, date },
-          order: [['id', 'DESC']],
+          order: [['id', 'ASC']],
         });
 
       return {data: {data: returnUpdateEditContents, date: date, idUser: idUser}, message: 'Update success'};

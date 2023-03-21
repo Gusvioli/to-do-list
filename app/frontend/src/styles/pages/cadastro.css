@@ -16,9 +16,28 @@ body {
   top: 0;
 }
 
+.link-login {
+  text-decoration: none;
+  color: rgb(74, 182, 146);
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  margin: 5px;
+}
+
+.link-login:hover {
+  text-decoration: none;
+  color: rgb(74, 182, 146);
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  margin: 5px;
+  text-decoration: underline;
+}
+
 .form-cadastro {
   background: azure;
-  height: 450px;
+  height: 500px;
   padding: 40px;
   display: flex;
   justify-content: center;

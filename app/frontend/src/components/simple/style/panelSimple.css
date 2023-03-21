@@ -1,0 +1,17 @@
+.panel-simple-div-form-button-img {
+  width: 18px;
+  height: 18px;
+}
+
+.panel-simple-div-form-button-edit,
+.panel-simple-div-form-button-delete,
+.panel-simple-div-form-button-concluido,
+.panel-simple-div-form-button-pendente
+{
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 1px;
+
+}

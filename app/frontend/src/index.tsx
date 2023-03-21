@@ -3,11 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Provider from './context/Provider';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 ReactDOM.render(
   <Provider>
     <BrowserRouter>
-      <App />
+      <QueryClientProvider client={new QueryClient()}>
+        <App />
+      </QueryClientProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'),

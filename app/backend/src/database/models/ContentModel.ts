@@ -10,7 +10,7 @@ class Content extends Model {
   declare public title: string;
   declare public date: string;
   declare public time: string;
-  declare public descript: string;
+  declare public description: string;
   declare public status: string;
   declare public createdAt: Date;
   declare public updatedAt: Date;
@@ -44,7 +44,7 @@ Content.init({
       type: STRING,
       allowNull: false,
     },
-    descript: {
+    description: {
       type: STRING,
       allowNull: false,
     },

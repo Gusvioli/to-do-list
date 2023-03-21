@@ -1,6 +1,5 @@
 import { ChangeEvent, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import Context from "../context/Context";
 import { requestLogin } from "../services/requests";
 import codeMenssage from "../services/status";
@@ -35,7 +34,6 @@ function Login(): JSX.Element {
       const data = await requestLogin('/login', { email, password });
       setPassword(''); // Limpa o input de senha no state
       setEmail(''); // Limpa o input de email no state
-      // setTokenAuthorization(date.token); // Salva o token no header Authorization
       setLocalStorage('token', data.token); // Salva o token no localStorage
       setLocalStorage('idUser', {idUser: data.idUser}); // Salva o idUser no localStorage
       setLocalStorage('nameUser', {name: data.name}); // Salva o name no localStorage
@@ -53,7 +51,7 @@ function Login(): JSX.Element {
           message: ''
         });
         codeMenssage(0);
-        history.push('/'); // Redireciona para a página home
+        history.push('/home'); // Redireciona para a página home
       }, UM_SEGUNDOS); // Espera 1 segundos
 
     } catch (error: any) {
@@ -85,7 +83,6 @@ function Login(): JSX.Element {
 
   return(
     <>
-      <Navbar />
       <div className="div-0-form">
         <form
           data-testid='form-Login'
@@ -99,10 +96,11 @@ function Login(): JSX.Element {
             <input
               placeholder="E-mail"
               data-testid='input-email'
-              type="text"
+              type="email"
               id="email"
               onChange={(e) => hendleForm(e)}
-              value={email} />
+              value={email}
+            />
           </label>
           <label htmlFor="password">
             <input
@@ -121,8 +119,9 @@ function Login(): JSX.Element {
             >
               Login
             </button>
-            <button
-              type="button"
+            <a
+              className="form-a-text-cadastro"
+              href="/cadastro"
               onClick={() =>{
                 setCodeStatusMessage({
                   status: 0,
@@ -133,7 +132,7 @@ function Login(): JSX.Element {
               }
             >
               Register
-            </button>
+            </a>
           </div>
           <p className="exibir-msgs">{exibirMsgs()}</p>
           <a className="form-a-text-esqueceu-senha" href="/login">

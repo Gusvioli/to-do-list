@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders, AxiosRequestConfig } from 'axios';
+import axios, { AxiosHeaders } from 'axios';
 import IrequestBody from '../interfaces/IrequestBody';
 import IrequestCreate from '../interfaces/IrequestCreate';
 import IrequestCreateContents from '../interfaces/IrequestCreateContents';
