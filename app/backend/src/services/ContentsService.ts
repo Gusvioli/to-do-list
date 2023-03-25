@@ -18,7 +18,7 @@ export class ContentsService {
                 "status"
             ],
             where: { idUser },
-            order: [["createdAt", "DESC"]],
+            order: [["createdAt", "ASC"]],
         });
         if (!contents) {
             throw new HttpException(404, 'Not found');

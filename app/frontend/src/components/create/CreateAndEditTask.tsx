@@ -65,7 +65,6 @@ function CreateAndEditTask() {
             returnData.newContents,
           ]);
 
-
           dataUserQuery.setQueryData("contents", [
             ...dataContents,
             returnData.newContents,
