@@ -4,9 +4,12 @@ import Context from "../../context/Context";
 import formatarData from "../../utils/formatarData";
 import PanelSimple from "./PanelSimple";
 import "../../styles/lists/lists.css";
+import controlPages from "../utils/controlPages/controlPages";
+import ListSimplesEnum from "../utils/enums/ListSimplesEnum";
+import pages from "../utils/controlPages/Pages";
 
 function ListSimple(): JSX.Element {
-  const {emojis} = useContext(Context);
+  const {emojis, page} = useContext(Context);
 
   const dateDb = new Date().toISOString().split("T")[0];
 
@@ -16,21 +19,25 @@ function ListSimple(): JSX.Element {
 
   const statusConsts = useQueryClient();
   const dataContents = statusConsts.getQueryData<any>("contents");
+  const dataContentsPages = pages(ListSimplesEnum.PAGES, dataContents, dateDb)[page];
 
   return (
     <>
     <div className="lists-div-0">
-        <h2 className="data-task">
-          Dia: {dateNow}
-        </h2>
-      {dataContents?.find((fil: any) => fil.date === dateDb)
-      ? dataContents?.filter((fil: any) => fil.date === dateDb)
-      .map((content: any) =>
+      <h2 className="data-task">
+        Dia: {dateNow}
+      </h2>
+      <div>{controlPages(ListSimplesEnum.PAGES, dataContents, dateDb)}</div>
+      {dataContentsPages ? dataContentsPages.map((content: any) =>
       <div
         className="lists-div-1"
         key={content.id}
         id={content.id}
-      >
+        style={
+          content.status === 'Concluido'
+          ? { backgroundColor: '#b0ddcd' }
+          : {}}
+        >
           <div className="lists-div-1-div">
             <div className="lists-div-1-div-div">
               <div className="lists-div-1-div-div-div-date">
@@ -45,6 +52,8 @@ function ListSimple(): JSX.Element {
                   horaMinutes={content.time}
                   description={content.description}
                   emojiName={{name: content.emoji}}
+                  createdAt={content.createdAt}
+                  updatedAt={content.updatedAt}
                 />
               </div>
             </div>
@@ -63,12 +72,15 @@ function ListSimple(): JSX.Element {
             }
             </div>
             <div className="lists-div-2-div-2">{content.description}</div>
+            </div>
           </div>
-          </div>)
+          )
           :
           <div className="msg-no-task">
             Não há tarefas para hoje
-          </div>}
+          </div>
+        }
+        <div>{controlPages(ListSimplesEnum.PAGES, dataContents, dateDb)}</div>
       </div>
     </>
   );

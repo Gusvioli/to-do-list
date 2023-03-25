@@ -57,8 +57,20 @@ function CreateAndEditTask() {
 
     try {
       if (name === 'create') {
+        const dataContents = dataUserQuery.getQueryData<any>("contents");
         const returnData = await requestCreate('/newContents',
           await objEnvio(getIdUser, nameEmojiUrl, formCreateAndEditTask));
+          console.log([
+            ...dataContents,
+            returnData.newContents,
+          ]);
+
+
+          dataUserQuery.setQueryData("contents", [
+            ...dataContents,
+            returnData.newContents,
+          ]);
+
         setCodeStatusMessage({
           status: 200,
           message: returnData.message
@@ -254,7 +266,3 @@ function CreateAndEditTask() {
 }
 
 export default CreateAndEditTask;
-function closeEmojisPanel() {
-  throw new Error("Function not implemented.");
-}
-

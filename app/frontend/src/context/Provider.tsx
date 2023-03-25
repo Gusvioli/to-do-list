@@ -21,6 +21,8 @@ function Provider({ children }: { children: any}) {
   const [idUserProvider, setIdUserProvider] = useState(0);
   const [dateTime, setDateTime] = useState('');
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState(0);
+  const [returnFilterArr, setReturnFilterArr] = useState([]);
   const [statusTask, setStatusTask] = useState({ status: '', id: 0 });
   const [formCreateAndEditTask, setFormCreateAndEditTask] = useState({
    date: '',
@@ -84,6 +86,10 @@ function Provider({ children }: { children: any}) {
     setFormCreateAndEditTask,
     statusTask,
     setStatusTask,
+    page,
+    setPage,
+    returnFilterArr,
+    setReturnFilterArr,
   }), [
     texts,
     setTexts,
@@ -133,6 +139,10 @@ function Provider({ children }: { children: any}) {
     setFormCreateAndEditTask,
     statusTask,
     setStatusTask,
+    page,
+    setPage,
+    returnFilterArr,
+    setReturnFilterArr,
   ]);
   return (
     <Context.Provider
