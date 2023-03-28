@@ -8,12 +8,15 @@ import controlPages from "../utils/controlPages/controlPages";
 import ListSimplesEnum from "../utils/enums/ListSimplesEnum";
 import pages from "../utils/controlPages/Pages";
 import dateNowTime from "../utils/dates/dateNowTime";
+import searchControl from "../utils/controlPages/searchControl";
+import MSGS from "../utils/enums/textsEnum";
 
 function ListSimple(): JSX.Element {
-  const {emojis, page} = useContext(Context);
+  const {emojis, page, search} = useContext(Context);
   const statusConsts = useQueryClient();
   const dataContents = statusConsts.getQueryData<any>("contents");
-  const dataContentsPages = pages(ListSimplesEnum.PAGES, dataContents, dateNowTime().dateDb)[page];
+  const dataSearsh = searchControl(search,dataContents);
+  const dataContentsPages = pages(ListSimplesEnum.PAGES, dataSearsh, dateNowTime().dateDb)[page];
 
   return (
     <>
@@ -72,13 +75,11 @@ function ListSimple(): JSX.Element {
           )
           :
           <div className="msg-no-task">
-            Não há tarefas para hoje
+            {search ? MSGS.TAREFAPAGE : MSGS.TAREFADIA}
           </div>
         }
         <div>
-          {dataContentsPages
-          ? controlPages(ListSimplesEnum?.PAGES, dataContents, dateNowTime().dateDb)
-          : ''}
+          {controlPages(ListSimplesEnum?.PAGES, dataContents, dateNowTime().dateDb)}
         </div>
       </div>
     </>

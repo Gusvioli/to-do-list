@@ -58,8 +58,10 @@ function Navbar(): JSX.Element {
                 data-testid='input-buscador'
                 type="text"
                 id="buscador"
-                placeholder="Search by: description, date, emoji"
-                size={35}
+                placeholder={`Search by: #id, description, date, emoji in ${
+                  history.location.pathname.split('/')[2]
+                }`}
+                size={45}
                 onChange={ (e) => hendleSearch(e) }
               />
             </label>
