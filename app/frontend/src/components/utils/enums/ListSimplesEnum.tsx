@@ -1,5 +1,5 @@
 enum ListSimples {
-  PAGES = 5,
+  PAGES = 10,
 }
 
 export default ListSimples;
