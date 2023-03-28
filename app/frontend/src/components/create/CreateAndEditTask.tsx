@@ -25,6 +25,8 @@ function CreateAndEditTask() {
     setStatusTask, // string
     editTrue, // boolean
     setEditrTrue, // boolean
+    setEmojisLocal, // { name: string, url: string }[]
+    emojis// { name: string, url: string }[]
    } = useContext(Context);
 
    const dataUserQuery = useQueryClient();
@@ -57,8 +59,15 @@ function CreateAndEditTask() {
 
     try {
       if (name === 'create') {
+        const dataContents = dataUserQuery.getQueryData<any>("contents");
         const returnData = await requestCreate('/newContents',
           await objEnvio(getIdUser, nameEmojiUrl, formCreateAndEditTask));
+
+          dataUserQuery.setQueryData("contents", [
+            ...dataContents,
+            returnData.newContents,
+          ]);
+
         setCodeStatusMessage({
           status: 200,
           message: returnData.message
@@ -116,10 +125,12 @@ function CreateAndEditTask() {
     });
     setStatusTask({status: '', id: 0});
     setEditrTrue(false);
+    setNameEmojiUrl({ name: '', url: '' });
   };
 
   const hendleemojis = (e: MouseEvent<HTMLButtonElement>) => {
     setIsActiveEmojisPanel(!isActiveEmojisPanel);
+    dataUserQuery.setQueryData<any>("emojis", emojis);
   };
 
   return (
@@ -253,7 +264,3 @@ function CreateAndEditTask() {
 }
 
 export default CreateAndEditTask;
-function closeEmojisPanel() {
-  throw new Error("Function not implemented.");
-}
-

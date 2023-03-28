@@ -7,7 +7,7 @@
 }
 
 .lists-div-0 {
-  background-color: #acc0e480;
+  background-color: #e7e9ee80;
   border-radius: 9px;
   box-shadow: 0 0 4px #9c9898;
   display: flex;
@@ -17,6 +17,15 @@
   padding: 5px 15px;
   margin: 5px;
   width: 60%;
+}
+
+.update-at {
+  font: 9px;
+  font-weight: 600;
+  color: #3a3636;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 @keyframes lists-div-1-a {
@@ -33,7 +42,7 @@
 .lists-div-1 {
   width: 80%;
   height: auto;
-  padding: 5px 15px;
+  padding: 5px 10px;
   margin: 5px;
   overflow: auto;
   border-radius: 9px;

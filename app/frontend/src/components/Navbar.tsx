@@ -12,6 +12,8 @@ function Navbar(): JSX.Element {
     setFormCreateAndEditTask,
     setEmail,
     setPassword,
+    setCodeStatusMessage,
+    setIsActiveEmojisPanel,
   } = useContext(Context);
 
   const history = useHistory();
@@ -36,6 +38,9 @@ function Navbar(): JSX.Element {
       idUser: {},
       nameUser: {},
     });
+    setCodeStatusMessage({ status: 0, message: '' });
+
+    setIsActiveEmojisPanel(false);
   };
 
   return(
@@ -68,13 +73,12 @@ function Navbar(): JSX.Element {
               </button>
               : ''
             }
-
           </form>
         </section>
         <section data-testid='user-name'>
           {
             dataTokenUserName?.nameUser.name
-            ? <span> Olá, {dataTokenUserName?.nameUser.name}</span>
+            ? <span> Hi, {dataTokenUserName?.nameUser.name}</span>
             : ''
           }
         </section>

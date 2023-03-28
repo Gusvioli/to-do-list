@@ -6,7 +6,7 @@ import getLocalStorage from '../../utils/getLocalStorage';
 import { hendleClearAll } from '../utils/clears/HendleclearAll';
 import './style/panelSimple.css';
 import "../../styles/lists/lists.css";
-import { parse } from 'path';
+import formatarTime from '../../utils/formatarTime';
 
 function PanelSimple({
   id,
@@ -16,6 +16,8 @@ function PanelSimple({
   horaMinutes,
   description,
   emojiName,
+  createdAt,
+  updatedAt,
 }: {
   id: any;
   status: string;
@@ -24,12 +26,13 @@ function PanelSimple({
   description: string;
   idUser: number;
   emojiName: any;
+  createdAt: string;
+  updatedAt: string;
 }): JSX.Element {
   const {
     setFormCreateAndEditTask,
     setStatusTask,
     setEditrTrue,
-    nameEmojiUrl,
     setNameEmojiUrl,
     emojis,
   } = useContext(Context);
@@ -39,7 +42,6 @@ function PanelSimple({
   const hendleEdit = async (e: any) => {
     window.scrollTo(0, 0);
     const {id} = e.target;
-    // setNameEmojiUrl();
     setFormCreateAndEditTask({
       date: date,
       horaMinutes,
@@ -101,7 +103,7 @@ function PanelSimple({
       status: idSplit[0],
     });
   };
-
+  
   return(
   <>
     <div id="top">
@@ -166,10 +168,24 @@ function PanelSimple({
             title="Deconclude"
           />
           </button>
+          <img
+            className="panel-simple-div-form-button-img"
+            src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d5.png?v8"
+            id={id}
+            alt='Deconclude'
+            title={
+              `id: #${id}
+              created:
+              ${createdAt.split('T')[0]} - ${formatarTime(createdAt)}
+              updated:
+              ${updatedAt.split('T')[0]} - ${formatarTime(updatedAt)}`
+            }
+          />
       </form>
     </div>
   </>
   );
+
 }
 
 export default PanelSimple;

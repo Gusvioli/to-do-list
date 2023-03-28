@@ -1,6 +1,7 @@
 .panel-simple-div-form-button-img {
   width: 18px;
   height: 18px;
+  margin: 0 5px;
 }
 
 .panel-simple-div-form-button-edit,
@@ -12,6 +13,4 @@
   border: none;
   cursor: pointer;
   outline: none;
-  padding: 1px;
-
 }

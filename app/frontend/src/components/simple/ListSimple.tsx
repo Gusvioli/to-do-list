@@ -4,33 +4,33 @@ import Context from "../../context/Context";
 import formatarData from "../../utils/formatarData";
 import PanelSimple from "./PanelSimple";
 import "../../styles/lists/lists.css";
+import controlPages from "../utils/controlPages/controlPages";
+import ListSimplesEnum from "../utils/enums/ListSimplesEnum";
+import pages from "../utils/controlPages/Pages";
+import dateNowTime from "../utils/dates/dateNowTime";
 
 function ListSimple(): JSX.Element {
-  const {emojis} = useContext(Context);
-
-  const dateDb = new Date().toISOString().split("T")[0];
-
-  const dateNow = new Date()
-  .toISOString().split("T")[0]
-  .split("-").reverse().join("/");
-
+  const {emojis, page} = useContext(Context);
   const statusConsts = useQueryClient();
   const dataContents = statusConsts.getQueryData<any>("contents");
+  const dataContentsPages = pages(ListSimplesEnum.PAGES, dataContents, dateNowTime().dateDb)[page];
 
   return (
     <>
     <div className="lists-div-0">
-        <h2 className="data-task">
-          Dia: {dateNow}
-        </h2>
-      {dataContents?.find((fil: any) => fil.date === dateDb)
-      ? dataContents?.filter((fil: any) => fil.date === dateDb)
-      .map((content: any) =>
+      <h2 className="data-task">
+        Day: {dateNowTime().dateNow}
+      </h2>
+      {dataContentsPages ? dataContentsPages.map((content: any) =>
       <div
         className="lists-div-1"
         key={content.id}
         id={content.id}
-      >
+        style={
+          content.status === 'Concluido'
+          ? { backgroundColor: '#b0ddcd' }
+          : {}}
+        >
           <div className="lists-div-1-div">
             <div className="lists-div-1-div-div">
               <div className="lists-div-1-div-div-div-date">
@@ -45,30 +45,41 @@ function ListSimple(): JSX.Element {
                   horaMinutes={content.time}
                   description={content.description}
                   emojiName={{name: content.emoji}}
+                  createdAt={content.createdAt}
+                  updatedAt={content.updatedAt}
                 />
               </div>
             </div>
           </div>
           <div className="lists-div-2">
             <div className="lists-div-2-div">
-              { emojis.filter((emoji: any) => emoji.name === content.emoji)
+              { emojis?.filter((emoji: any) => emoji.name === content.emoji)
                 .map((emoji: any) => (
               <img
+                key={emoji.name}
                 src={emoji.url}
                 alt={emoji.name}
-                key={emoji.name}
                 width='45px'
               />
               ))
             }
             </div>
-            <div className="lists-div-2-div-2">{content.description}</div>
+              <div className="lists-div-2-div-2" >
+                {content.description}
+              </div>
+            </div>
           </div>
-          </div>)
+          )
           :
           <div className="msg-no-task">
             Não há tarefas para hoje
-          </div>}
+          </div>
+        }
+        <div>
+          {dataContentsPages
+          ? controlPages(ListSimplesEnum?.PAGES, dataContents, dateNowTime().dateDb)
+          : ''}
+        </div>
       </div>
     </>
   );
