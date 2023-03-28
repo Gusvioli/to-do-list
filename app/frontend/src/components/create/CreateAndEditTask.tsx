@@ -25,6 +25,8 @@ function CreateAndEditTask() {
     setStatusTask, // string
     editTrue, // boolean
     setEditrTrue, // boolean
+    setEmojisLocal, // { name: string, url: string }[]
+    emojis// { name: string, url: string }[]
    } = useContext(Context);
 
    const dataUserQuery = useQueryClient();
@@ -60,10 +62,6 @@ function CreateAndEditTask() {
         const dataContents = dataUserQuery.getQueryData<any>("contents");
         const returnData = await requestCreate('/newContents',
           await objEnvio(getIdUser, nameEmojiUrl, formCreateAndEditTask));
-          console.log([
-            ...dataContents,
-            returnData.newContents,
-          ]);
 
           dataUserQuery.setQueryData("contents", [
             ...dataContents,
@@ -132,6 +130,7 @@ function CreateAndEditTask() {
 
   const hendleemojis = (e: MouseEvent<HTMLButtonElement>) => {
     setIsActiveEmojisPanel(!isActiveEmojisPanel);
+    dataUserQuery.setQueryData<any>("emojis", emojis);
   };
 
   return (

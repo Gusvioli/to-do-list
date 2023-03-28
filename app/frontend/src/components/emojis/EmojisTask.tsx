@@ -1,19 +1,25 @@
 import {useContext, useDeferredValue} from "react";
-import {useQuery} from "react-query";
+import {useQuery, useQueryClient} from "react-query";
 import Context from "../../context/Context";
 import '../../styles/components/task/emojisTasck.css'
 
 function EmojisTask(): JSX.Element {
   const {
     setNameEmojiUrl,
-    emojisLocal,
-    setEmojisLocal,
     emojis,
+    setEmojisLocal,
+    emojisLocal,
     setIsActiveEmojisPanel,
   } = useContext(Context);
-  const deferred = useDeferredValue(emojis);
 
-  const closeEmojisPanel = () => setIsActiveEmojisPanel(false);
+  const emojisDataQuery = useQueryClient();
+  const emojisDatas = emojisDataQuery.getQueryData<any>("emojis");
+  const deferred = useDeferredValue(emojisDatas);
+
+  const closeEmojisPanel = () => {
+    setIsActiveEmojisPanel(false);
+    emojisDataQuery.setQueryData<any>("emojis", emojis);
+  }
 
   const addEmojiName = (emojisName: any) => {
     const { id, src } = emojisName.target;
@@ -23,10 +29,13 @@ function EmojisTask(): JSX.Element {
 
   const searchEmojis = async (e: any) => {
     const { value } = e.target;
-    setEmojisLocal(deferred?.filter((emoji: any) => deferred
-      .map((emoji: any) => emoji.name)
-      .filter((emoji: any) => emoji
-      .includes(value)).includes(emoji.name)));
+    const newDefered = emojis.filter((emoji: any) => emojis
+    .map((emoji: any) => emoji.name)
+    .filter((emoji: any) => emoji
+    .includes(value)).includes(emoji.name));
+    setEmojisLocal(newDefered);
+
+    emojisDataQuery.setQueryData<any>("emojis", newDefered);
   };
 
   return (
@@ -45,10 +54,6 @@ function EmojisTask(): JSX.Element {
           placeholder="Emoji pesquisa"
           onChange={ (e) => searchEmojis(e) }
         />
-      {!emojis
-      ? <p>Loading emojis...</p>
-      :
-        (
         <ul className="div-ul-emojis">
           {
             deferred?.map((emoji: any) =>
@@ -66,8 +71,6 @@ function EmojisTask(): JSX.Element {
             )
           }
           </ul>
-        )
-      }
     </div>
   );
 }

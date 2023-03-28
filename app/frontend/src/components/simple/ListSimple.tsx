@@ -7,27 +7,20 @@ import "../../styles/lists/lists.css";
 import controlPages from "../utils/controlPages/controlPages";
 import ListSimplesEnum from "../utils/enums/ListSimplesEnum";
 import pages from "../utils/controlPages/Pages";
+import dateNowTime from "../utils/dates/dateNowTime";
 
 function ListSimple(): JSX.Element {
   const {emojis, page} = useContext(Context);
-
-  const dateDb = new Date().toISOString().split("T")[0];
-
-  const dateNow = new Date()
-  .toISOString().split("T")[0]
-  .split("-").reverse().join("/");
-
   const statusConsts = useQueryClient();
   const dataContents = statusConsts.getQueryData<any>("contents");
-  const dataContentsPages = pages(ListSimplesEnum.PAGES, dataContents, dateDb)[page];
+  const dataContentsPages = pages(ListSimplesEnum.PAGES, dataContents, dateNowTime().dateDb)[page];
 
   return (
     <>
     <div className="lists-div-0">
       <h2 className="data-task">
-        Dia: {dateNow}
+        Day: {dateNowTime().dateNow}
       </h2>
-      <div>{controlPages(ListSimplesEnum.PAGES, dataContents, dateDb)}</div>
       {dataContentsPages ? dataContentsPages.map((content: any) =>
       <div
         className="lists-div-1"
@@ -60,18 +53,20 @@ function ListSimple(): JSX.Element {
           </div>
           <div className="lists-div-2">
             <div className="lists-div-2-div">
-              { emojis.filter((emoji: any) => emoji.name === content.emoji)
+              { emojis?.filter((emoji: any) => emoji.name === content.emoji)
                 .map((emoji: any) => (
               <img
+                key={emoji.name}
                 src={emoji.url}
                 alt={emoji.name}
-                key={emoji.name}
                 width='45px'
               />
               ))
             }
             </div>
-            <div className="lists-div-2-div-2">{content.description}</div>
+              <div className="lists-div-2-div-2" >
+                {content.description}
+              </div>
             </div>
           </div>
           )
@@ -80,7 +75,11 @@ function ListSimple(): JSX.Element {
             Não há tarefas para hoje
           </div>
         }
-        <div>{controlPages(ListSimplesEnum.PAGES, dataContents, dateDb)}</div>
+        <div>
+          {dataContentsPages
+          ? controlPages(ListSimplesEnum?.PAGES, dataContents, dateNowTime().dateDb)
+          : ''}
+        </div>
       </div>
     </>
   );

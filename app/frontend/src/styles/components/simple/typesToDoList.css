@@ -37,3 +37,59 @@
   cursor: pointer;
   width: 10em;
 }
+
+.buttonControl {
+  padding: 8px;
+  border-radius: 9px;
+  font-size: 14px;
+  background-color: rgb(74, 182, 146);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 8em;
+}
+
+.buttonControl:hover {
+  padding: 8px;
+  border-radius: 9px;
+  font-size: 14px;
+  background-color: rgb(49, 128, 100);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 8em;
+}
+
+.buttonControl-intermediario {
+  padding: 8px;
+  border-radius: 9px;
+  font-size: 14px;
+  background-color: rgb(74, 182, 146);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 2em;
+}
+
+.buttonControl-intermediario:hover {
+  padding: 8px;
+  border-radius: 9px;
+  font-size: 14px;
+  background-color: rgb(49, 128, 100);
+  color: azure;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 2em;
+}

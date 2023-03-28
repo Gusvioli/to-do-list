@@ -4,7 +4,7 @@ import { UserName, EdtorTrue, CodeStatusMessage, DateListDetal } from './Types';
 
 function Provider({ children }: { children: any}) {
   const [texts, setTexts] = useState([]);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
   const [types, setTypes] = useState([]);
   const [contents, setContents] = useState([]);
   const [password, setPassword] = useState('');
@@ -21,7 +21,7 @@ function Provider({ children }: { children: any}) {
   const [idUserProvider, setIdUserProvider] = useState(0);
   const [dateTime, setDateTime] = useState('');
   const [search, setSearch] = useState('');
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState<number>(0);
   const [returnFilterArr, setReturnFilterArr] = useState([]);
   const [statusTask, setStatusTask] = useState({ status: '', id: 0 });
   const [formCreateAndEditTask, setFormCreateAndEditTask] = useState({

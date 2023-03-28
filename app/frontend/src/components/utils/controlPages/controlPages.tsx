@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import Context from "../../../context/Context";
 import ListSimplesEnum from "../enums/ListSimplesEnum";
 import pages from "./Pages";
+import '../../../styles/components/simple/typesToDoList.css';
 
 function controlPages(
   qtdsPagesDisplay: number,
@@ -21,10 +22,6 @@ dateDb: string): any{
     setPage,
     page,
   } = useContext(Context);
-    const returnFilter = contents
-    ? contents.filter((content: any) => content.date === dateDb)
-    : [];
-
     const pagesImport = pages(ListSimplesEnum.PAGES, contents, dateDb);
 
     const hendleClick = (e: any) => {
@@ -44,14 +41,13 @@ dateDb: string): any{
           value={0}
           disabled={page === 0}
           name='inicialPage'
-          style={{
-            padding: '3px',
-            margin: '3px',
-            cursor: 'pointer',
-          }}
+          className="buttonControl"
+          style={page === 0
+            ? {opacity: '0.4', cursor: 'not-allowed'}
+            : {}}
           onClick={(e) => hendleClick(e)}
         >
-          Página inicial
+          Home page
         </button>
         {
           pagesImport.map((_: any, index: number) => {
@@ -60,12 +56,11 @@ dateDb: string): any{
                 type="button"
                 value={index}
                 key={index}
-                style={{
-                  padding: '3px',
-                  margin: '3px',
-                  cursor: 'pointer',
-                }}
+                style={page === index
+                  ? {opacity: '0.4', cursor: 'not-allowed' }
+                  : {}}
                 disabled={page === index}
+                className="buttonControl-intermediario"
                 onClick={(e) => hendleClick(e)}
               >
                 {index + 1}
@@ -78,14 +73,13 @@ dateDb: string): any{
           value={pagesImport.length - 1}
           disabled={page === pagesImport.length - 1}
           name="ultimaPage"
-          style={{
-            padding: '3px',
-            margin: '3px',
-            cursor: 'pointer',
-          }}
+          style={page === pagesImport.length - 1
+            ? {opacity: '0.4', cursor: 'not-allowed'}
+            : {}}
+          className="buttonControl"
           onClick={(e) => hendleClick(e)}
         >
-          Ultima Página
+          Last page
         </button>
       </div>
     );

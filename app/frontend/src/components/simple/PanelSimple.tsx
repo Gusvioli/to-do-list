@@ -6,6 +6,7 @@ import getLocalStorage from '../../utils/getLocalStorage';
 import { hendleClearAll } from '../utils/clears/HendleclearAll';
 import './style/panelSimple.css';
 import "../../styles/lists/lists.css";
+import formatarTime from '../../utils/formatarTime';
 
 function PanelSimple({
   id,
@@ -102,7 +103,7 @@ function PanelSimple({
       status: idSplit[0],
     });
   };
-
+  
   return(
   <>
     <div id="top">
@@ -175,15 +176,16 @@ function PanelSimple({
             title={
               `id: #${id}
               created:
-              ${createdAt.split('T')[0]} - ${createdAt.split('T')[1].split('.')[0]}
+              ${createdAt.split('T')[0]} - ${formatarTime(createdAt)}
               updated:
-              ${updatedAt.split('T')[0]} - ${updatedAt.split('T')[1].split('.')[0]}`
+              ${updatedAt.split('T')[0]} - ${formatarTime(updatedAt)}`
             }
           />
       </form>
     </div>
   </>
   );
+
 }
 
 export default PanelSimple;
