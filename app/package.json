@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "up:build": "docker-compose up --build",
+        "up:build": "docker-compose down && docker-compose up --build && ./scripts/init-app-docker-db.sh",
         "up:build:d": "docker-compose down && docker-compose up -d --build && ./scripts/init-app-docker-db.sh",
         "down": "docker-compose down",
         "stop": "docker-compose stop",

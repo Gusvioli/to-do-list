@@ -26,7 +26,8 @@ function CreateAndEditTask() {
     editTrue, // boolean
     setEditrTrue, // boolean
     setEmojisLocal, // { name: string, url: string }[]
-    emojis// { name: string, url: string }[]
+    emojis, // { name: string, url: string }[]
+    setSearch // string
    } = useContext(Context);
 
    const dataUserQuery = useQueryClient();
@@ -56,13 +57,12 @@ function CreateAndEditTask() {
   const createAndEditTask = async (event: any) => {
     const { name } = event.target;
     const getIdUser = await getLocalStorage('idUser');
-
+    setSearch('');
     try {
       if (name === 'create') {
         const dataContents = dataUserQuery.getQueryData<any>("contents");
         const returnData = await requestCreate('/newContents',
           await objEnvio(getIdUser, nameEmojiUrl, formCreateAndEditTask));
-
           dataUserQuery.setQueryData("contents", [
             ...dataContents,
             returnData.newContents,
@@ -74,6 +74,7 @@ function CreateAndEditTask() {
         });
       }
       if (name === 'edit') {
+        setSearch('');
         const dataContents = dataUserQuery.getQueryData<any>("contents");
         if (dataContents) {
           const dataStatus = dataContents.map((dataContent: any) => {

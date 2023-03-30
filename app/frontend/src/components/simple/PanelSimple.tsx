@@ -103,7 +103,7 @@ function PanelSimple({
       status: idSplit[0],
     });
   };
-  
+
   return(
   <>
     <div id="top">

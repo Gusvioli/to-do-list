@@ -12,6 +12,7 @@ function Provider({ children }: { children: any}) {
   const [isTokenTrue, setIsTokenTrue] = useState(false);
   const [listarContents, setListarContents] = useState(false);
   const [descript, setDescript] = useState('');
+  const [dataLocal, setDataLocal] = useState('');
   const [nameEmojiUrl, setNameEmojiUrl] = useState({ name: '', url: '' });
   const [emojis, setEmojis] = useState([]);
   const [emojisLocal, setEmojisLocal] = useState([]);
@@ -90,6 +91,7 @@ function Provider({ children }: { children: any}) {
     setPage,
     returnFilterArr,
     setReturnFilterArr,
+    dataLocal, setDataLocal,
   }), [
     texts,
     setTexts,
@@ -143,6 +145,7 @@ function Provider({ children }: { children: any}) {
     setPage,
     returnFilterArr,
     setReturnFilterArr,
+    dataLocal, setDataLocal,
   ]);
   return (
     <Context.Provider
