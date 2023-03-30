@@ -12,19 +12,25 @@ import searchControl from "../utils/controlPages/searchControl";
 import MSGS from "../utils/enums/textsEnum";
 
 function ListSimple(): JSX.Element {
-  const {emojis, page, search} = useContext(Context);
+  const {emojis, page, search, contents, dataLocal} = useContext(Context);
   const statusConsts = useQueryClient();
   const dataContents = statusConsts.getQueryData<any>("contents");
-  const dataSearsh = searchControl(search,dataContents);
-  const dataContentsPages = pages(ListSimplesEnum.PAGES, dataSearsh, dateNowTime().dateDb)[page];
+  const dataSearsh = searchControl(search, dataContents);
+  const dataContentsPages = pages(
+    ListSimplesEnum.PAGES,
+    dataSearsh,
+    dataLocal ? dataLocal : dateNowTime().dateDb,
+    )[page];
 
   return (
     <>
     <div className="lists-div-0">
       <h2 className="data-task">
-        Day: {dateNowTime().dateNow}
+        Day: {dataLocal
+        ? formatarData(dataLocal)
+        : dateNowTime().dateNow}
       </h2>
-      {dataContentsPages ? dataContentsPages.map((content: any) =>
+      {dataContentsPages ? dataContentsPages?.map((content: any) =>
       <div
         className="lists-div-1"
         key={content.id}
@@ -79,7 +85,9 @@ function ListSimple(): JSX.Element {
           </div>
         }
         <div>
-          {controlPages(ListSimplesEnum?.PAGES, dataContents, dateNowTime().dateDb)}
+          {dataLocal
+          ? controlPages(ListSimplesEnum?.PAGES, dataContents, dataLocal)
+          : controlPages(ListSimplesEnum?.PAGES, dataContents, dateNowTime().dateDb)}
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 function pages(
-  qtdsPagesDisplay: number,
+  qtdsPagesDisplay: number = 5,
   contents: [{
   id: number;
   idUser: number;
@@ -14,7 +14,7 @@ function pages(
 dateDb: string): any{
   if (contents) {
     const returnFilter = contents
-    ? contents.filter((content: any) => content.date === dateDb)
+    ? contents?.filter((content: any) => content.date === dateDb)
     : [];
     let returnFilterArr: any = [];
     for (let i = 0; i < returnFilter.length; i += qtdsPagesDisplay) {

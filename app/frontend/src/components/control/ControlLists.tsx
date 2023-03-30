@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../../context/Context';
 import ListCalendar from '../calendar/ListCalendar';
@@ -6,6 +6,7 @@ import ListSimple from '../simple/ListSimple';
 import '../../styles/lists/lists.css'
 import { GithubApi } from '../apis/GithubApi';
 import { RequestDataContentsApi } from '../apis/RequestDataContentsApi';
+import { useQuery } from 'react-query';
 
 function ControlLists() {
   const {setEmojis, emojis} = useContext(Context);
