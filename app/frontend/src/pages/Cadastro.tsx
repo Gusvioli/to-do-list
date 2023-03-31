@@ -82,7 +82,14 @@ function Cadastro() {
         <div className="div-0-form">
           <form className='form-cadastro'>
           <div className="form-div-text-cadastro">
-          Register no To-do-List
+            <img
+              width={50}
+              height={50}
+              src="logoToDoList.png"
+              alt="Logotipo to do list"
+              title="Logotipo to do list"
+            />
+            <h3>To do list</h3>
           </div>
           <br />
           <label htmlFor="name">
@@ -92,7 +99,9 @@ function Cadastro() {
               type="text"
               id="name"
               value={name}
-              onChange={(e) => hendleForm(e)} />
+              onChange={(e) => hendleForm(e)}
+              title="Enter your name"
+            />
           </label>
           <label htmlFor="email">
             <input
@@ -102,6 +111,7 @@ function Cadastro() {
               id="email"
               value={email}
               onChange={(e) => hendleForm(e)}
+              title="Enter your email"
             />
           </label>
           <label htmlFor="password">
@@ -112,12 +122,15 @@ function Cadastro() {
               id="password"
               value={password}
               onChange={(e) => hendleForm(e)}
+              title="Enter your password"
             />
           </label>
           <div className="form-div-button">
             <button
               type="button"
               onClick={hendleCreateUser}
+              data-testid='button-cadastro'
+              title="Register now"
             >
               Register now
             </button>
@@ -125,6 +138,7 @@ function Cadastro() {
               className='link-login'
               href="/login"
               onClick={() => history.push('/login')}
+              title="Go to login"
             >
               Go Login
             </a>

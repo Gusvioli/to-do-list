@@ -46,6 +46,7 @@ dateDb: string): any{
             ? {opacity: '0.4', cursor: 'not-allowed'}
             : {}}
           onClick={(e) => hendleClick(e)}
+          title={`Go to the first page 1 ${page === 0 ? '(Blocked)' : ''}`}
         >
           Home page
         </button>
@@ -62,6 +63,7 @@ dateDb: string): any{
                 disabled={page === index}
                 className="buttonControl-intermediario"
                 onClick={(e) => hendleClick(e)}
+                title={`Page ${index + 1} ${page === index ? '(Blocked)' : ''}`}
               >
                 {index + 1}
               </button>
@@ -78,6 +80,11 @@ dateDb: string): any{
             : {}}
           className="buttonControl"
           onClick={(e) => hendleClick(e)}
+          title={`Got to the last page ${
+            pagesImport.length} ${
+            page === pagesImport.length - 1
+            ? '(Blocked)'
+            : ''}}`}
         >
           Last page
         </button>

@@ -53,8 +53,16 @@ function ListCalendar(): JSX.Element {
             ano: number;
           }) =>
           (
-            <div key={element.mes.nome} className="lists-calendar-div-1">
-              <h2 className="data-task">{element.mes.nome}</h2>
+            <div
+              key={element.mes.nome}
+              className="lists-calendar-div-1"
+            >
+              <h2
+                title={`Month of: ${element.mes.nome}`}
+                className="data-task"
+              >
+                {element.mes.nome}
+                </h2>
               <div className="lists-calendar-div-div-1" >
                 {new Array(element.dias).fill('').map((_, index) =>
                   (
@@ -83,10 +91,14 @@ function ListCalendar(): JSX.Element {
                       <div
                       className="lists-calendar-div-3"
                       >
-                        <div>
+                        <div title="Amounts of tasks on that day">
                           {contlengthContents(getDateToSend(element, index))}
                         </div>
-                        <h3>{index + 1}</h3>
+                        <h3
+                          title={`Day: ${index + 1}`}
+                        >
+                          {index + 1}
+                        </h3>
                         <div>
                           <button
                             type="button"
@@ -97,6 +109,7 @@ function ListCalendar(): JSX.Element {
                               ? true
                               : false
                             }
+                            title="Open day"
                           > Open day
                           </button>
                         </div>

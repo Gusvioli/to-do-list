@@ -6,7 +6,6 @@ import ListSimple from '../simple/ListSimple';
 import '../../styles/lists/lists.css'
 import { GithubApi } from '../apis/GithubApi';
 import { RequestDataContentsApi } from '../apis/RequestDataContentsApi';
-import { useQuery } from 'react-query';
 
 function ControlLists() {
   const {setEmojis, emojis} = useContext(Context);

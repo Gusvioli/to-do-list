@@ -47,9 +47,14 @@ function Navbar(): JSX.Element {
     <>
       <nav data-testid='navbar'>
         <section className="nav-section-1">
-          <h1>
-            To do list
-          </h1>
+          <img
+            width={50}
+            height={50}
+            src="logoToDoList.png"
+            alt="Logotipo to do list"
+            title="Logotipo to do list"
+          />
+          <h2>To do list</h2>
         </section>
         <section className="nav-section-2">
           <form className="nav-section-2-form">
@@ -58,6 +63,7 @@ function Navbar(): JSX.Element {
                 data-testid='input-buscador'
                 type="text"
                 id="buscador"
+                title="Search by: #id, description, date, emoji"
                 placeholder={
                   history.location.pathname.split('/')[2] === 'calendar'
                   ? 'Search by: #id, description, date, emoji in calendar'
@@ -69,12 +75,16 @@ function Navbar(): JSX.Element {
             </label>
             {
               dataTokenUserName?.token
-              ? <button
-                data-testid='button-sair'
-                onClick={ hendleExited }
-              >
-                Exit
-              </button>
+              ?
+                <img
+                  style={{ cursor: 'pointer' }}
+                  width={25}
+                  height={25}
+                  src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8"
+                  alt="Button Exit site"
+                  title="Exit site"
+                  onClick={ hendleExited }
+                />
               : ''
             }
           </form>
@@ -82,7 +92,7 @@ function Navbar(): JSX.Element {
         <section data-testid='user-name'>
           {
             dataTokenUserName?.nameUser.name
-            ? <span> Hi, {dataTokenUserName?.nameUser.name}</span>
+            ? <span title="Your name"> Hi, {dataTokenUserName?.nameUser.name}</span>
             : ''
           }
         </section>

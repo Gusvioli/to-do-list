@@ -25,7 +25,7 @@ function ListSimple(): JSX.Element {
   return (
     <>
     <div className="lists-div-0">
-      <h2 className="data-task">
+      <h2 title="Today's date" className="data-task">
         Day: {dataLocal
         ? formatarData(dataLocal)
         : dateNowTime().dateNow}
@@ -41,11 +41,11 @@ function ListSimple(): JSX.Element {
           : {}}
         >
           <div className="lists-div-1-div">
-            <div className="lists-div-1-div-div">
+            <div title="A task" className="lists-div-1-div-div">
               <div className="lists-div-1-div-div-div-date">
                 {formatarData(content.date)} - {content.time}
               </div>
-              <div className="lists-div-1-div-div-div-panel">
+              <div title="A task" className="lists-div-1-div-div-div-panel">
                 <PanelSimple
                   id={content.id}
                   status={content.status}
@@ -69,11 +69,12 @@ function ListSimple(): JSX.Element {
                 src={emoji.url}
                 alt={emoji.name}
                 width='45px'
+                title={emoji.name}
               />
               ))
             }
             </div>
-              <div className="lists-div-2-div-2" >
+              <div title="description" className="lists-div-2-div-2" >
                 {content.description}
               </div>
             </div>
