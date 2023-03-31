@@ -31,5 +31,7 @@ export function RequestDataContentsApi() {
   },{
     refetchOnWindowFocus: true,
     staleTime: 1000 * 60 * 60 * 24,
+    refetchInterval: 1000 * 60,
+    refetchIntervalInBackground: true,
   });
 }

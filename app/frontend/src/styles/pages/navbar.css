@@ -24,11 +24,22 @@ nav {
   font-weight: 500;
 }
 
-.nav-section-1 h1{
+.time h1{
   font-size: 24px;
   color: #578aa1;
   font-family: 'Roboto', sans-serif;
+  display: 'flex';
+  flex-flow: row wrap;
+  justify-content: 'center';
+  align-items: 'center';
   font-weight: 800;
+}
+
+.nav-section-1{
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-section-2{

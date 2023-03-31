@@ -159,6 +159,7 @@ function CreateAndEditTask() {
                           alt={nameEmojiUrl.name}
                           width="30px"
                           height="30px"
+                          title="Choose your emoji"
                         />
                       </div>
                     : <img
@@ -179,6 +180,7 @@ function CreateAndEditTask() {
                     type="date"
                     name="date"
                     id="date"
+                    title="Choose your Date"
                     value={formCreateAndEditTask.date}
                     onChange={(e) => hendleForm( e,
                       setFormCreateAndEditTask,
@@ -192,6 +194,7 @@ function CreateAndEditTask() {
                     type="time"
                     name="horaMinutes"
                     id="horaMinutes"
+                    title="Choose your Time"
                     value={formCreateAndEditTask.horaMinutes}
                     onChange={(e) => hendleForm(e,
                       setFormCreateAndEditTask,
@@ -204,6 +207,7 @@ function CreateAndEditTask() {
                   type="button"
                   name={ !editTrue ? 'create' : 'edit' }
                   onClick={ (e) => createAndEditTask(e) }
+                  title="Create your task"
                 >
                   {!editTrue ? 'Create' : 'Edit'}
                 </button>
@@ -211,6 +215,7 @@ function CreateAndEditTask() {
                     type="button"
                     className="div-1-criacao-edicao-button"
                     onClick={hendleCloseEditor}
+                    title="Edit your task"
                   >
                     Close edit
                   </button>
@@ -224,6 +229,7 @@ function CreateAndEditTask() {
                     onClick={() => hendleClear( setFormCreateAndEditTask,
                       formCreateAndEditTask
                     )}
+                    title="Clear your description"
                 >
                   Clear descriptions
                 </button>
@@ -233,6 +239,7 @@ function CreateAndEditTask() {
                     onClick={() => hendleClearAll( setFormCreateAndEditTask,
                       setNameEmojiUrl
                     )}
+                    title="Clear all"
                 >
                   Clear all
                 </button>
@@ -253,6 +260,7 @@ function CreateAndEditTask() {
                     setFormCreateAndEditTask,
                     formCreateAndEditTask
                   )}
+                  title="Write your description"
                 />
               </label>
             </div>

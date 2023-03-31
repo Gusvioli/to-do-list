@@ -37,22 +37,28 @@ function TypeToDoList(): JSX.Element {
   return (
       <ul className="ul-buttons-types-to-do-list">
         <li>
-          <button
-            type="button"
+          <img
+            style={{ cursor: 'pointer', margin: '10px'  }}
+            width={40}
+            height={40}
+            src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d4.png?v8"
+            alt="Go to Simple"
+            title="Go to Simple"
             onClick={() => gotPage('/simple')}
             hidden={history.location.pathname === '/home/simple'}
-          >
-            Simple
-          </button>
+          />
         </li>
         <li>
-          <button
-            type="button"
-            onClick={() => gotPage('/calendar')}
-            hidden={history.location.pathname === '/home/calendar'}
-          >
-            Calender
-          </button>
+           <img
+              style={{ cursor: 'pointer', margin: '10px' }}
+              width={40}
+              height={40}
+              src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c6.png?v8"
+              alt="Go to Calendars"
+              title="Go to Calendars"
+              onClick={() => gotPage('/calendar')}
+              hidden={history.location.pathname === '/home/calendar'}
+            />
         </li>
       </ul>
     );

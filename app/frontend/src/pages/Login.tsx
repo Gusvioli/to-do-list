@@ -88,11 +88,18 @@ function Login(): JSX.Element {
           data-testid='form-Login'
           action="submit"
           className="form-login"
-        >
+          >
           <div className="form-div-text-login">
-            Log in to To-do-List
+            <img
+              width={50}
+              height={50}
+              src="logoToDoList.png"
+              alt="Logotipo to do list"
+              title="Logotipo to do list"
+            />
+            <h3>To do list</h3>
           </div>
-          <label htmlFor="email">
+          <label title="Your E-mail" htmlFor="email">
             <input
               placeholder="E-mail"
               data-testid='input-email'
@@ -102,7 +109,7 @@ function Login(): JSX.Element {
               value={email}
             />
           </label>
-          <label htmlFor="password">
+          <label title="Your Password" htmlFor="password">
             <input
               placeholder="Password"
               data-testid='input-password'
@@ -116,6 +123,7 @@ function Login(): JSX.Element {
             <button
               type="button"
               onClick={hendleSubmitLogin}
+              title="Login"
             >
               Login
             </button>
@@ -130,12 +138,13 @@ function Login(): JSX.Element {
                 codeMenssage(0);
                 history.push('/cadastro')}
               }
+              title="Register"
             >
               Register
             </a>
           </div>
           <p className="exibir-msgs">{exibirMsgs()}</p>
-          <a className="form-a-text-esqueceu-senha" href="/login">
+          <a title="Forgot password?" className="form-a-text-esqueceu-senha" href="/login">
             Forgot password?
           </a>
         </form>
