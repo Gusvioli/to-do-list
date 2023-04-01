@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import getLocalStorage from '../utils/getLocalStorage';
 import { useQuery } from 'react-query';
+import Footer from '../components/footer/Footer';
 
 function Home() {
   const history = useHistory();
@@ -42,6 +43,7 @@ function Home() {
       <TypesToDoList />
       <CreateTask />
       <ControlLists />
+      <Footer />
     </>
   );
 }

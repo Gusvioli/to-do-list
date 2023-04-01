@@ -3,17 +3,8 @@ import { useQuery } from "react-query";
 import Context from "../../context/Context";
 import { requestDataId } from "../../services/requests";
 import getLocalStorage from "../../utils/getLocalStorage";
+import { Contents } from "./types/ContentsType";
 
-type Contents = {
-  id: number;
-  type: string;
-  emoji: string;
-  date: string;
-  time: string;
-  description: string;
-  status: string;
-  idUser: number;
-};
 
 export function RequestDataContentsApi() {
   const {setContents} = useContext(Context)
