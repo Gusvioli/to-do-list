@@ -4,6 +4,7 @@ import Context from "../context/Context";
 import '../styles/pages/navbar.css';
 import { hendleClearAll } from "./utils/clears/HendleclearAll";
 import { useQueryClient } from "react-query";
+// import LogoToDoList from '../../assets/images/logoToDoList.png';
 
 function Navbar(): JSX.Element {
   const {
@@ -50,7 +51,7 @@ function Navbar(): JSX.Element {
           <img
             width={50}
             height={50}
-            src="logoToDoList.png"
+            src="/logoToDoList.png"
             alt="Logotipo to do list"
             title="Logotipo to do list"
           />
