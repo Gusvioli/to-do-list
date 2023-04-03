@@ -98,3 +98,26 @@ nav {
   font-size: 16px;
   font-weight: 600;
 }
+
+.name-exibitions {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.name-exibitions > b {
+  font-size: 20px;
+  color: rgb(74, 182, 146);
+  font-weight: 800;
+}
+
+.name-user{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.input-buscador{
+  width: 350px;
+}

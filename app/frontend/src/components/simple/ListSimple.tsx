@@ -85,7 +85,7 @@ function ListSimple(): JSX.Element {
             {search ? MSGS.TAREFAPAGE : MSGS.TAREFADIA}
           </div>
         }
-        <div>
+        <div className="paginations">
           {dataLocal
           ? controlPages(ListSimplesEnum?.PAGES, dataContents, dataLocal)
           : controlPages(ListSimplesEnum?.PAGES, dataContents, dateNowTime().dateDb)}

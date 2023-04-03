@@ -98,6 +98,7 @@ function Login(): JSX.Element {
               title="Logotipo to do list"
             />
             <h3>To do list</h3>
+            <p>Log in to the system</p>
           </div>
           <label title="Your E-mail" htmlFor="email">
             <input

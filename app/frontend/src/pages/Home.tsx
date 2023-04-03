@@ -1,5 +1,4 @@
 import Navbar from '../components/Navbar';
-import TypesToDoList from '../components/typesToDuList/TypesToDoList';
 import '../styles/pages/home.css'
 import CreateTask from '../components/create/CreateAndEditTask';
 import ControlLists from '../components/control/ControlLists';
@@ -40,7 +39,6 @@ function Home() {
   return(
     <>
       <Navbar />
-      <TypesToDoList />
       <CreateTask />
       <ControlLists />
       <Footer />

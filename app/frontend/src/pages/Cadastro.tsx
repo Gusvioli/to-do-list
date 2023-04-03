@@ -90,6 +90,7 @@ function Cadastro() {
               title="Logotipo to do list"
             />
             <h3>To do list</h3>
+            <p>Register in the system</p>
           </div>
           <br />
           <label htmlFor="name">
