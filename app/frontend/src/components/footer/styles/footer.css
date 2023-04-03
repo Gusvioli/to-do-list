@@ -5,7 +5,7 @@
 }
 
 .footer {
-  width: auto;
+  width: 100%;
   height: auto;
   color: rgb(0, 0, 0);
   display: flex;
@@ -13,10 +13,10 @@
   align-items: center;
   justify-content: center;
   background: azure;
-  margin-top: 15px;
-  max-height: 200px;
-  min-height: 80px;
+  padding: 10px;
   gap: 10px;
+  position: fixed;
+  bottom: 0;
   border-top: 1px solid rgb(221, 221, 221);
   box-shadow: 1px 1px 6px rgb(194, 194, 194);
 }
