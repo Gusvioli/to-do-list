@@ -3,13 +3,9 @@ import HttpException from '../utils/HttpException';
 import Joi from 'joi';
 
 const schema = Joi.object({
-  idUser: Joi.number().min(1).max(1000).required(),
-  type: Joi.string().min(3).max(18).required(),
-  emoji: Joi.string().min(0).max(32).required(),
-  date: Joi.string().min(10).max(10).required(),
-  time: Joi.string().min(5).max(5).required(),
-  description: Joi.string().min(2).max(255).required(),
-  status: Joi.string().min(6).max(18).required(),
+  nameUsed: Joi.string().min(3).max(18).required(),
+  emailUsed: Joi.string().email().required(),
+  newPassword: Joi.string().min(6).max(18).required(),
 }).required();
 
 const NewUserController = async (
@@ -18,23 +14,15 @@ const NewUserController = async (
   next: NextFunction,
 ) => {
   const {
-    idUser,
-    type,
-    emoji,
-    date,
-    time,
-    description,
-    status,
+    nameUsed,
+    emailUsed,
+    newPassword,
   } = req.body;
   try {
     const validateShema = schema.validate({
-      idUser,
-      type,
-      emoji,
-      date,
-      time,
-      description,
-      status,
+      nameUsed,
+      emailUsed,
+      newPassword,
     }, { abortEarly: false });
     if (validateShema.error) {
       next(new Error(validateShema.error.message));

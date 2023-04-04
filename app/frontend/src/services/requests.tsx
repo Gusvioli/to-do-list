@@ -6,6 +6,8 @@ import IrequestDelete from '../interfaces/IrequestDelete';
 import IrequestIds from '../interfaces/IrequestIds';
 import IrequestToken from '../interfaces/IrequestToken';
 import IrequestUpdate from '../interfaces/IrequestUpdate';
+import IrequestPassword from '../interfaces/IrequestNewPassword';
+import IrequestNewPassword from '../interfaces/IrequestNewPassword';
 
 const api = axios.create({
   baseURL: `http://localhost:3001`,
@@ -49,7 +51,7 @@ export const requestCreate = async (endpoint: string, body: IrequestCreate | Ire
   return data;
 };
 
-export const requestUpdate = async (endpoint: string, body: IrequestUpdate) => {
+export const requestUpdate = async (endpoint: string, body: IrequestUpdate | IrequestNewPassword) => {
   const { data } = await api.put(endpoint, body);
   return data;
 };

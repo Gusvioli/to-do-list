@@ -145,7 +145,7 @@ function Login(): JSX.Element {
             </a>
           </div>
           <p className="exibir-msgs">{exibirMsgs()}</p>
-          <a title="Forgot password?" className="form-a-text-esqueceu-senha" href="/login">
+          <a title="Forgot password?" className="form-a-text-esqueceu-senha" href="/forgot">
             Forgot password?
           </a>
         </form>

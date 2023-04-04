@@ -4,10 +4,11 @@
 
 - [x] Criar um componente para rodapé
 - [x] Correção de bugs( Logotipo quebrando )
-- [ ] Sistema para recuperar senha
+- [x] Sistema para recuperar senha
 - [x] Melhorar a exibição do nome do usuário na tela home
 - [x] Adicionar um titulo. exemplo: "Faça seu login no sistema" no campo de login
 - [x] Adicionar um titulo. exemplo: "Faça seu cadastro no sistema" no campo de cadastro
+- [ ] Retirar mensagem desnecessaria para o usuário ler
 
 # Testes para o Frontend
 
