@@ -4,6 +4,7 @@ import Cadastro from '../pages/Cadastro';
 import Login from '../pages/Login';
 import ListCalendar from '../components/calendar/ListCalendar';
 import ListSimple from '../components/simple/ListSimple';
+import ForgotPassword from '../components/forgot/forgotPassword';
 
 function Routes() {
   return(
@@ -13,6 +14,7 @@ function Routes() {
       <Route path="/login" component={ Login } />
       <Route path="/home/simple" component={ ListSimple } />
       <Route path="/home/calendar" component={ ListCalendar } />
+      <Route path="/forgot" component={ ForgotPassword } />
       <Route exact path="/">
         <Redirect to="/login" />
       </Route>

@@ -1,11 +1,10 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import Context from '../context/Context';
 import { requestCreate } from '../services/requests';
-import codeMenssage from '../services/status';
 import getLocalStorage from '../utils/getLocalStorage';
 import '../styles/pages/cadastro.css';
+import { exibirMsgs } from '../components/utils/msgs/exibirMsgs';
 
 // Página de cadastro
 function Cadastro() {
@@ -14,17 +13,6 @@ function Cadastro() {
   const [password, setPassword] = useState('');
   const {codeStatusMessage, setCodeStatusMessage} = useContext(Context);
   const history = useHistory();
-
-  // Função para exibir as mensagens de erro ou sucesso
-  const exibirMsgs = () => {
-    if (codeStatusMessage !== undefined) {
-      return `${codeMenssage(codeStatusMessage.status)}
-      ${codeStatusMessage.status ? `,` : ''}
-      ${codeStatusMessage.message}`;
-    } else {
-      return '';
-    }
-  };
 
   // Função para criar um novo usuário
   const hendleCreateUser = async () => {
@@ -66,7 +54,9 @@ function Cadastro() {
     const { id, value } = e.target;
       if (id === 'name') setName(value);
       if (id === 'email') setEmail(value);
-      if (id === 'password') setPassword(value);
+      if (id === 'password') {
+        setPassword(value);
+      }
   };
 
   // Verifica se o usuário está logado
@@ -144,7 +134,7 @@ function Cadastro() {
               Go Login
             </a>
           </div>
-          <p className="exibir-msgs">{exibirMsgs()}</p>
+        <p className={"exibir-msgs"}>{exibirMsgs(codeStatusMessage)}</p>
         </form>
       </div>
     </>

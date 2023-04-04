@@ -13,6 +13,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware';
 import tokenValidateRoutes from './routes/TokenValidateRoutes';
+import updateNewPassword from './routes/updateNewPassword';
 // import swaggerUi from 'swagger-ui-express';
 // import swaggerDocument from '../swagger-output.json';
 
@@ -34,6 +35,7 @@ class App {
     this.app.use('/deleteContents', deleteContentsRoutes);
     this.app.use('/contentsUpdate', upadteContentsRoutes);
     this.app.use('/contentsEditUpdate', upadteEditContentsRoutes);
+    this.app.use('/passwordUpdate', updateNewPassword);
     this.app.get('/', (_req, res) => res.json({ ok: true }));
     this.app.use(cors());
     this.app.use(HttpErrorMiddleware);
