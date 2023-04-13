@@ -24,7 +24,6 @@
   font-weight: 600;
   color: #3a3636;
   display: flex;
-  justify-content: end;
   align-items: center;
 }
 
@@ -78,7 +77,6 @@
   border-radius: 7px;
   padding: 3px 13px;
   display: flex;
-  justify-content: start;
   align-items: center;
 }
 
@@ -89,13 +87,11 @@
   border-radius: 7px;
   padding: 3px 13px;
   display: flex;
-  justify-content: end;
   align-items: center;
 }
 
 .lists-div-2 {
   display: flex;
-  justify-content: start;
   align-items: center;
 }
 

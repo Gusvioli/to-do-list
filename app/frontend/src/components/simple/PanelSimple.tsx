@@ -7,6 +7,7 @@ import { hendleClearAll } from '../utils/clears/HendleclearAll';
 import './style/panelSimple.css';
 import "../../styles/lists/lists.css";
 import formatarTime from '../../utils/formatarTime';
+import { RequestDataContentsApi } from '../apis/RequestDataContentsApi';
 
 function PanelSimple({
   id,
@@ -38,6 +39,7 @@ function PanelSimple({
   } = useContext(Context);
 
   const dataUserQuery = useQueryClient();
+  RequestDataContentsApi();
 
   const hendleEdit = async (e: any) => {
     window.scrollTo(0, 0);

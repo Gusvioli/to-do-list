@@ -5,7 +5,6 @@ import '../styles/pages/navbar.css';
 import { hendleClearAll } from "./utils/clears/HendleclearAll";
 import { useQueryClient } from "react-query";
 import TypesToDoList from "./typesToDuList/TypesToDoList";
-// import LogoToDoList from '../../assets/images/logoToDoList.png';
 
 function Navbar(): JSX.Element {
   const {

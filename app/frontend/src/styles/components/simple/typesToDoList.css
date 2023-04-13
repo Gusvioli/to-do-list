@@ -2,7 +2,6 @@
 .ul-buttons-types-to-do-list {
   display: flex;
   flex-direction: row;
-  justify-content: start;
   align-items: center;
   flex-wrap: wrap;
   margin: 0;
