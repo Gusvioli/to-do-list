@@ -104,7 +104,6 @@ textarea {
 .form-div-date-time-description-div {
   display: flex;
   flex-flow: row;
-  justify-content: start;
   align-items: center;
   width: auto;
   font-size: 18px;
