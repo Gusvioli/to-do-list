@@ -1,4 +1,5 @@
-# Title: Projeto de Programação To-do-List
+
+# Projeto de Programação To-do-List
 
 ## O que falta fazer
 
@@ -10,13 +11,16 @@
 - [x] Adicionar um titulo. exemplo: "Faça seu cadastro no sistema" no campo de cadastro
 - [ ] Retirar mensagem desnecessaria para o usuário ler
 
-# Testes para o Frontend
+## Testes para o Frontend
 
 ## Testes em Páginas
+
+- [ ] Teste se os itens estão sendo renderizados na tela
 
 ### Pagina Home
 
 - [ ] Teste se os itens estão sendo renderizados na tela
+- [ ] Teste se a Tela Home está redirecinando para login corretamente apois clicar no exit
 
 ### Pagina login
 
@@ -73,11 +77,64 @@
 - [ ] Teste se o componente PanelCalendar está sendo renderizado
   
 ### Componente Control
+
+- [ ] Teste se o componente ListControl está sendo renderizado
+- [ ] Teste se o conteudo renderizado pelo componete ListControl está sendo apresentado
+- [ ] Teste se o componente PanelControl está sendo renderizado
+
 ### Componente Create
+
+- [ ] Teste se o input Emojis está sendo renderizado
+- [ ] Teste se o input Dates está sendo renderizado
+- [ ] Teste se o input Days está sendo renderizado
+- [ ] Teste se o Button Create está sendo renderizado
+- [ ] Teste se o Button Edit está sendo renderizado
+- [ ] Teste se o Button Close Edit está sendo renderizado
+- [ ] Teste se o Button Clear descriptiond está sendo renderizado
+- [ ] Teste se o Button Clear All está sendo renderizado
+- [ ] Teste se é possível criar uma nova atividade
+- [ ] Teste se é possível editar uma atividade
+
 ### Componente Emojis
+
+- [ ] Teste se todos os Emojis estão sendo renderizados
+- [ ] Teste se ao clicar em um emoji, ele é adicionado ao campo de Emojis
+- [ ] Teste se ao fazer uma pesquisa com um emoji, retornará apenas aquele emoji
+- [ ] Teste se al clicar em close emojis a pesquisa por emoji é encerrada
+  
 ### Componente Footer
+
+- [ ] Teste se o Footer da aplicação esta sendo renderizado
+- [ ] Teste se o o link do linkedin está sendo renderizado
+- [ ] Teste se o o link do github está sendo renderizado
+- [ ] Teste se a informação do Fotter está correta
+
 ### Componente search
+
+- [ ] Teste se o componente Search está sendo renderizado
+- [ ] Teste se valores estão sendo inseridos no campo de pesquisa
+- [ ] Teste se a pesquisa retorna dados corretos
+- [ ] Teste se os plçaceholders estão sendo renderizados corretamente
+
 ### Componente Simple
+
+- [ ] Teste se o component Simple esta sendo renderizado
+- [ ] Teste se Se a data esta sendo renderizado de forma correta
+- [ ] Teste se as listas estão sendo renderizadas corretamente
+- [ ] Teste se a função handleRemove está removendo algum item da lista
+- [ ] Teste se a função handleEdit está editando algum item da lista
+- [ ] Teste se os Buttons do painel estão sendo renderizados corretamente
+- [ ] Teste se o campo Emojis esta sendo renderizado corretamente
+- [ ] Teste se o campo de descrição está sendo renderizado corretamente
+- [ ] Teste se o campo data esta sendo renderizado corretamente
+- [ ] Teste se o campo hora esta sendo renderizado corretamente
+
 ### Componente typesToDoList
+
+- [ ] Teste se os componentes estão sendo renderizados corretamente
+  
 ### Componente Navbar
-### Componente NavbarAdmin
+
+- [ ] Teste se os componentes estão sendo renderizados corretamente
+- [ ] Teste se a busca por atividades está sendo feita corretamente
+- [ ] Testese ao clicar em algum item do menu, a rota é redirecionada corretamente
