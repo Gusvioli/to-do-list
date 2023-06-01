@@ -5,12 +5,14 @@ import Context from "../../context/Context";
 import searchControl from "../utils/controlPages/searchControl";
 import diasMeses from "./functions/diasMeses";
 import './styles/listCalendar.css';
+import { RequestDataContentsApi } from "../apis/RequestDataContentsApi";
 
 function ListCalendar(): JSX.Element {
   const {contents, setDataLocal, search} = useContext(Context)
   const statusConsts = useQueryClient();
   const getdataContents = statusConsts.getQueryData<any>("contents")
   const history = useHistory();
+  RequestDataContentsApi();
 
   const getDateToSend = (
     element: {
