@@ -32,7 +32,7 @@
 <br>
 
 1. faça a clonagem do repositório <https://github.com/Gusvioli/to-do-list> do Github em um diretório a sua excolha,
-utilize o comando: <code>git clone git@github.com:Gusvioli/to-do-list.git</code> em um terminal acossiado ao diretório escolhido
+utilize o comando: <code>git clone git@github.com:Gusvioli/to-do-list.git</code> em um terminal associado ao diretório escolhido
 2. digite: <code>npm run up:build:d </code> para subir o container docker em segundo plano
 ou digite: <code>npm run up:build </code> para subir o container docker em primeiro plano
 3. aguarde o container docker subir
@@ -48,7 +48,7 @@ ou digite: <code>npm run up:build </code> para subir o container docker em prime
 
 1. abra o terminal integrado no diretório app/backend e digite o comando: <code> npm run dev </code>
 2. depois abra o terminal integrado no diretório app/frontend e digite o comando: <code> npm start </code>
-3. logo após o carregamento estiver completo abra o terminal integrado do diretório app/ e digite o comando: <code> npm run start:db </code> p/ criar e pupular o banco de dados.
+3. logo após o carregamento estiver completo abra o terminal integrado do diretório app/ e digite o comando: <br> <code> npm run start:db </code> p/ criar e pupular o banco de dados.
 1. agora abra seu navegador e digite: <http://localhost:3000/> para o Front-end e <http://localhost:3001/> p/ Back-end
 
 <br>
