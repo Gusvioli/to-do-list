@@ -65,6 +65,12 @@ ou digite: <code>npm run up:build </code> para subir o container docker em prime
 
 <br />
 
+### Página de Recuperação de login:
+
+![página de Recuperação de login](imgs/pag_recuperar_login.png)
+
+<br />
+
 ### Página Inicial:
 
 ![página Inicial](imgs/pag_inicial.png)
