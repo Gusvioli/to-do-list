@@ -52,14 +52,3 @@ ou digite: <code>npm run up:build </code> para subir o container docker em prime
 1. agora abra seu navegador e digite: <http://localhost:3000/> para o Front-end e <http://localhost:3001/> p/ Back-end
 
 <br>
-
-#### Comandos extras para docker(PACKAGE.JSON)
-
-> "up:build": "docker-compose down && docker-compose up --build && ./scripts/init-app-docker-db.sh",<br>
-> "up:build:d": "docker-compose down && docker-compose up -d --build && ./scripts/init-app-docker-db.sh",<br>
-> "down": "docker-compose down",<br>
-> "stop": "docker-compose stop",<br>
-> "up": "docker-compose down && docker-compose up && ./scripts/init-app-docker-db.sh",<br>
-> "prune": "docker system prune -a",<br>
-> "start:db": "./scripts/init-app-docker-db.sh",<br>
-> "dist": "./scripts/dist-end-build.sh"</br>
