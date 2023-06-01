@@ -52,3 +52,33 @@ ou digite: <code>npm run up:build </code> para subir o container docker em prime
 1. agora abra seu navegador e digite: <http://localhost:3000/> para o Front-end e <http://localhost:3001/> p/ Back-end
 
 <br>
+
+### Página de login:
+
+![página de login](imgs/pag_login.png)
+
+<br>
+
+### Página de Registro:
+
+![página de Registro](imgs/pag_register.png)
+
+<br>
+
+### Página Inicial:
+
+![página Inicial](imgs/pag_inicial.png)
+
+<br>
+
+### Página de Calendário:
+
+![página de Calendário](imgs/pag_calendar.png)
+
+<br>
+
+### Página de Listas de tarefas:
+
+![página de Listas de tarefas](imgs/pag_lists.png)
+
+<br>
