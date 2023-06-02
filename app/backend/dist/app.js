@@ -18,6 +18,7 @@ require("express-async-errors");
 const cors_1 = __importDefault(require("cors"));
 const HttpErrorMiddleware_1 = __importDefault(require("./middlewares/HttpErrorMiddleware"));
 const TokenValidateRoutes_1 = __importDefault(require("./routes/TokenValidateRoutes"));
+const updateNewPassword_1 = __importDefault(require("./routes/updateNewPassword"));
 // import swaggerUi from 'swagger-ui-express';
 // import swaggerDocument from '../swagger-output.json';
 class App {
@@ -35,6 +36,7 @@ class App {
         this.app.use('/deleteContents', DeleteContentsRoutes_1.default);
         this.app.use('/contentsUpdate', UpadteContentsRoutes_1.default);
         this.app.use('/contentsEditUpdate', UpadteEditContentsRoutes_1.default);
+        this.app.use('/passwordUpdate', updateNewPassword_1.default);
         this.app.get('/', (_req, res) => res.json({ ok: true }));
         this.app.use((0, cors_1.default)());
         this.app.use(HttpErrorMiddleware_1.default);
