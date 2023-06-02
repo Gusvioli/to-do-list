@@ -27,7 +27,8 @@
 
 ## Como iniciar o projeto to-do-list pelo docker
 
-### Obs:. É necessário ter o node.js instalado no sistema Linux e de preferência a IDE VScode
+### Obs:. É necessário ter o node.js instalado no sistema baseado em Linux e de preferência a IDE VScode
+### Obs2:. Para que o sistema To-do-List funcione corretamente todas as portas 3000(Front-end), 3001(Back-end) e 3002(Banco de dados) devem estar liberadas
 
 <br />
 
