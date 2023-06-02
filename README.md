@@ -31,7 +31,7 @@
 
 <br />
 
-1. faça a clonagem do repositório <https://github.com/Gusvioli/to-do-list> do Github em um diretório a sua excolha,
+1. faça a clonagem do repositório <https://github.com/Gusvioli/to-do-list> do Github em um diretório a sua escolha,
 utilize o comando: <code>git clone git@github.com:Gusvioli/to-do-list.git</code> em um terminal associado ao diretório escolhido
 2. digite: <code>npm run up:build:d </code> para subir o container docker em segundo plano
 ou digite: <code>npm run up:build </code> para subir o container docker em primeiro plano
