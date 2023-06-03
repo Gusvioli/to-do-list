@@ -1,78 +1,61 @@
 # Projeto To-do-list
 
-## Descrição:
+## Descrição
 
-### Esse é um projeto Full-stack para o portfóleo de Gustavo Vieira e funciona utilizando um sistema C.R.U.D(Create, Read, Update e Delete) que armazena tarefas de um usuário mantendo os dados em um banco de dados mysql
+Esse é um projeto Full-stack para o portfólio de Gustavo Vieira. Ele funciona como um sistema C.R.U.D (Create, Read, Update e Delete) que armazena tarefas de um usuário em um banco de dados MySQL.
 
-<br />
+## Stacks envolvidas
 
-## Stacks envolvidas:
+- Docker
+- CSS3
+- HTML5
+- React.js
+- JavaScript
+- TypeScript
+- JWT
+- EsLint
+- Express.js
+- Joi
+- Sistema MSC (Model, Services e Controllers)
+- MySQL
+- Sequelize
+- Jest (Testes unitários)
 
-> Docker<br />
-> CSS3<br />
-> HTML5<br />
-> React.js<br />
-> Javascript<br />
-> Typescript<br />
-> JWT<br />
-> EsLint<br />
-> Express.js<br />
-> Joi<br />
-> Sistema MSC(Model, Services e controllers)<br />
-> Mysql<br />
-> Sequelize<br />
-> Jest(Teste unitários)<br />
+## Como iniciar o projeto to-do-list usando Docker
 
-<br />
+Observações:
+- É necessário ter o Node.js instalado em um sistema baseado em Linux e de preferência usar a IDE VScode.
+- Para que o sistema To-do-List funcione corretamente, as portas 3000 (Front-end), 3001 (Back-end) e 3002 (Banco de dados) devem estar liberadas.
 
-## Como iniciar o projeto to-do-list pelo docker
+Passos:
 
-### Obs:. É necessário ter o node.js instalado no sistema baseado em Linux e de preferência a IDE VScode
-### Obs2:. Para que o sistema To-do-List funcione corretamente todas as portas 3000(Front-end), 3001(Back-end) e 3002(Banco de dados) devem estar liberadas
+1. Faça a clonagem do repositório [https://github.com/Gusvioli/to-do-list](https://github.com/Gusvioli/to-do-list) do GitHub em um diretório de sua escolha. Utilize o comando `git clone git@github.com:Gusvioli/to-do-list.git` em um terminal associado ao diretório escolhido.
+2. Abra o terminal associado ao diretório onde o projeto foi clonado e digite `npm run up:build:d` para subir o container Docker em segundo plano, ou digite `npm run up:build` para subir o container Docker em primeiro plano.
+3. Aguarde o container Docker subir.
+4. Abra seu navegador e digite [http://localhost:3000/](http://localhost:3000/) para acessar o Front-end e [http://localhost:3001/](http://localhost:3001/) para o Back-end.
 
-<br />
+Em caso de dúvidas, entre em contato comigo pelo GitHub ou pelo e-mail: gustavovieiradeoliveira@gmail.com.
 
-1. faça a clonagem do repositório <https://github.com/Gusvioli/to-do-list> do Github em um diretório a sua escolha,
-utilize o comando: <code>git clone git@github.com:Gusvioli/to-do-list.git</code> em um terminal associado ao diretório escolhido
-2. digite: <code>npm run up:build:d </code> para subir o container docker em segundo plano
-ou digite: <code>npm run up:build </code> para subir o container docker em primeiro plano
-3. aguarde o container docker subir
-4. abra seu navegador e digite: <http://localhost:3000/> para o Front-end e <http://localhost:3001/> p/ Back-end
+### Página de login
 
-<br />
+![Página de login](imgs/pag_login.png)
 
-### Página de login:
+### Página de Registro
 
-![página de login](imgs/pag_login.png)
+![Página de Registro](imgs/pag_register.png)
 
-<br />
+### Página de Recuperação de login
 
-### Página de Registro:
+![Página de Recuperação de login](imgs/pag_recuperar_login.png)
 
-![página de Registro](imgs/pag_register.png)
+### Página Inicial
 
-<br />
+![Página Inicial](imgs/pag_inicial.png)
 
-### Página de Recuperação de login:
+### Página de Calendário
 
-![página de Recuperação de login](imgs/pag_recuperar_login.png)
+![Página de Calendário](imgs/pag_calendar.png)
 
-<br />
+### Página de Listas de tarefas
 
-### Página Inicial:
-
-![página Inicial](imgs/pag_inicial.png)
-
-<br />
-
-### Página de Calendário:
-
-![página de Calendário](imgs/pag_calendar.png)
-
-<br />
-
-### Página de Listas de tarefas:
-
-![página de Listas de tarefas](imgs/pag_lists.png)
-
-<br />
+![Página de Listas de tarefas](imgs/pag_lists.png)
