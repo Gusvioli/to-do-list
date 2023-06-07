@@ -14,8 +14,6 @@ import cors from 'cors';
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware';
 import tokenValidateRoutes from './routes/TokenValidateRoutes';
 import updateNewPassword from './routes/updateNewPassword';
-// import swaggerUi from 'swagger-ui-express';
-// import swaggerDocument from '../swagger-output.json';
 
 class App {
   public app: express.Express;
