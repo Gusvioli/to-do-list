@@ -46,6 +46,8 @@ body {
   flex-flow: column wrap;
   margin-top: 40px;
   border-radius: 13px;
+  min-width: 450px;
+  max-width: 550px;
 }
 
 .form-login input {
