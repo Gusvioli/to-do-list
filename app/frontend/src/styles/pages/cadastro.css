@@ -40,6 +40,8 @@ body {
   height: 550px;
   padding: 40px;
   display: flex;
+  min-width: 450px;
+  max-width: 550px;
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
