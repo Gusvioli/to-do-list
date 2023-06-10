@@ -24,6 +24,7 @@ Esse é um projeto Full-stack para o portfólio de Gustavo Vieira. Ele funciona 
 ## Como iniciar o projeto to-do-list usando Docker
 
 Observações:
+
 - É necessário ter o Node.js instalado em um sistema baseado em Linux e de preferência usar a IDE VScode.
 - Para que o sistema To-do-List funcione corretamente, as portas 3000 (Front-end), 3001 (Back-end) e 3002 (Banco de dados) devem estar liberadas.
 
@@ -34,7 +35,13 @@ Passos:
 3. Aguarde o container Docker subir.
 4. Abra seu navegador e digite [http://localhost:3000/](http://localhost:3000/) para acessar o Front-end e [http://localhost:3001/](http://localhost:3001/) para o Back-end.
 
-Em caso de dúvidas, entre em contato comigo pelo GitHub ou pelo e-mail: gustavovieiradeoliveira@gmail.com.
+Em caso de dúvidas, entre em contato comigo pelo GitHub ou pelo e-mail: <gustavovieiradeoliveira@gmail.com>.
+
+<br />
+
+### Esse projeto esta rodando em um servidor privado com o endereço: <http://187.67.70.21:3000/>
+
+<br />
 
 ### Página de login
 
