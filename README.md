@@ -39,7 +39,7 @@ Em caso de dúvidas, entre em contato comigo pelo GitHub ou pelo e-mail: <gustav
 
 <br />
 
-### Esse projeto esta rodando em um servidor privado com o endereço: <http://187.67.70.21:3000/>
+### Esse projeto está sendo executado em um servidor privado com o endereço IP: <http://187.67.70.21:3000/>
 
 <br />
 
