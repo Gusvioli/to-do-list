@@ -96,3 +96,25 @@
   cursor: pointer;
   width: 8em;
 }
+
+@media (max-width: 770px) {
+  .lists-calendar-div-0 {
+    width: 100%;
+  }
+
+  .lists-calendar-div-div-1 {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .lists-calendar-div-2 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .lists-calendar-div-3 {
+    font-size: 24px;
+  }
+}

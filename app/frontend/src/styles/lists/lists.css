@@ -124,3 +124,26 @@
 .paginations{
   margin-bottom: 30px;
 }
+
+@media (max-width: 770px) {
+  .lists-div-0 {
+    padding: 15px 5px;
+    margin: 7px;
+    width: 100%;
+  }
+
+  .lists-div-1 {
+    width: 90%;
+  }
+
+  .lists-div-1-div-div-div-panel {
+    height: 21px;
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 7px;
+    padding: 3px 13px;
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+  }
+}

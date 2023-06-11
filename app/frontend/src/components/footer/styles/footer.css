@@ -52,3 +52,20 @@ u {
   margin: 5px;
   text-decoration: underline;
 }
+
+@media (max-width: 770px) {
+  .footer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 200px;
+    position: relative;
+  }
+
+  .footer > section > a {
+    font-size: 18px;
+  }
+
+  .footer > section > a:hover {
+    font-size: 18px;
+  }
+}
