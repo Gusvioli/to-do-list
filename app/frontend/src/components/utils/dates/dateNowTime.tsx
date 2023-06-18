@@ -1,12 +1,12 @@
 const dateNowTime = (): {
-  dateNow: string;
-  dateDb: string;
+  dateNow: string
+  dateDb: string
 } => {
-  const dateNow = new Date().toLocaleDateString("pt-BR", {
-    timeZone: "America/Sao_Paulo",
-  });
-  const dateDb = dateNow.split("/").reverse().join("-");
-  return { dateNow, dateDb };
-};
+  const dateNow = new Date().toLocaleDateString('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+  })
+  const dateDb = dateNow.split('/').reverse().join('-')
+  return { dateNow, dateDb }
+}
 
-export default dateNowTime;
+export default dateNowTime

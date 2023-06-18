@@ -1,7 +1,7 @@
 interface IrequestDelete {
-  id: number;
-  idUser: number | null;
-  date: string | null;
-};
+  id: number
+  idUser: number | null
+  date: string | null
+}
 
-export default IrequestDelete;
+export default IrequestDelete

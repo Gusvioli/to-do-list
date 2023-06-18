@@ -1,15 +1,12 @@
-import './styles/footer.css';
+import './styles/footer.css'
 
 export default function Footer() {
-    return(<footer className="footer">
+  return (
+    <footer className="footer">
       <section>
-        <u>
-          (Projeto p/ Portfólio)
-        </u>
+        <u>(Projeto p/ Portfólio)</u>
         Desenvolvido por <strong>Gustavo Vieira, </strong>
-        <i>
-          utilizando: reactJS, typescript, javascript, html e css, ...
-        </i>
+        <i>utilizando: reactJS, typescript, javascript, html e css, ...</i>
       </section>
       <strong>Minhas redes sociais:</strong>
       <section>
@@ -22,13 +19,10 @@ export default function Footer() {
         </a>
       </section>
       <section>
-        <a
-          href="https://github.com/Gusvioli"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href="https://github.com/Gusvioli" target="_blank" rel="noreferrer">
           Github
         </a>
       </section>
-    </footer>);
+    </footer>
+  )
 }

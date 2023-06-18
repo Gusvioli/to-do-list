@@ -1,12 +1,12 @@
-import { ChangeEvent, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import Context from "../context/Context";
-import '../styles/pages/navbar.css';
-import { hendleClearAll } from "./utils/clears/HendleclearAll";
-import { useQueryClient } from "react-query";
-import TypesToDoList from "./typesToDuList/TypesToDoList";
+import { ChangeEvent, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import Context from '../context/Context'
+import '../styles/pages/navbar.css'
+import { hendleClearAll } from './utils/clears/HendleclearAll'
+import { useQueryClient } from 'react-query'
+import TypesToDoList from './typesToDuList/TypesToDoList'
 
-function Navbar(): JSX.Element {
+function Navbar() {
   const {
     setSearch,
     search,
@@ -16,38 +16,39 @@ function Navbar(): JSX.Element {
     setPassword,
     setCodeStatusMessage,
     setIsActiveEmojisPanel,
-  } = useContext(Context);
+  } = useContext(Context)
 
-  const history = useHistory();
+  const history = useHistory()
 
-  const dataTokenUserNameQuery = useQueryClient();
-  const dataTokenUserName = dataTokenUserNameQuery.getQueryData<any>('tokenUserName');
+  const dataTokenUserNameQuery = useQueryClient()
+  const dataTokenUserName =
+    dataTokenUserNameQuery.getQueryData<any>('tokenUserName')
 
   const hendleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const { value } = e.target;
-    setSearch(value);
-  };
+    e.preventDefault()
+    const { value } = e.target
+    setSearch(value)
+  }
 
   const hendleExited = () => {
-    history.push('/login');
-    localStorage.clear();
-    hendleClearAll(setFormCreateAndEditTask, setNameEmojiUrl);
-    setEmail('');
-    setPassword('');
+    history.push('/login')
+    localStorage.clear()
+    hendleClearAll(setFormCreateAndEditTask, setNameEmojiUrl)
+    setEmail('')
+    setPassword('')
     dataTokenUserNameQuery.setQueryData('tokenUserName', {
       token: '',
       idUser: {},
       nameUser: {},
-    });
-    setCodeStatusMessage({ status: 0, message: '' });
+    })
+    setCodeStatusMessage({ status: 0, message: '' })
 
-    setIsActiveEmojisPanel(false);
-  };
+    setIsActiveEmojisPanel(false)
+  }
 
-  return(
+  return (
     <>
-      <nav data-testid='navbar'>
+      <nav data-testid="navbar">
         <section className="nav-section-1">
           <img
             width={50}
@@ -61,56 +62,50 @@ function Navbar(): JSX.Element {
             <form className="nav-section-2-form">
               <label htmlFor="buscador">
                 <input
-                  data-testid='input-buscador'
+                  data-testid="input-buscador"
                   className="input-buscador"
                   type="text"
                   id="buscador"
                   title="Search by: #id, description, date, emoji"
                   placeholder={
                     history.location.pathname.split('/')[2] === 'calendar'
-                    ? 'Search by: #id, description, date, emoji in calendar'
-                    : 'Search by: #id, description, date, emoji in simple'
+                      ? 'Search by: #id, description, date, emoji in calendar'
+                      : 'Search by: #id, description, date, emoji in simple'
                   }
-                  value={ search }
-                  onChange={ (e) => hendleSearch(e) }
+                  value={search}
+                  onChange={(e) => hendleSearch(e)}
                 />
               </label>
             </form>
           </section>
-        <TypesToDoList />
+          <TypesToDoList />
         </section>
-        <section
-          data-testid='user-name'
-          className="name-user"
-        >
-          {
-            dataTokenUserName?.nameUser.name
-            ? <span title="Your name" className="name-exibitions">
-                <b>
-                  Hi,
-                </b>
-                {dataTokenUserName?.nameUser.name}
-              </span>
-            : ''
-          }
-          {
-            dataTokenUserName?.token
-            ?
-              <img
-                style={{ cursor: 'pointer' }}
-                width={20}
-                height={20}
-                src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8"
-                alt="Button Exit site"
-                title="Exit site"
-                onClick={ hendleExited }
-              />
-            : ''
-          }
+        <section data-testid="user-name" className="name-user">
+          {dataTokenUserName?.nameUser.name ? (
+            <span title="Your name" className="name-exibitions">
+              <b>Hi,</b>
+              {dataTokenUserName?.nameUser.name}
+            </span>
+          ) : (
+            ''
+          )}
+          {dataTokenUserName?.token ? (
+            <img
+              style={{ cursor: 'pointer' }}
+              width={20}
+              height={20}
+              src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8"
+              alt="Button Exit site"
+              title="Exit site"
+              onClick={hendleExited}
+            />
+          ) : (
+            ''
+          )}
         </section>
       </nav>
     </>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
