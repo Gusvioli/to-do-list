@@ -1,9 +1,9 @@
 interface Iuser {
-    id?: number;
-    name: string;
-    email: string;
-    password: string;
-    role: string;
+  id?: number
+  name: string
+  email: string
+  password: string
+  role: string
 }
 
-export default Iuser;
+export default Iuser

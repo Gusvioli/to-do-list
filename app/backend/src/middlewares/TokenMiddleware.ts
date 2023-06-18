@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import HttpException from '../utils/HttpException';
-import { verifyToken } from '../utils/VerifyToken';
+import { Request, Response, NextFunction } from 'express'
+import HttpException from '../utils/HttpException'
+import { verifyToken } from '../utils/VerifyToken'
 
 const tokenValidation = async (
   req: Request,
@@ -8,15 +8,15 @@ const tokenValidation = async (
   next: NextFunction,
 ) => {
   try {
-    const validateToken = verifyToken(req.body);
-    if(validateToken.error){
-      next(new Error(validateToken.error.message));
+    const validateToken = verifyToken(req.body)
+    if (validateToken.error) {
+      next(new Error(validateToken.error.message))
     } else {
-      next();
+      next()
     }
   } catch (error) {
-    throw new HttpException(400, 'Token error');
+    throw new HttpException(400, 'Token error')
   }
-};
+}
 
-export default tokenValidation;
+export default tokenValidation

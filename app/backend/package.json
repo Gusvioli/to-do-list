@@ -18,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "1.0.2",
+    "@rocketseat/eslint-config": "^1.2.0",
     "@types/bcryptjs": "2.4.2",
     "@types/chai": "4.3.0",
     "@types/chai-http": "4.2.0",
@@ -35,7 +36,7 @@
     "@typescript-eslint/parser": "5.3.1",
     "chai": "4.3.6",
     "chai-http": "^4.3.0",
-    "eslint": "7.32.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "15.0.0",
     "eslint-plugin-import": "2.25.3",

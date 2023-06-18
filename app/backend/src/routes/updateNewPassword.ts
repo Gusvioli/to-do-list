@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import {UpdatePasswordController} from '../controllers/UpdatePasswordController';
-import newPasswordMiddleware from '../middlewares/newPasswordMiddleware';
+import { Router } from 'express'
+import { UpdatePasswordController } from '../controllers/UpdatePasswordController'
+import newPasswordMiddleware from '../middlewares/newPasswordMiddleware'
 
-const router = Router();
+const router = Router()
 
-router.put('/', newPasswordMiddleware, UpdatePasswordController.updatePassword);
+router.put('/', newPasswordMiddleware, UpdatePasswordController.updatePassword)
 
-export default router;
+export default router

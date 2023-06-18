@@ -1,14 +1,15 @@
 // src/database/models/user.model.js
-import { Model, INTEGER, STRING } from 'sequelize';
-import db from '.';
+import { Model, INTEGER, STRING } from 'sequelize'
+import db from '.'
 
 class Emoji extends Model {
-  declare public id: number;
-  declare public name: string;
-  declare public url: string;
+  public declare id: number
+  public declare name: string
+  public declare url: string
 }
 
-Emoji.init({
+Emoji.init(
+  {
     id: {
       type: INTEGER,
       autoIncrement: true,
@@ -21,13 +22,15 @@ Emoji.init({
     url: {
       type: STRING,
       allowNull: false,
-    },    
-  }, {
+    },
+  },
+  {
     sequelize: db,
     modelName: 'Emoji',
     tableName: 'emojis',
     underscored: true,
     timestamps: false,
-  });
+  },
+)
 
-export default Emoji;
+export default Emoji
