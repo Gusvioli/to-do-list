@@ -151,3 +151,14 @@ textarea {
   border: none;
   cursor: pointer;
 }
+
+
+@media (max-width: 770px) {
+  .div-0-createTask {
+    gap: 10px;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
