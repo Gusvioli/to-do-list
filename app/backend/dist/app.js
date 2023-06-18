@@ -19,8 +19,6 @@ const cors_1 = __importDefault(require("cors"));
 const HttpErrorMiddleware_1 = __importDefault(require("./middlewares/HttpErrorMiddleware"));
 const TokenValidateRoutes_1 = __importDefault(require("./routes/TokenValidateRoutes"));
 const updateNewPassword_1 = __importDefault(require("./routes/updateNewPassword"));
-// import swaggerUi from 'swagger-ui-express';
-// import swaggerDocument from '../swagger-output.json';
 class App {
     constructor() {
         this.app = (0, express_1.default)();
