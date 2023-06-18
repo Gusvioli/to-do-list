@@ -17,3 +17,8 @@
 #### <https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes-pt>
 
 - docker rmi $(docker images -a -q)
+
+<br />
+
+## Markdown Basic Syntax
+https://www.markdownguide.org/cheat-sheet/
