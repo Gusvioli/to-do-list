@@ -1,5 +1,5 @@
-import 'dotenv/config';
-import { Options } from 'sequelize';
+import 'dotenv/config'
+import { Options } from 'sequelize'
 
 const config: Options = {
   username: process.env.DB_USER,
@@ -14,4 +14,4 @@ const config: Options = {
   logging: false,
 }
 
-module.exports = config;
+module.exports = config

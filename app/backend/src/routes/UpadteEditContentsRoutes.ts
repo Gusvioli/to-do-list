@@ -1,9 +1,13 @@
-import { Router } from 'express';
-import editContentsMiddleware from '..//middlewares/editContentsMiddleware';
-import {UpdateEditContentsController} from '../controllers/UpdateEditContentsController';
+import { Router } from 'express'
+import editContentsMiddleware from '..//middlewares/editContentsMiddleware'
+import { UpdateEditContentsController } from '../controllers/UpdateEditContentsController'
 
-const router = Router();
+const router = Router()
 
-router.put('/', editContentsMiddleware, UpdateEditContentsController.updateEditContents);
+router.put(
+  '/',
+  editContentsMiddleware,
+  UpdateEditContentsController.updateEditContents,
+)
 
-export default router;
+export default router

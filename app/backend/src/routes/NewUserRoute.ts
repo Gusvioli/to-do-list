@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { NewUserController } from '../controllers/NewUserController';
-import newUserMiddleware from '../middlewares/newUserMiddleware';
+import { Router } from 'express'
+import { NewUserController } from '../controllers/NewUserController'
+import newUserMiddleware from '../middlewares/newUserMiddleware'
 
-const router = Router();
+const router = Router()
 
-router.post('/', newUserMiddleware, NewUserController.newUser);
+router.post('/', newUserMiddleware, NewUserController.newUser)
 
-export default router;
+export default router

@@ -1,7 +1,4 @@
 {
-  "root": true,
-  "parser": "airbnb-eslint",
-  "env": {
-    "es6": true
-  }
+  "extends": "@rocketseat/eslint-config/react"
+  // "extends": "@rocketseat/eslint-config/node"
 }
