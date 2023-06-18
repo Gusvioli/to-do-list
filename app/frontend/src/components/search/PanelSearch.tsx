@@ -1,5 +1,5 @@
 function PanelSearch() {
-  return (<></>);
+  return <></>
 }
 
-export default PanelSearch;
+export default PanelSearch

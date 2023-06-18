@@ -1,5 +1,5 @@
 interface IrequestToken {
-  token: object;
+  token: object
 }
 
-export default IrequestToken;
+export default IrequestToken

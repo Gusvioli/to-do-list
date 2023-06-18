@@ -1,5 +1,5 @@
 interface IrequestIds {
-  idUser: number;
+  idUser: number
 }
 
-export default IrequestIds;
+export default IrequestIds

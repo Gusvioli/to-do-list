@@ -1,14 +1,15 @@
-import { useQueryClient } from "react-query";
+import { useQueryClient } from 'react-query'
 
-const dataUserQuery = useQueryClient();
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const dataUserQuery = useQueryClient()
 export function updateQuerysData(data: {
-  id: number;
-  emoji: string;
-  date: string;
-  time: string;
-  description: string;
+  id: number
+  emoji: string
+  date: string
+  time: string
+  description: string
 }) {
-  const dataContents = dataUserQuery.getQueryData<any>("contents");
+  const dataContents = dataUserQuery.getQueryData<any>('contents')
   if (dataContents) {
     const dataStatus = dataContents.map((dataContent: any) => {
       if (dataContent.id === data.id) {
@@ -18,11 +19,11 @@ export function updateQuerysData(data: {
           date: data.date,
           time: data.time,
           description: data.description,
-        };
+        }
       } else {
-        return dataContent;
+        return dataContent
       }
-    });
-    dataUserQuery.setQueryData("contents", dataStatus);
+    })
+    dataUserQuery.setQueryData('contents', dataStatus)
   }
 }

@@ -1,14 +1,13 @@
-import { useContext } from "react";
-import Context from "../../context/Context";
+import { useContext } from 'react'
+import Context from '../../context/Context'
 
-function ListSearch(): JSX.Element {
-  const { search } = useContext(Context);
+function ListSearch() {
+  const { search } = useContext(Context)
   return (
     <>
       <div>ListSearch: {search}</div>
     </>
-  );
+  )
 }
 
-export default ListSearch;
-
+export default ListSearch
