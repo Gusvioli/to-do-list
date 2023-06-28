@@ -6,6 +6,7 @@ import codeMenssage from '../services/status'
 import getLocalStorage from '../utils/getLocalStorage'
 import setLocalStorage from '../utils/setLocalStorage'
 import '../styles/pages/login.css'
+import getUsewrIpToTxt from '../components/utils/userIp/getUserIpToTxt'
 
 // Componente para fazer o login
 function Login() {
@@ -74,6 +75,8 @@ function Login() {
       if (token) history.push('/home')
     })
   }, [history])
+
+  getUsewrIpToTxt()
 
   return (
     <>

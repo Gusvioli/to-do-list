@@ -74,4 +74,17 @@ export const requestDelete = async (endpoint: string, body: IrequestDelete) => {
   return data
 }
 
+export const requestIp = async (endpoint: string): Promise<{ ip: string }> => {
+  const { data } = await api.get(endpoint)
+  return data
+}
+
+export const requestIpUpdate = async (
+  endpoint: string,
+  body: { ip: string },
+) => {
+  const { data } = await api.post(endpoint, body)
+  return data
+}
+
 export default api

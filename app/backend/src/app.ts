@@ -14,6 +14,7 @@ import cors from 'cors'
 import HttpErrorMiddleware from './middlewares/HttpErrorMiddleware'
 import tokenValidateRoutes from './routes/TokenValidateRoutes'
 import updateNewPassword from './routes/updateNewPassword'
+import updateNewIp from './routes/updateNewIp'
 
 class App {
   public app: express.Express
@@ -34,6 +35,7 @@ class App {
     this.app.use('/contentsUpdate', upadteContentsRoutes)
     this.app.use('/contentsEditUpdate', upadteEditContentsRoutes)
     this.app.use('/passwordUpdate', updateNewPassword)
+    this.app.use('/ip', updateNewIp)
     this.app.get('/', (_req, res) => res.json({ ok: true }))
     this.app.use(cors())
     this.app.use(HttpErrorMiddleware)
