@@ -9,7 +9,7 @@ import IrequestUpdate from '../interfaces/IrequestUpdate'
 import IrequestNewPassword from '../interfaces/IrequestNewPassword'
 
 const api = axios.create({
-  baseURL: `http://localhost:3001`,
+  baseURL: `http://187.67.70.21:3001`,
 })
 
 export const setTokenAuthorization = (

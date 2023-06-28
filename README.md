@@ -34,13 +34,13 @@ Passos:
 2. Abra o terminal associado ao diretório onde o projeto foi clonado e digite `npm run up:build:d` para subir o container Docker em segundo plano, ou digite `npm run up:build` para subir o container Docker em primeiro plano.
 3. Aguarde o container Docker subir.
 4. Abra seu navegador e digite [http://localhost:3000/](http://localhost:3000/) para acessar o Front-end e [http://localhost:3001/](http://localhost:3001/) para o Back-end.
-5. Caso queira testar sem a necessidade de criar uma conta utilize o ***login: gustavo@gustavo.com.br com a senha: 123456***
+5. Caso queira testar sem a necessidade de criar uma conta utilize o ***login: <gustavo@gustavo.com.br> com a senha: 123456***
 
 Em caso de dúvidas, entre em contato comigo pelo GitHub ou pelo e-mail: <gustavovieiradeoliveira@gmail.com>.
 
 <br />
 
-### Esse projeto está sendo executado em um servidor privado(Ubuntu Server com Docker) com o endereço IP: <http://187.67.70.21:3000/>
+### Esse projeto está sendo executado em um servidor privado(usando Docker) com o endereço IP: <http://187.67.70.21:3000/> para o front-end e <http://187.67.70.21:3001/> para o Back-end
 
 <br />
 
