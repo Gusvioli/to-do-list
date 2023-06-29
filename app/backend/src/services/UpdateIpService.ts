@@ -4,13 +4,22 @@ import HttpException from '../utils/HttpException'
 export class UpdateIpService {
   public static async updateIp(data: { ip: string }) {
     const { ip } = data
-    const returno = await UserIpModel.create({
-      ip,
+
+    const verificarip = await UserIpModel.findOne({
+      where: {
+        ip,
+      },
     })
 
-    if (!returno) {
-      throw new HttpException(401, 'Erro add Ip')
+    if(!verificarip){
+      const returno = await UserIpModel.create({
+        ip,
+      })
+
+      if (!returno) {
+        throw new HttpException(401, 'Erro add Ip')
+      }
+      return returno
     }
-    return returno
   }
 }
