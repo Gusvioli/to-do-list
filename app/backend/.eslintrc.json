@@ -1,5 +1,68 @@
 {
-  "extends": "@rocketseat/eslint-config/react",
-  // "extends": "@rocketseat/eslint-config/node"
+  "env": {
+    "browser": true, // Define que o código será executado em um ambiente de navegador
+    "es2021": true, // Define que o código usará recursos do ECMAScript 2021
+    "jest": true // Define que o código usará recursos do Jest
+  },
+  "extends": [
+    "tandard", // Define o padrão de código como o StandardJS
+    "plugin:@typescript-eslint/recommended", // Define o plugin de regras do TypeScript
+    "plugin:prettier/recommended" // Define o plugin de regras do Prettier
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest", // Define que o código usará recursos do ECMAScript 12
+    "sourceType": "module" // Define que o código será executado como um módulo ECMAScript
+  },
+  "plugins": [
+    "jsx-a11y", // Define o plugin de regras de acessibilidade
+    "@typescript-eslint" // Define o plugin de regras do TypeScript
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 80, // Define o limite de caracteres por linha
+        "tabWidth": 2, // Define o tamanho da tabulação
+        "singleQuote": true, // Define que o código usará aspas simples
+        "trailingComma": "all", // Define que o código usará vírgula no final de objetos e vetores
+        "arrowParens": "always", // Define que o código usará parênteses em arrow functions com apenas um parâmetro
+        "semi": false, // Define que o código não usará ponto e vírgula
+        "endOfLine": "auto" // Define que o código usará a quebra de linha do sistema operacional
+      }
+    ],
+    "jsx-a11y/alt-text": [
+      "warn",
+      {
+        "elements": [
+          "img"
+        ],
+        "img": [
+          "Image"
+        ]
+      }
+    ],
+    "jsx-a11y/aria-props": "warn",
+    "jsx-a11y/aria-proptypes": "warn",
+    "jsx-a11y/aria-unsupported-elements": "warn",
+    "jsx-a11y/role-has-required-aria-props": "warn",
+    "jsx-a11y/role-supports-aria-props": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx",
+        ".d.ts",
+        ".js",
+        ".jsx"
+      ]
+    }
+  },
   "eslintIgnore": "dist/*.*"
 }
